@@ -11,6 +11,13 @@
     <Image Source="logo.png" RelativeLayout.WidthConstraint=
                   "{ConstraintExpression Type=RelativeToParent, Property=Width}"
                 RelativeLayout.HeightConstraint=
-                  "{ConstraintExpression Type=RelativeToParent, Property=Height}" />
+                  "{ConstraintExpression Type=RelativeToParent, Property=Height}">
+      <Image.GestureRecognizers>
+        <TapGestureRecognizer
+                Tapped="OnTapGestureRecognizerTapped"
+                NumberOfTapsRequired="1" />
+      </Image.GestureRecognizers>
+    </Image>
+
   </RelativeLayout>
 </ContentPage>

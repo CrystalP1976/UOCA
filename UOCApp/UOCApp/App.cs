@@ -12,7 +12,7 @@ namespace UOCApp
 		public App ()
 		{
             // The root page of your application
-            MainPage = new UOCApp.SplashPage();
+            MainPage = new NavigationPage(new UOCApp.SplashPage());
 		}
 
 		protected override void OnStart ()
