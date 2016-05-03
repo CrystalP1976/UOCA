@@ -19,7 +19,7 @@
 
     <Label Text="Stop Watch" HorizontalOptions="Center" />
 
-    <Label Text="00:00:00" HorizontalOptions="Center" />
+    <Label Text="" HorizontalOptions="Center" x:Name="WatchText" />
 
     <Grid>
       <Grid.RowDefinitions>

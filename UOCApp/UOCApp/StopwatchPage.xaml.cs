@@ -10,10 +10,32 @@ namespace UOCApp
 {
 	public partial class StopwatchPage : ContentPage
 	{
+        //for the stopwatch/timer
+        bool timerActive;
+        long startTime;
+        long stopTime;
+
 		public StopwatchPage ()
 		{
 			InitializeComponent ();
 		}
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            WatchText.Text = "00:00.000";
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+
+            //stop the timer on leaving (good idea?)
+            timerActive = false;
+            startTime = 0;
+            stopTime = 0;
+        }
 
         private void ButtonTimesClick(object sender, EventArgs args)
         {
@@ -23,19 +45,19 @@ namespace UOCApp
 
         private void ButtonStartClick(object sender, EventArgs args)
         {
-            //TODO on click
+            startTimer();
             Console.WriteLine("Clicked start button");
         }
 
         private void ButtonStopClick(object sender, EventArgs args)
         {
-            //TODO on click
+            stopTimer();
             Console.WriteLine("Clicked stop button");
         }
 
         private void ButtonClearClick(object sender, EventArgs args)
         {
-            //TODO on click
+            clearTimer();
             Console.WriteLine("Clicked clear button");
         }
 
@@ -43,6 +65,56 @@ namespace UOCApp
         {
             //TODO on click
             Console.WriteLine("Clicked save button");
+        }
+
+        private void startTimer()
+        {
+            //get current time and note
+            startTime = System.DateTime.Now.Ticks;
+            timerActive = true;
+
+            //actually start the update ticker
+            Device.StartTimer(new TimeSpan(0, 0, 0, 0, 50), () => {
+
+                if (timerActive)
+                {
+                    updateTimer(System.DateTime.Now.Ticks - startTime);
+                    return true; //continue
+                }
+                else return false;                
+            });
+        }
+
+        private void stopTimer()
+        {
+            if (timerActive)
+            {
+                //note final time and stop
+                stopTime = System.DateTime.Now.Ticks;
+                timerActive = false;
+                updateTimer(stopTime - startTime);
+            }
+        }
+
+        private void clearTimer()
+        {
+            if(!timerActive)
+            {
+                startTime = 0;
+                stopTime = 0;
+                //WatchText.Text = "00:00.000";
+                updateTimer(0);
+            }
+        }
+
+        //TODO: update stopwatch text
+        private void updateTimer(long time)
+        {
+            //display time
+            DateTime dt = new DateTime(time);
+            string displayTime = String.Format("{0:00}:{1:00}.{2:000}", dt.Minute, dt.Second, dt.Millisecond);
+            //string displayTime = dt.Minute + ":" + dt.Second + "." + dt.Millisecond;
+            WatchText.Text = displayTime;
         }
     }
 }
