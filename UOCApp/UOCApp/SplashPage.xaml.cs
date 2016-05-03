@@ -10,6 +10,8 @@ namespace UOCApp
 {
     public partial class SplashPage : ContentPage
     {
+        bool inPage;
+
         public SplashPage()
         {
             InitializeComponent();
@@ -19,16 +21,28 @@ namespace UOCApp
         {
             base.OnAppearing();
             NavigationPage.SetHasNavigationBar(this, false);
+
+            //execute timer
+            inPage = true;
+            Device.StartTimer(new TimeSpan(0, 0, 5), () => {
+                
+                if(inPage)
+                {
+                    Navigation.PushModalAsync(new NavigationPage(new UOCApp.StopwatchPage()));
+                    inPage = false;
+                }                   
+
+                return false; //stop the timer after one shot
+            });
         }
 
         void OnTapGestureRecognizerTapped(object sender, EventArgs args)
         {
-            //TODO: go to next screen
+            inPage = false;
+
             Console.WriteLine("Tapped image");
 
             Navigation.PushModalAsync(new NavigationPage(new UOCApp.StopwatchPage()));
         }
-
-        //TODO: timer to go to next screen
     }
 }
