@@ -9,16 +9,20 @@ using Android.OS;
 
 namespace UOCApp.Droid
 {
-	[Activity (Label = "Ultimate Obstacle Course", Icon = "@drawable/icon", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+	[Activity (Label = "Ultimate Obstacle Course", Icon = "@drawable/icon", Theme = "@style/Theme.Splash", MainLauncher = true,  ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
 	public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsApplicationActivity
 	{
 		protected override void OnCreate (Bundle bundle)
 		{
-			base.OnCreate (bundle);
+            base.Window.RequestFeature(WindowFeatures.ActionBar);
+            base.SetTheme(global::Android.Resource.Style.ThemeDeviceDefault);
+            base.OnCreate (bundle);
+            base.ActionBar.Hide();
 
-			global::Xamarin.Forms.Forms.Init (this, bundle);
+            global::Xamarin.Forms.Forms.Init (this, bundle);
 			LoadApplication (new UOCApp.App ());
-		}
+            base.ActionBar.Show();
+        }
 	}
 }
 
