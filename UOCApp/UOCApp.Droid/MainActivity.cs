@@ -17,7 +17,7 @@ namespace UOCApp.Droid
             base.Window.RequestFeature(WindowFeatures.ActionBar);
             base.SetTheme(global::Android.Resource.Style.ThemeDeviceDefaultLight); //not working, don't know  why
             base.OnCreate (bundle);            
-            base.ActionBar.Hide();
+            //base.ActionBar.Hide();
 
             global::Xamarin.Forms.Forms.Init (this, bundle);            
             LoadApplication (new UOCApp.App ());            

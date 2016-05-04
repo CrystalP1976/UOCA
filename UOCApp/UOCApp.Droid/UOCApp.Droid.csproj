@@ -40,7 +40,8 @@
     <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
     <BundleAssemblies>False</BundleAssemblies>
     <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
-    <AndroidSupportedAbis />
+    <AndroidSupportedAbis>
+    </AndroidSupportedAbis>
     <AndroidStoreUncompressedFileExtensions />
     <MandroidI18n />
     <Debugger>Xamarin</Debugger>
@@ -110,7 +111,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
   </ItemGroup>
@@ -138,7 +141,7 @@
     <AndroidResource Include="Resources\Drawable\ileaderboard.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\values\styles.xml" />
+    <AndroidResource Include="Resources\values\style.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Drawable\SplashImage.xml">
