@@ -74,7 +74,7 @@ namespace UOCApp
             timerActive = true;
 
             //actually start the update ticker
-            Device.StartTimer(new TimeSpan(0, 0, 0, 0, 50), () => {
+            Device.StartTimer(new TimeSpan(0, 0, 0, 0, 25), () => {
 
                 if (timerActive)
                 {
