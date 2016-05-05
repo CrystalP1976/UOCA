@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="UOCApp.EntryPage">
   <ContentPage.ToolbarItems>
@@ -9,6 +10,93 @@
     <ToolbarItem x:Name="Admin" Text="Admin" Icon="iadmin.png" Clicked="NavAdmin"></ToolbarItem>
   </ContentPage.ToolbarItems>
 
-  <Label Text="{Binding MainText}" VerticalOptions="Center" HorizontalOptions="Center" />
-  
+  <StackLayout       VerticalOptions="FillAndExpand"
+                     HorizontalOptions="FillAndExpand"
+                     Orientation="Vertical"
+                     Spacing="10"
+                     Padding="10,0,10,0">
+
+    <Grid Padding="20,10">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+
+      <Label Text="Name" Grid.Row="0" Grid.Column="0"/>
+      <Entry Text="John Doe" Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand"/>
+
+      <Label Text="Grade" Grid.Row="1" Grid.Column="0"/>
+      <Picker Title="Grade" Grid.Row="1" Grid.Column="1" HorizontalOptions="FillAndExpand"/>
+
+      <Label Text="Gender" Grid.Row="2" Grid.Column="0"/>
+      <Picker Title="Gender" Grid.Row="2" Grid.Column="1" HorizontalOptions="FillAndExpand"/>
+
+      <Label Text="School" Grid.Row="3" Grid.Column="0"/>
+      <Entry Text="Cliff Drive Elementary" Grid.Row="3" Grid.Column="1" HorizontalOptions="FillAndExpand"/>
+
+      <Label Text="Time" Grid.Row="4" Grid.Column="0"/>
+      <Entry Text="11:11.111" Grid.Row="4" Grid.Column="1" HorizontalOptions="FillAndExpand"/>
+
+      <Label Text="Date" Grid.Row="5" Grid.Column="0"/>
+      <DatePicker Grid.Row="5" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Date="{x:Static sys:DateTime.Now}">
+        <DatePicker.Format>yyyy-MM-dd</DatePicker.Format>
+      </DatePicker>
+
+      <!--<Entry Text="May 5 2016" Grid.Row="5" Grid.Column="1" HorizontalOptions="FillAndExpand"/>-->
+
+
+    </Grid>
+
+    <Button Text="Obstacles Completed"
+           HorizontalOptions="CenterAndExpand"
+           />
+
+    <Label Text="Choose who will see your results. Private is only for you. Public will be shown in leaderboards."/>
+
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+
+      <Label Text="Public:" Grid.Row="0" Grid.Column="0"/>
+      <Switch IsToggled="False" Grid.Row="0" Grid.Column="1"/>
+      
+    </Grid>
+
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+
+      <Button Text="Share on Instagram"
+           HorizontalOptions="CenterAndExpand"
+              Grid.Column="0" Grid.Row="0"
+           />
+
+      <Button Text="Share on Facebook"
+           HorizontalOptions="CenterAndExpand"
+              Grid.Column="1" Grid.Row="0"
+           />
+
+    </Grid>
+
+  </StackLayout>
+    
 </ContentPage>
