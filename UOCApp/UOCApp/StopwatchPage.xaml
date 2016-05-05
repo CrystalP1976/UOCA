@@ -6,22 +6,30 @@
   <ContentPage.ToolbarItems>
     <ToolbarItem x:Name="Home" Text="Home" Icon="ihome.png"></ToolbarItem>
     <ToolbarItem x:Name="Leaderboard" Text="Leaderboard" Icon="ileaderboard.png"></ToolbarItem>
+    <ToolbarItem x:Name="Times" Text="Times" Icon="itimes.png"></ToolbarItem>
     <ToolbarItem x:Name="Admin" Text="Admin" Icon="iadmin.png"></ToolbarItem>
   </ContentPage.ToolbarItems>
   <StackLayout       VerticalOptions="FillAndExpand"
                      HorizontalOptions="FillAndExpand"
                      Orientation="Vertical"
-                     Spacing="15">
+                     Spacing="15"
+                     Padding="10,0,10,0">
 
+    <Image Source="htitle.png"  />
+
+    <!--
+    
     <Button Text="Top Run Times"
         HorizontalOptions="Center"
         Clicked="ButtonTimesClick" />
+        
+        -->
 
-    <Label Text="Stop Watch" HorizontalOptions="Center" />
+    <!-- <Label Text="Stop Watch" HorizontalOptions="Center" />  -->
 
-    <Label Text="" HorizontalOptions="Center" x:Name="WatchText" />
+    <Label Text="" HorizontalOptions="Center" FontSize="36" FontFamily="monospace" x:Name="WatchText" />
 
-    <Grid>
+    <Grid Padding="20,0">
       <Grid.RowDefinitions>
         <RowDefinition Height="Auto" />
         <RowDefinition Height="Auto" />
