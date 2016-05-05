@@ -8,9 +8,9 @@ using Xamarin.Forms;
 
 namespace UOCApp
 {
-	public partial class EntryPage : ContentPage
+	public partial class TimesPage : ContentPage
 	{
-		public EntryPage ()
+		public TimesPage ()
 		{
 			InitializeComponent ();
 		}
@@ -25,12 +25,6 @@ namespace UOCApp
         {
             Console.WriteLine("Clicked Nav Leaderboard");
             Navigation.PushAsync(new LeaderboardPage());
-        }
-
-        private void NavTimes(object sender, EventArgs args)
-        {
-            Console.WriteLine("Clicked Nav Times");
-            Navigation.PushAsync(new TimesPage());
         }
 
         private void NavAdmin(object sender, EventArgs args)

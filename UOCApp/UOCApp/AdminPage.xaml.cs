@@ -8,13 +8,12 @@ using Xamarin.Forms;
 
 namespace UOCApp
 {
-	public partial class EntryPage : ContentPage
+	public partial class AdminPage : ContentPage
 	{
-		public EntryPage ()
+		public AdminPage ()
 		{
 			InitializeComponent ();
 		}
-
         private void NavHome(object sender, EventArgs args)
         {
             Console.WriteLine("Clicked Nav Home");
@@ -33,10 +32,5 @@ namespace UOCApp
             Navigation.PushAsync(new TimesPage());
         }
 
-        private void NavAdmin(object sender, EventArgs args)
-        {
-            Console.WriteLine("Clicked Nav Admin");
-            Navigation.PushAsync(new AdminPage());
-        }
     }
 }

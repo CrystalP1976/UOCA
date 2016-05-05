@@ -8,23 +8,16 @@ using Xamarin.Forms;
 
 namespace UOCApp
 {
-	public partial class EntryPage : ContentPage
+	public partial class LeaderboardPage : ContentPage
 	{
-		public EntryPage ()
+		public LeaderboardPage ()
 		{
 			InitializeComponent ();
 		}
-
         private void NavHome(object sender, EventArgs args)
         {
             Console.WriteLine("Clicked Nav Home");
             Navigation.PopToRootAsync();
-        }
-
-        private void NavLeaderboard(object sender, EventArgs args)
-        {
-            Console.WriteLine("Clicked Nav Leaderboard");
-            Navigation.PushAsync(new LeaderboardPage());
         }
 
         private void NavTimes(object sender, EventArgs args)
