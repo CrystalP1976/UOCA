@@ -65,6 +65,22 @@ namespace UOCApp
         {
             //TODO on click
             Console.WriteLine("Clicked save button");
+            Navigation.PushAsync(new EntryPage()); //should this be modal?
+        }
+
+        private void NavLeaderboard(object sender, EventArgs args)
+        {
+            Console.WriteLine("Clicked Nav Leaderboard");
+        }
+
+        private void NavTimes(object sender, EventArgs args)
+        {
+            Console.WriteLine("Clicked Nav Times");
+        }
+
+        private void NavAdmin(object sender, EventArgs args)
+        {
+            Console.WriteLine("Clicked Nav Admin");
         }
 
         private void startTimer()
@@ -116,5 +132,7 @@ namespace UOCApp
             //string displayTime = dt.Minute + ":" + dt.Second + "." + dt.Millisecond;
             WatchText.Text = displayTime;
         }
+
+
     }
 }

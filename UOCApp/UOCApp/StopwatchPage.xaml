@@ -5,9 +5,9 @@
 
   <ContentPage.ToolbarItems>
     <ToolbarItem x:Name="Home" Text="Home" Icon="ihome.png"></ToolbarItem>
-    <ToolbarItem x:Name="Leaderboard" Text="Leaderboard" Icon="ileaderboard.png"></ToolbarItem>
-    <ToolbarItem x:Name="Times" Text="Times" Icon="itimes.png"></ToolbarItem>
-    <ToolbarItem x:Name="Admin" Text="Admin" Icon="iadmin.png"></ToolbarItem>
+    <ToolbarItem x:Name="Leaderboard" Text="Leaderboard" Icon="ileaderboard.png" Clicked="NavLeaderboard"></ToolbarItem>
+    <ToolbarItem x:Name="Times" Text="My Times" Icon="itimes.png" Clicked="NavTimes"></ToolbarItem>
+    <ToolbarItem x:Name="Admin" Text="Admin" Icon="iadmin.png" Clicked="NavAdmin"></ToolbarItem>
   </ContentPage.ToolbarItems>
   <StackLayout       VerticalOptions="FillAndExpand"
                      HorizontalOptions="FillAndExpand"
