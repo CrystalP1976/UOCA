@@ -8,5 +8,5 @@
     <ToolbarItem x:Name="Times" Text="My Times" Icon="itimes.png" Clicked="NavTimes"></ToolbarItem>
     <ToolbarItem x:Name="Admin" Text="Admin" Icon="iadmin.png"></ToolbarItem>
   </ContentPage.ToolbarItems>
-	<Label Text="{Binding MainText}" VerticalOptions="Center" HorizontalOptions="Center" />
+	<Label Text="Admin Page" VerticalOptions="Center" HorizontalOptions="Center" />
 </ContentPage>
