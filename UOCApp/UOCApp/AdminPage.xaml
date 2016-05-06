@@ -8,5 +8,23 @@
     <ToolbarItem x:Name="Times" Text="My Times" Icon="itimes.png" Clicked="NavTimes"></ToolbarItem>
     <ToolbarItem x:Name="Admin" Text="Admin" Icon="iadmin.png"></ToolbarItem>
   </ContentPage.ToolbarItems>
-	<Label Text="Admin Page" VerticalOptions="Center" HorizontalOptions="Center" />
+  <StackLayout       VerticalOptions="FillAndExpand"
+                     HorizontalOptions="FillAndExpand"
+                     Orientation="Vertical"
+                     Spacing="10"
+                     Padding="10,10,10,0">
+    <Label Text="Administration" FontSize="Large" VerticalOptions="Center" HorizontalOptions="Center" />
+
+    <Button Text="Logout" HorizontalOptions="CenterAndExpand" />
+
+    <Picker Title="Grade" HorizontalOptions="FillAndExpand"/>
+    <Picker Title="Gender" HorizontalOptions="FillAndExpand"/>
+    <Picker Title="Sort By" HorizontalOptions="FillAndExpand"/>
+
+    <ListView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+      
+    </ListView>
+
+  </StackLayout>
+	
 </ContentPage>

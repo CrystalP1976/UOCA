@@ -11,7 +11,7 @@ namespace UOCApp
 	public partial class AdminPage : ContentPage
 	{
         //temporary, for testing
-        bool loggedIn = false;
+        bool loggedIn = true;
 
 		public AdminPage ()
 		{
