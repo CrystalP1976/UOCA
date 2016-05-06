@@ -149,9 +149,6 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\Drawable\splashbg2.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\Drawable\itimes.png" />
   </ItemGroup>
   <ItemGroup>
@@ -162,6 +159,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Drawable\iinstagram.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Drawable\splashbg2.png" />
   </ItemGroup>
   <Import Project="..\UOCApp\UOCApp.projitems" Label="Shared" Condition="Exists('..\UOCApp\UOCApp.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
