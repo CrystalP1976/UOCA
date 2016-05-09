@@ -24,19 +24,19 @@ namespace UOCApp
             //if login is good, log in
             Application.Current.Properties["loggedin"] = true;
 
-            await Application.Current.SavePropertiesAsync();
+            await Application.Current.SavePropertiesAsync();            
 
+            await Navigation.PopModalAsync();
             MessagingCenter.Send<LoginPage, Boolean>(this, "LoginComplete", true);
-
-            Navigation.PopModalAsync();
         }
 
-        private void ButtonCancelClick(object sender, EventArgs args)
+        private async void ButtonCancelClick(object sender, EventArgs args)
         {
             //exit this screen
-            MessagingCenter.Send<LoginPage, Boolean>(this, "LoginComplete", false);
+            
 
-            Navigation.PopModalAsync();
+            await Navigation.PopModalAsync();
+            MessagingCenter.Send<LoginPage, Boolean>(this, "LoginComplete", false);
         }
 	}
 }

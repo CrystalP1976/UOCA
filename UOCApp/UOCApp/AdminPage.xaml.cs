@@ -22,7 +22,19 @@ namespace UOCApp
 
         private void OnLoginComplete(bool arg)
         {
-            //TODO on return from login page do something
+            //okay do I need to unsubscribe?
+            MessagingCenter.Unsubscribe<LoginPage, Boolean>(this, "LoginComplete");
+
+            //on return from login page do something
+            Console.WriteLine(arg);
+
+            //if it returned true, the login was successful and we can do nothing
+
+            //if it returned false, the login was unsuccessful and we need to leave immediately
+            if(!arg && Navigation.NavigationStack.Count > 0)
+            {
+                Navigation.PopAsync();
+            }
         }
 
         protected override async void OnAppearing() //is this safe?
