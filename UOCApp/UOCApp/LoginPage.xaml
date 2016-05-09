@@ -3,13 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="UOCApp.LoginPage">
 
-  <StackLayout       VerticalOptions="FillAndExpand"
+  <StackLayout       VerticalOptions="Center"
                      HorizontalOptions="FillAndExpand"
                      Orientation="Vertical"
                      Spacing="15"
                      Padding="10,0,10,0">
 
-    <Label Text="Login Page" VerticalOptions="Center" HorizontalOptions="Center" />
+    <Label Text="Admin Login" FontSize="Large" VerticalOptions="Center" HorizontalOptions="Center" />
 
     <Grid Padding="40,20">
       <Grid.RowDefinitions>
@@ -22,11 +22,18 @@
       </Grid.ColumnDefinitions>
 
       <Label Text="Password:" Grid.Row="0" Grid.Column="0" FontSize="Large" HorizontalTextAlignment="End"/>
-      <Entry Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand"/>
+      <Entry Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" x:Name="TextBoxPassword"/>
 
       <Button Text="Login"
-           HorizontalOptions="CenterAndExpand"
-              Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
+           HorizontalOptions="Center"
+              Grid.Column="0" Grid.Row="1"
+              Clicked="ButtonLoginClick"
+           />
+
+      <Button Text="Cancel"
+           HorizontalOptions="Center"
+              Grid.Column="1" Grid.Row="1"
+              Clicked="ButtonCancelClick"
            />
 
     </Grid>
