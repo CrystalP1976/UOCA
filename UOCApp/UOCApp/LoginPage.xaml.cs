@@ -14,5 +14,15 @@ namespace UOCApp
 		{
 			InitializeComponent ();
 		}
+
+        private void ButtonLoginClick(object sender, EventArgs args)
+        {
+            //TODO write login functionality
+        }
+
+        private void ButtonCancelClick(object sender, EventArgs args)
+        {
+            //TODO write back functionality
+        }
 	}
 }

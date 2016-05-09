@@ -11,7 +11,7 @@ namespace UOCApp
 	public partial class AdminPage : ContentPage
 	{
         //temporary, for testing
-        bool loggedIn = true;
+        //bool loggedIn = true;
 
 		public AdminPage ()
 		{
@@ -22,17 +22,26 @@ namespace UOCApp
         {
             base.OnAppearing();
 
-            await Task.Yield(); 
+            await Task.Yield();
+
+            bool loggedIn = false;
+            if (Application.Current.Properties.ContainsKey("loggedin"))
+            {
+                loggedIn = Convert.ToBoolean(Application.Current.Properties["loggedin"]);
+            }
+
 
             //TODO: check if we're actually logged in
-            if(!loggedIn)
+            if (!loggedIn)
             {
+                //try to login
                 await Navigation.PushModalAsync(new LoginPage());
             }            
 
             //are we logged in now? no?
             if(!loggedIn)
             {
+                //leave the page
                 Navigation.PopAsync();
             }
 

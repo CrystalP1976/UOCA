@@ -21,12 +21,19 @@
         <ColumnDefinition Width="*" />
       </Grid.ColumnDefinitions>
 
-      <Label Text="Password:" Grid.Row="0" Grid.Column="0" FontSize="Large" HorizontalTextAlignment="End"/>
+      <Label Text="Password:" Grid.Row="0" Grid.Column="0" FontSize="Large" HorizontalTextAlignment="End" x:Name="TextBoxPassword"/>
       <Entry Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand"/>
 
       <Button Text="Login"
            HorizontalOptions="CenterAndExpand"
               Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
+              Clicked="ButtonLoginClick"
+           />
+
+      <Button Text="Cancel"
+           HorizontalOptions="CenterAndExpand"
+              Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
+              Clicked="ButtonCancelClick"
            />
 
     </Grid>
