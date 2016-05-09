@@ -9,6 +9,10 @@ namespace UOCApp
 {
 	public class App : Application
 	{
+
+        //safe to put constants here?
+        public const string password = "12345";
+
 		public App ()
 		{
             // The root page of your application

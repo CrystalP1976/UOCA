@@ -22,7 +22,7 @@ namespace UOCApp
 
         private void OnLoginComplete(bool arg)
         {
-            //okay do I need to unsubscribe?
+            //unsubscribe
             MessagingCenter.Unsubscribe<LoginPage, Boolean>(this, "LoginComplete");
 
             //on return from login page do something
@@ -31,9 +31,17 @@ namespace UOCApp
             //if it returned true, the login was successful and we can do nothing
 
             //if it returned false, the login was unsuccessful and we need to leave immediately
-            if(!arg && Navigation.NavigationStack.Count > 0)
+            if(!arg && Navigation.NavigationStack.Count > 0) //for safety
             {
                 Navigation.PopAsync();
+            }
+
+            if(arg)
+            {
+                //show the page if we're logged in
+                //AdminLayout.IsVisible = true;
+                //IsVisible is broken, use Opacity instead
+                AdminLayout.Opacity = 1.0;
             }
         }
 
@@ -55,6 +63,12 @@ namespace UOCApp
             {
                 //try to login
                 await Navigation.PushModalAsync(new LoginPage());
+            }
+            else
+            {
+                //show the page if we're logged in
+                //AdminLayout.IsVisible = true;
+                AdminLayout.Opacity = 1.0;
             }
 
             //the below code doesn't work
@@ -83,6 +97,8 @@ namespace UOCApp
             Application.Current.Properties["loggedin"] = false;
 
             await Application.Current.SavePropertiesAsync();
+
+            await DisplayAlert("Alert", "You have been logged out successfully", "OK");
 
             Navigation.PopAsync();
         }

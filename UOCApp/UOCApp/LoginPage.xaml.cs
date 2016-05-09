@@ -17,9 +17,23 @@ namespace UOCApp
 
         private async void ButtonLoginClick(object sender, EventArgs args)
         {
-            //TODO write login functionality
+            string password = App.password;
+            string entered = TextBoxPassword.Text;
 
-            //TODO display message
+            Console.WriteLine(entered);
+
+            if(!String.IsNullOrEmpty(entered) && String.Equals(password, entered))
+            {
+                //password matches, so log in!
+                await DisplayAlert("Alert", "You have been logged in successfully", "OK");
+            }
+            else
+            {
+                //display message and exit method
+                await DisplayAlert("Alert", "Your password is incorrect", "OK");
+
+                return;
+            }
 
             //if login is good, log in
             Application.Current.Properties["loggedin"] = true;
