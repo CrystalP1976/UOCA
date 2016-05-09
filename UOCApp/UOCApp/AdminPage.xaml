@@ -15,7 +15,7 @@
                      Padding="10,10,10,0">
     <Label Text="Administration" FontSize="Large" VerticalOptions="Center" HorizontalOptions="Center" />
 
-    <Button Text="Logout" HorizontalOptions="CenterAndExpand" />
+    <Button Text="Logout" HorizontalOptions="CenterAndExpand" Clicked="ButtonLogoutClick"/>
 
     <Picker Title="Grade" HorizontalOptions="FillAndExpand"/>
     <Picker Title="Gender" HorizontalOptions="FillAndExpand"/>

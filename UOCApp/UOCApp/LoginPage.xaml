@@ -26,13 +26,13 @@
 
       <Button Text="Login"
            HorizontalOptions="CenterAndExpand"
-              Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
+              Grid.Column="0" Grid.Row="1"
               Clicked="ButtonLoginClick"
            />
 
       <Button Text="Cancel"
            HorizontalOptions="CenterAndExpand"
-              Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
+              Grid.Column="1" Grid.Row="1"
               Clicked="ButtonCancelClick"
            />
 

@@ -15,14 +15,28 @@ namespace UOCApp
 			InitializeComponent ();
 		}
 
-        private void ButtonLoginClick(object sender, EventArgs args)
+        private async void ButtonLoginClick(object sender, EventArgs args)
         {
             //TODO write login functionality
+
+            //TODO display message
+
+            //if login is good, log in
+            Application.Current.Properties["loggedin"] = true;
+
+            await Application.Current.SavePropertiesAsync();
+
+            MessagingCenter.Send<LoginPage, Boolean>(this, "LoginComplete", true);
+
+            Navigation.PopModalAsync();
         }
 
         private void ButtonCancelClick(object sender, EventArgs args)
         {
-            //TODO write back functionality
+            //exit this screen
+            MessagingCenter.Send<LoginPage, Boolean>(this, "LoginComplete", false);
+
+            Navigation.PopModalAsync();
         }
 	}
 }
