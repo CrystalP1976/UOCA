@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,5 +31,7 @@ namespace UOCApp
             Console.WriteLine("Clicked Nav Admin");
             Navigation.PushAsync(new AdminPage());
         }
+
+			
     }
 }
