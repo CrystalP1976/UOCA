@@ -20,15 +20,33 @@
 
     <Button Text="Logout" HorizontalOptions="CenterAndExpand" Clicked="ButtonLogoutClick"/>
 
-    <Picker Title="Grade" HorizontalOptions="FillAndExpand" SelectedIndexChanged="FilterChange" x:Name="PickerGrade"/>
-    <Picker Title="Gender" HorizontalOptions="FillAndExpand" SelectedIndexChanged="FilterChange" x:Name="PickerGender"/>
+    <Picker Title="Grade" HorizontalOptions="FillAndExpand" SelectedIndexChanged="FilterChange" x:Name="PickerGrade">
+      <Picker.Items>
+        <x:String>Grade 4</x:String>
+        <x:String>Grade 5</x:String>
+        <x:String>Grade 6</x:String>
+        <x:String>Grade 7</x:String>
+        <x:String>Teenager</x:String>
+        <x:String>Adult Under 35</x:String>
+        <x:String>Adult Over 35</x:String>
+      </Picker.Items>
+      <Picker.SelectedIndex>0</Picker.SelectedIndex>
+    </Picker>
+    <Picker Title="Gender" HorizontalOptions="FillAndExpand" SelectedIndexChanged="FilterChange" x:Name="PickerGender">
+      <Picker.Items>
+        <x:String>Male</x:String>
+        <x:String>Female</x:String>
+      </Picker.Items>
+      <Picker.SelectedIndex>0</Picker.SelectedIndex>
+    </Picker>
     <Entry Placeholder="School" HorizontalOptions="FillAndExpand" TextChanged="FilterChange" x:Name="EntrySchool"/>
-    <Picker Title="Sort By" HorizontalOptions="FillAndExpand" SelectedIndex="2" SelectedIndexChanged="SortChange" x:Name="PickerSort">
+    <Picker Title="Sort By" HorizontalOptions="FillAndExpand" SelectedIndexChanged="SortChange" x:Name="PickerSort">
       <Picker.Items>        
         <x:String>Name</x:String>
         <x:String>Date</x:String>
         <x:String>Time</x:String>
       </Picker.Items>
+      <Picker.SelectedIndex>2</Picker.SelectedIndex>
     </Picker>
 
     <ListView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" x:Name="ListViewAdmin">
