@@ -38,5 +38,11 @@ namespace UOCApp
             Console.WriteLine("Clicked Nav Admin");
             Navigation.PushAsync(new AdminPage());
         }
+
+		private void SaveResult(object sender, EventArgs args)
+		{
+			Console.WriteLine ("Clicked Save Result");
+		}
+
     }
 }

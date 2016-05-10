@@ -94,6 +94,7 @@
 
       <Button Text="Save Result"
            HorizontalOptions="CenterAndExpand"
+           Clicked="SaveResult"
               Grid.Column="0" Grid.Row="1"
            />      
 
