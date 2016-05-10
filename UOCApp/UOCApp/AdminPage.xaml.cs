@@ -245,8 +245,13 @@ namespace UOCApp
 
         private void FilterChange(object sender, EventArgs args)
         {
+            //sanity check
+            if (PickerGrade == null)
+                return;
+
             //TODO: on change filters, refresh the list
-            Console.WriteLine("Changed filter");
+            //Console.WriteLine("Changed filter");
+            GetResults();
         }
 
         private void SortChange(object sender, EventArgs args)
