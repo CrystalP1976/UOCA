@@ -19,6 +19,7 @@ namespace UOCApp
         //should this be at the app level?
         HttpClient client;
 
+        List<AdminResult> baseResults = new List<AdminResult>();
         ObservableCollection<AdminResult> results = new ObservableCollection<AdminResult>();
 
         public AdminPage ()
@@ -58,6 +59,9 @@ namespace UOCApp
                 //AdminLayout.IsVisible = true;
                 //IsVisible is broken, use Opacity instead
                 AdminLayout.Opacity = 1.0;
+
+                //load result list
+                GetResults();
             }
         }
 
@@ -113,33 +117,113 @@ namespace UOCApp
         //TODO: get the list of results from the server
         private async void GetResults()
         {
-            //TODO: filters because right now it gets everything
-
-            List<RawResult> results;
             
+            //filters are dealt with in another method
+            string url = App.API_URL + "results" + CreateQueryString();
 
-            string url = App.API_URL + "results";
+            Console.WriteLine(url);
+
             var uri = new Uri(url);
-
-            var response = await client.GetAsync(uri);
-            if (response.IsSuccessStatusCode)
-            {
-                var content = await response.Content.ReadAsStringAsync();
-                //Console.WriteLine(content);
-                results = JsonConvert.DeserializeObject<List<RawResult>>(content);
-
-                //List<AdminResult> pResults = new List<AdminResult>();
-
-                foreach(RawResult result in results)
+            //UriBuilder builder = new UriBuilder(new Uri(url));
+            
+            try
+            { 
+                var response = await client.GetAsync(uri);
+                if (response.IsSuccessStatusCode)
                 {
-                    //Console.WriteLine(result.ToString());
-                    this.results.Add(new AdminResult { result_id = Convert.ToInt32(result.result_id), date = result.date, time = result.time, student_name = result.student_name});
-                }
+                    //clear the current list
+                    this.baseResults.Clear();
 
+                    var content = await response.Content.ReadAsStringAsync();
+                    //Console.WriteLine(content);
+                    List<RawResult> rawresults = JsonConvert.DeserializeObject<List<RawResult>>(content);
+
+                    //List<AdminResult> pResults = new List<AdminResult>();
+
+                    //convert all RawResult into AdminResult and add to backing list 
+                    foreach(RawResult result in rawresults)
+                    {
+                        //Console.WriteLine(result.ToString());
+                        this.baseResults.Add(new AdminResult(result));
+                    }
+
+                    //copy results
+                    CopyResults();
+
+                }
+                else
+                {
+                    //TODO handle a failure that does not result in an exception being thrown
+                }
+            }
+            catch(Exception e) //pokemon exception handling
+            {
+                Console.WriteLine("Caught exception " + e.Message);
             }
 
-
         }
+
+        private string CreateQueryString()
+        {
+            string output = "?";
+
+            //get grade and map and append
+            //TODO do this in a better spot
+            string selectedGrade = !(PickerGrade == null) ? PickerGrade.Items[PickerGrade.SelectedIndex] : "Grade 4";
+            int grade = 4;
+            switch(selectedGrade)
+            {
+                case "Grade 4":
+                    grade = 4;
+                    break;
+                case "Grade 5":
+                    grade = 5;
+                    break;
+                case "Grade 6":
+                    grade = 6;
+                    break;
+                case "Grade 7":
+                    grade = 7;
+                    break;
+                case "Teenager":
+                    grade = -1;
+                    break;
+                case "Adult Under 35":
+                    grade = -2;
+                    break;
+                case "Adult Over 35":
+                    grade = -3;
+                    break;
+            }
+            output += "student_grade=" + grade;
+
+            //get gender and map and append (null check and default)
+            string selectedGender = !(PickerGender == null) ? PickerGender.Items[PickerGender.SelectedIndex] : "Male";
+            string gender = Convert.ToString(selectedGender[0]);
+            output += "&student_gender=" + gender;
+
+            //get school and append if it's not null
+            string school = !(EntrySchool == null) ? EntrySchool.Text : null;
+            if(!String.IsNullOrEmpty(school))
+            {
+                output += "&school_name=" + school;
+            }
+
+            return output;
+        }
+
+        //copy backing list to display list
+        private void CopyResults()
+        {
+            this.results.Clear();
+
+            foreach (AdminResult result in this.baseResults)
+            {
+                this.results.Add(result);
+            }
+        }
+
+        
 
         private async void ButtonLogoutClick(object sender, EventArgs args)
         {
@@ -157,6 +241,46 @@ namespace UOCApp
             int result_id = (int)((Button)sender).CommandParameter;
 
             Console.WriteLine("Clicked delete result " + result_id);
+        }
+
+        private void FilterChange(object sender, EventArgs args)
+        {
+            //sanity check
+            if (PickerGrade == null)
+                return;
+
+            //TODO: on change filters, refresh the list
+            //Console.WriteLine("Changed filter");
+            GetResults();
+        }
+
+        private void SortChange(object sender, EventArgs args)
+        {
+            //abort if the picker isn't actually loaded yet
+            if (PickerSort == null)
+                return;
+
+            //when the sort method is changed, resort the backing list
+            //Console.WriteLine("Changed sort");
+            string selectedItem = PickerSort.Items[PickerSort.SelectedIndex];
+            //Console.WriteLine(PickerSort.SelectedIndex);
+            //string selectedItem = "";
+            switch(selectedItem)
+            {
+                case "Name":
+                    baseResults.Sort((o1, o2) => o1.student_name.CompareTo(o2.student_name));
+                    break;
+                case "Date":
+                    baseResults.Sort((o1, o2) => o2.sortableDate.CompareTo(o1.sortableDate)); //we want most recent
+                    break;
+                default:
+                    //default is to sort by time
+                    baseResults.Sort((o1, o2) => o1.sortableTime.CompareTo(o2.sortableTime));
+                    break;
+            }
+
+            //copy the results to the observable list
+            CopyResults();
         }
 
         private void NavHome(object sender, EventArgs args)
