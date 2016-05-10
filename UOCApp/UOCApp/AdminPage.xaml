@@ -24,8 +24,23 @@
     <Picker Title="Gender" HorizontalOptions="FillAndExpand"/>
     <Picker Title="Sort By" HorizontalOptions="FillAndExpand"/>
 
-    <ListView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-      
+    <ListView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" x:Name="ListViewAdmin">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <StackLayout BackgroundColor="#eee"
+            Orientation="Vertical">
+              <StackLayout Orientation="Horizontal">
+                <Label Text="{Binding student_name}" />
+                <Label Text="{Binding date}" />
+                <Label Text="{Binding time}" />
+                <Button Text="X" Clicked="ButtonDeleteClick"  CommandParameter="{Binding result_id}" />
+              </StackLayout>
+            </StackLayout>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+
     </ListView>
 
   </StackLayout>
