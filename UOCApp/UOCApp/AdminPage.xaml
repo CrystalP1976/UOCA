@@ -20,9 +20,16 @@
 
     <Button Text="Logout" HorizontalOptions="CenterAndExpand" Clicked="ButtonLogoutClick"/>
 
-    <Picker Title="Grade" HorizontalOptions="FillAndExpand"/>
-    <Picker Title="Gender" HorizontalOptions="FillAndExpand"/>
-    <Picker Title="Sort By" HorizontalOptions="FillAndExpand"/>
+    <Picker Title="Grade" HorizontalOptions="FillAndExpand" SelectedIndexChanged="FilterChange" x:Name="PickerGrade"/>
+    <Picker Title="Gender" HorizontalOptions="FillAndExpand" SelectedIndexChanged="FilterChange" x:Name="PickerGender"/>
+    <Entry Placeholder="School" HorizontalOptions="FillAndExpand" TextChanged="FilterChange" x:Name="EntrySchool"/>
+    <Picker Title="Sort By" HorizontalOptions="FillAndExpand" SelectedIndex="2" SelectedIndexChanged="SortChange" x:Name="PickerSort">
+      <Picker.Items>        
+        <x:String>Name</x:String>
+        <x:String>Date</x:String>
+        <x:String>Time</x:String>
+      </Picker.Items>
+    </Picker>
 
     <ListView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" x:Name="ListViewAdmin">
       <ListView.ItemTemplate>

@@ -19,6 +19,7 @@ namespace UOCApp
         //should this be at the app level?
         HttpClient client;
 
+        List<AdminResult> baseResults = new List<AdminResult>();
         ObservableCollection<AdminResult> results = new ObservableCollection<AdminResult>();
 
         public AdminPage ()
@@ -113,6 +114,9 @@ namespace UOCApp
         //TODO: get the list of results from the server
         private async void GetResults()
         {
+            //clear the current list
+            this.baseResults.Clear();
+
             //TODO: filters because right now it gets everything
 
             List<RawResult> results;
@@ -130,16 +134,32 @@ namespace UOCApp
 
                 //List<AdminResult> pResults = new List<AdminResult>();
 
+                //convert all RawResult into AdminResult and add to backing list 
                 foreach(RawResult result in results)
                 {
                     //Console.WriteLine(result.ToString());
-                    this.results.Add(new AdminResult { result_id = Convert.ToInt32(result.result_id), date = result.date, time = result.time, student_name = result.student_name});
+                    this.baseResults.Add(new AdminResult(result));
                 }
+
+                //copy results
+                CopyResults();
 
             }
 
-
         }
+
+        //copy backing list to display list
+        private void CopyResults()
+        {
+            this.results.Clear();
+
+            foreach (AdminResult result in this.baseResults)
+            {
+                this.results.Add(result);
+            }
+        }
+
+        
 
         private async void ButtonLogoutClick(object sender, EventArgs args)
         {
@@ -157,6 +177,35 @@ namespace UOCApp
             int result_id = (int)((Button)sender).CommandParameter;
 
             Console.WriteLine("Clicked delete result " + result_id);
+        }
+
+        private void FilterChange(object sender, EventArgs args)
+        {
+            //TODO: on change filters, refresh the list
+            Console.WriteLine("Changed filter");
+        }
+
+        private void SortChange(object sender, EventArgs args)
+        {
+            //when the sort method is changed, resort the backing list
+            Console.WriteLine("Changed sort");
+            string selectedItem = PickerSort.Items[PickerSort.SelectedIndex];
+            switch(selectedItem)
+            {
+                case "Name":
+                    baseResults.Sort((o1, o2) => o1.student_name.CompareTo(o2.student_name));
+                    break;
+                case "Date":
+                    baseResults.Sort((o1, o2) => o2.sortableDate.CompareTo(o1.sortableDate)); //we want most recent
+                    break;
+                default:
+                    //default is to sort by time
+                    baseResults.Sort((o1, o2) => o1.sortableTime.CompareTo(o2.sortableTime));
+                    break;
+            }
+
+            //copy the results to the observable list
+            CopyResults();
         }
 
         private void NavHome(object sender, EventArgs args)
