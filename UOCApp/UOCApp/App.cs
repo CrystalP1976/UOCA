@@ -12,6 +12,7 @@ namespace UOCApp
 
         //safe to put constants here?
         public const string password = "12345";
+        public const string API_URL = @"http://uocb.xcvgsystems.net:8080/api/uocb/";
 
 		public App ()
 		{
