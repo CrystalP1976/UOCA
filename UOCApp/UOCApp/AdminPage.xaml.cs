@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-
+using UOCApp.Models;
 using Xamarin.Forms;
 
 namespace UOCApp
@@ -13,11 +15,24 @@ namespace UOCApp
         //temporary, for testing
         //bool loggedIn = true;
 
-		public AdminPage ()
+        //should this be at the app level?
+        HttpClient client;
+
+        ObservableCollection<AdminResult> results = new ObservableCollection<AdminResult>();
+
+        public AdminPage ()
 		{
 			InitializeComponent ();
 
             MessagingCenter.Subscribe<LoginPage, Boolean>(this, "LoginComplete", (sender, arg) => OnLoginComplete(arg));
+
+            client = new HttpClient();
+            client.MaxResponseContentBufferSize = 256000;
+
+            //test data
+            results.Add(new AdminResult {result_id = 5, student_name = "John Doe", date = "April 28 2016", time="11:11.111"});
+
+            ListViewAdmin.ItemsSource = results;
         }
 
         private void OnLoginComplete(bool arg)
@@ -69,6 +84,8 @@ namespace UOCApp
                 //show the page if we're logged in
                 //AdminLayout.IsVisible = true;
                 AdminLayout.Opacity = 1.0;
+
+                GetResults();
             }
 
             //the below code doesn't work
@@ -92,6 +109,24 @@ namespace UOCApp
 
         }
 
+        //TODO: get the list of results from the server
+        private async void GetResults()
+        {
+            //TODO: filters because right now it gets everything
+
+            string url = App.API_URL + "results";
+            var uri = new Uri(url);
+
+            var response = await client.GetAsync(uri);
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(content);
+            }
+
+
+        }
+
         private async void ButtonLogoutClick(object sender, EventArgs args)
         {
             Application.Current.Properties["loggedin"] = false;
@@ -101,6 +136,13 @@ namespace UOCApp
             await DisplayAlert("Alert", "You have been logged out successfully", "OK");
 
             Navigation.PopAsync();
+        }
+
+        private void ButtonDeleteClick(object sender, EventArgs args)
+        {
+            int result_id = (int)((Button)sender).CommandParameter;
+
+            Console.WriteLine("Clicked delete result " + result_id);
         }
 
         private void NavHome(object sender, EventArgs args)
