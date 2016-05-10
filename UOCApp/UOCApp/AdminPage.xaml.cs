@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UOCApp.Models;
 using Xamarin.Forms;
+using Newtonsoft.Json;
 
 namespace UOCApp
 {
@@ -30,7 +31,7 @@ namespace UOCApp
             client.MaxResponseContentBufferSize = 256000;
 
             //test data
-            results.Add(new AdminResult {result_id = 5, student_name = "John Doe", date = "April 28 2016", time="11:11.111"});
+            //results.Add(new AdminResult {result_id = 5, student_name = "John Doe", date = "April 28 2016", time="11:11.111"});
 
             ListViewAdmin.ItemsSource = results;
         }
@@ -114,6 +115,9 @@ namespace UOCApp
         {
             //TODO: filters because right now it gets everything
 
+            List<RawResult> results;
+            
+
             string url = App.API_URL + "results";
             var uri = new Uri(url);
 
@@ -121,7 +125,17 @@ namespace UOCApp
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
-                Console.WriteLine(content);
+                //Console.WriteLine(content);
+                results = JsonConvert.DeserializeObject<List<RawResult>>(content);
+
+                //List<AdminResult> pResults = new List<AdminResult>();
+
+                foreach(RawResult result in results)
+                {
+                    //Console.WriteLine(result.ToString());
+                    this.results.Add(new AdminResult { result_id = Convert.ToInt32(result.result_id), date = result.date, time = result.time, student_name = result.student_name});
+                }
+
             }
 
 
