@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using UOCApp.Models;
 using Xamarin.Forms;
 using Newtonsoft.Json;
+using UOCApp.Helpers;
 
 namespace UOCApp
 {
@@ -18,6 +19,8 @@ namespace UOCApp
 
         //should this be at the app level?
         HttpClient client;
+        GetResultsHelper resultsHelper;
+        DeleteResultsHelper deleteHelper;
 
         List<AdminResult> baseResults = new List<AdminResult>();
         ObservableCollection<AdminResult> results = new ObservableCollection<AdminResult>();
@@ -31,6 +34,9 @@ namespace UOCApp
             client = new HttpClient();
             client.MaxResponseContentBufferSize = 256000;
 
+            resultsHelper = new GetResultsHelper(client, App.API_URL);
+            deleteHelper = new DeleteResultsHelper(client, App.API_URL);
+
             //test data
             //results.Add(new AdminResult {result_id = 5, student_name = "John Doe", date = "April 28 2016", time="11:11.111"});
 
@@ -43,7 +49,7 @@ namespace UOCApp
             MessagingCenter.Unsubscribe<LoginPage, Boolean>(this, "LoginComplete");
 
             //on return from login page do something
-            Console.WriteLine(arg);
+            //Console.WriteLine(arg);
 
             //if it returned true, the login was successful and we can do nothing
 
@@ -93,123 +99,46 @@ namespace UOCApp
                 GetResults();
             }
 
-            //the below code doesn't work
-            //let's try MessagingCenter
-
-            //Console.WriteLine("Check again?");
-
-            //we just finished logging in or failing to, so check again
-            //if (Application.Current.Properties.ContainsKey("loggedin"))
-            //{
-            //    loggedIn = Convert.ToBoolean(Application.Current.Properties["loggedin"]);
-            //}
-
-            //are we logged in now? no?
-            //if (!loggedIn)
-            //{
-                //leave the page
-            //    Navigation.PopAsync();
-            //}
-
-
         }
 
-        //TODO: get the list of results from the server
+        //get the list of results from the server
         private async void GetResults()
         {
-            
-            //filters are dealt with in another method
-            string url = App.API_URL + "results" + CreateQueryString();
+            //build the querystring with the help of the helper
+            string selectedGrade = !(PickerGrade == null) ? PickerGrade.Items[PickerGrade.SelectedIndex] : "Grade 4";
+            string selectedGender = !(PickerGender == null) ? PickerGender.Items[PickerGender.SelectedIndex] : "Male";
+            string selectedSchool = !(EntrySchool == null) ? EntrySchool.Text : null;
+            string query = resultsHelper.CreateQueryString(selectedGrade, selectedGender, selectedSchool);
 
-            Console.WriteLine(url);
-
-            var uri = new Uri(url);
-            //UriBuilder builder = new UriBuilder(new Uri(url));
-            
             try
-            { 
-                var response = await client.GetAsync(uri);
-                if (response.IsSuccessStatusCode)
-                {
-                    //clear the current list
-                    this.baseResults.Clear();
+            {
+                //see how elegant using the helper makes this?
 
-                    var content = await response.Content.ReadAsStringAsync();
-                    //Console.WriteLine(content);
-                    List<RawResult> rawresults = JsonConvert.DeserializeObject<List<RawResult>>(content);
+                List<RawResult> rawresults = await resultsHelper.GetRawResults(query);
 
-                    //List<AdminResult> pResults = new List<AdminResult>();
-
-                    //convert all RawResult into AdminResult and add to backing list 
-                    foreach(RawResult result in rawresults)
-                    {
-                        //Console.WriteLine(result.ToString());
-                        this.baseResults.Add(new AdminResult(result));
-                    }
+                this.baseResults = resultsHelper.ConvertAdminResults(rawresults);
 
                     //copy results
                     CopyResults();
 
-                }
-                else
-                {
-                    //TODO handle a failure that does not result in an exception being thrown
-                }
+
             }
             catch(Exception e) //pokemon exception handling
             {
                 Console.WriteLine("Caught exception " + e.Message);
+                await DisplayAlert("Alert", "An unexpected error occurred while getting the list", "OK");
             }
 
         }
 
-        private string CreateQueryString()
+        private void ResortResults(string selectedItem)
         {
-            string output = "?";
 
-            //get grade and map and append
-            //TODO do this in a better spot
-            string selectedGrade = !(PickerGrade == null) ? PickerGrade.Items[PickerGrade.SelectedIndex] : "Grade 4";
-            int grade = 4;
-            switch(selectedGrade)
-            {
-                case "Grade 4":
-                    grade = 4;
-                    break;
-                case "Grade 5":
-                    grade = 5;
-                    break;
-                case "Grade 6":
-                    grade = 6;
-                    break;
-                case "Grade 7":
-                    grade = 7;
-                    break;
-                case "Teenager":
-                    grade = -1;
-                    break;
-                case "Adult Under 35":
-                    grade = -2;
-                    break;
-                case "Adult Over 35":
-                    grade = -3;
-                    break;
-            }
-            output += "student_grade=" + grade;
+            //sort results with helper
+            resultsHelper.SortResults(baseResults, selectedItem);
 
-            //get gender and map and append (null check and default)
-            string selectedGender = !(PickerGender == null) ? PickerGender.Items[PickerGender.SelectedIndex] : "Male";
-            string gender = Convert.ToString(selectedGender[0]);
-            output += "&student_gender=" + gender;
-
-            //get school and append if it's not null
-            string school = !(EntrySchool == null) ? EntrySchool.Text : null;
-            if(!String.IsNullOrEmpty(school))
-            {
-                output += "&school_name=" + school;
-            }
-
-            return output;
+            //copy the results to the observable list
+            CopyResults();
         }
 
         //copy backing list to display list
@@ -221,9 +150,7 @@ namespace UOCApp
             {
                 this.results.Add(result);
             }
-        }
-
-        
+        } 
 
         private async void ButtonLogoutClick(object sender, EventArgs args)
         {
@@ -236,51 +163,65 @@ namespace UOCApp
             Navigation.PopAsync();
         }
 
-        private void ButtonDeleteClick(object sender, EventArgs args)
+        private async void ButtonDeleteClick(object sender, EventArgs args)
         {
             int result_id = (int)((Button)sender).CommandParameter;
 
-            Console.WriteLine("Clicked delete result " + result_id);
+            var sure = await DisplayAlert("Confirm", "Delete this record permanently/", "Yes", "No");
+            if(!(bool)sure)
+            {
+                return;
+            }
+
+            bool success;
+            try
+            {
+                success = await deleteHelper.DeleteResult(result_id, App.password);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+                success = false;
+            }
+
+            //if successful, refresh, if not, display a message
+            if(success)
+            {
+                await DisplayAlert("Alert", "Deleted result successfully.", "OK");
+                GetResults();
+            }
+            else
+            {                
+                await DisplayAlert("Alert", "An unexpected error occured. Please try again later.", "OK");
+            }
+
         }
 
+        private void ButtonRefreshClick(object sender, EventArgs args)
+        {
+            GetResults();
+        }
+
+        //Fired when any filter is changed, refilters the list
         private void FilterChange(object sender, EventArgs args)
         {
             //sanity check
             if (PickerGrade == null)
                 return;
 
-            //TODO: on change filters, refresh the list
-            //Console.WriteLine("Changed filter");
             GetResults();
         }
 
+        //Fired when the sort is changed, resorts the list
         private void SortChange(object sender, EventArgs args)
         {
             //abort if the picker isn't actually loaded yet
             if (PickerSort == null)
                 return;
 
-            //when the sort method is changed, resort the backing list
-            //Console.WriteLine("Changed sort");
             string selectedItem = PickerSort.Items[PickerSort.SelectedIndex];
-            //Console.WriteLine(PickerSort.SelectedIndex);
-            //string selectedItem = "";
-            switch(selectedItem)
-            {
-                case "Name":
-                    baseResults.Sort((o1, o2) => o1.student_name.CompareTo(o2.student_name));
-                    break;
-                case "Date":
-                    baseResults.Sort((o1, o2) => o2.sortableDate.CompareTo(o1.sortableDate)); //we want most recent
-                    break;
-                default:
-                    //default is to sort by time
-                    baseResults.Sort((o1, o2) => o1.sortableTime.CompareTo(o2.sortableTime));
-                    break;
-            }
 
-            //copy the results to the observable list
-            CopyResults();
+            ResortResults(selectedItem);
         }
 
         private void NavHome(object sender, EventArgs args)
