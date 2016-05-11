@@ -31,22 +31,37 @@
       </Grid.ColumnDefinitions>
 
       <Label Text="Name" Grid.Row="0" Grid.Column="0" FontSize="Large" HorizontalTextAlignment="End"/>
-      <Entry Text="John Doe" Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand"/>
+      <Entry Text="John Doe" Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" x:Name="entry_Name"/>
 
       <Label Text="Grade" Grid.Row="1" Grid.Column="0" FontSize="Large" HorizontalTextAlignment="End"/>
-      <Picker Title="Grade" Grid.Row="1" Grid.Column="1" HorizontalOptions="FillAndExpand"/>
+      <Picker Title="Grade" Grid.Row="1" Grid.Column="1" HorizontalOptions="FillAndExpand" x:Name="picker_Grade">
+      	      <Picker.Items>
+	            <x:String>Grade 4</x:String> 
+	            <x:String>Grade 5</x:String>
+	            <x:String>Grade 6</x:String>
+	            <x:String>Grade 7</x:String>
+	            <x:String>Teenager</x:String>
+	            <x:String>Adult under 35</x:String>
+	            <x:String>Adult over 35</x:String>
+	        </Picker.Items>
+	   </Picker>
 
       <Label Text="Gender" Grid.Row="2" Grid.Column="0" FontSize="Large" HorizontalTextAlignment="End"/>
-      <Picker Title="Gender" Grid.Row="2" Grid.Column="1" HorizontalOptions="FillAndExpand"/>
+      <Picker Title="Gender" Grid.Row="2" Grid.Column="1" HorizontalOptions="FillAndExpand" x:Name="picker_Gender">
+	      <Picker.Items>
+	            <x:String>Male</x:String> 
+	            <x:String>Female</x:String>
+	        </Picker.Items>
+       </Picker>
 
       <Label Text="School" Grid.Row="3" Grid.Column="0" FontSize="Large" HorizontalTextAlignment="End"/>
-      <Entry Text="Cliff Drive Elementary" Grid.Row="3" Grid.Column="1" HorizontalOptions="FillAndExpand"/>
+      <Entry Text="Cliff Drive Elementary" Grid.Row="3" Grid.Column="1" HorizontalOptions="FillAndExpand" x:Name="entry_School"/>
 
       <Label Text="Time" Grid.Row="4" Grid.Column="0" FontSize="Large" HorizontalTextAlignment="End"/>
-      <Entry Text="11:11.111" Grid.Row="4" Grid.Column="1" HorizontalOptions="FillAndExpand"/>
+      <Entry Text="11:11.111" Grid.Row="4" Grid.Column="1" HorizontalOptions="FillAndExpand" x:Name="entry_Time"/>
 
-      <Label Text="Date" Grid.Row="5" Grid.Column="0" FontSize="Large" HorizontalTextAlignment="End"/>
-      <DatePicker Grid.Row="5" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Date="{x:Static sys:DateTime.Now}">
+      <Label Text="Date" Grid.Row="5" Grid.Column="0" FontSize="Large" HorizontalTextAlignment="End" />
+      <DatePicker Grid.Row="5" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" x:Name="picker_Date" Date="{x:Static sys:DateTime.Now}">
         <DatePicker.Format>yyyy-MM-dd</DatePicker.Format>
       </DatePicker>
 
@@ -73,7 +88,7 @@
       </Grid.ColumnDefinitions>
 
       <Label Text="Public:" Grid.Row="0" Grid.Column="0"/>
-      <Switch IsToggled="False" Grid.Row="0" Grid.Column="1"/>
+      <Switch IsToggled="False" Grid.Row="0" Grid.Column="1" x:Name="switch_Public"/>
       <Label Text="Official:" Grid.Row="0" Grid.Column="2"/>
       <Switch IsToggled="False" Grid.Row="0" Grid.Column="3"/>
       
