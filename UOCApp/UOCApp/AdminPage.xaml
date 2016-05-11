@@ -61,6 +61,7 @@
                 <Label Text="{Binding time}" />
                 <Button Text="X" Clicked="ButtonDeleteClick"  CommandParameter="{Binding result_id}" />
               </StackLayout>
+              <Label Text="{Binding school_name}" FontSize="Small" />
             </StackLayout>
           </ViewCell>
         </DataTemplate>
