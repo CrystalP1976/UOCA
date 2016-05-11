@@ -35,7 +35,7 @@ namespace UOCApp
             client.MaxResponseContentBufferSize = 256000;
 
             resultsHelper = new GetResultsHelper(client, App.API_URL);
-            deleteHelper = new DeleteResultsHelper(client, App.API_URL)
+            deleteHelper = new DeleteResultsHelper(client, App.API_URL);
 
             //test data
             //results.Add(new AdminResult {result_id = 5, student_name = "John Doe", date = "April 28 2016", time="11:11.111"});
@@ -167,19 +167,27 @@ namespace UOCApp
         {
             int result_id = (int)((Button)sender).CommandParameter;
 
+            var sure = await DisplayAlert("Confirm", "Delete this record permanently/", "Yes", "No");
+            if(!(bool)sure)
+            {
+                return;
+            }
+
             bool success;
             try
             {
                 success = await deleteHelper.DeleteResult(result_id, App.password);
             }
-            catch
+            catch(Exception e)
             {
+                Console.WriteLine(e.Message);
                 success = false;
             }
 
             //if successful, refresh, if not, display a message
-            if(!success)
+            if(success)
             {
+                await DisplayAlert("Alert", "Deleted result successfully.", "OK");
                 GetResults();
             }
             else

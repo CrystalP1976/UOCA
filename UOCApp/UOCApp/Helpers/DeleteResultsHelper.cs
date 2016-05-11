@@ -29,9 +29,23 @@ namespace UOCApp.Helpers
 
         public async Task<bool> DeleteResult(int result_id, string password)
         {
-            Console.WriteLine("delete result " + result_id);
+            string url = this.url + "result?result_id=" + result_id + "&password=" + password;
+            var uri = new Uri(url);
 
-            return false;
+            //Console.WriteLine("delete result " + result_id);
+            //Console.WriteLine("delete result " + url);
+
+            var response = await client.DeleteAsync(uri);
+            //Console.WriteLine("Response code: " + response.StatusCode.ToString());
+            if ((int)response.StatusCode == 200)
+            {
+                return true;
+            }
+            else
+            {
+                //explicitly throw an exception if the status cocde is other than successful
+                throw new DeleteResultsException(response.StatusCode.ToString());
+            }
         }
     }
 }
