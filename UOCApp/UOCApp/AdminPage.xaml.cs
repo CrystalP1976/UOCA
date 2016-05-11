@@ -247,6 +247,11 @@ namespace UOCApp
             Console.WriteLine("Clicked delete result " + result_id);
         }
 
+        private void ButtonRefreshClick(object sender, EventArgs args)
+        {
+            GetResults();
+        }
+
         //Fired when any filter is changed, refilters the list
         private void FilterChange(object sender, EventArgs args)
         {
