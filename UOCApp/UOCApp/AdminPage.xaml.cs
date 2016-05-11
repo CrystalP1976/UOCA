@@ -43,7 +43,7 @@ namespace UOCApp
             MessagingCenter.Unsubscribe<LoginPage, Boolean>(this, "LoginComplete");
 
             //on return from login page do something
-            Console.WriteLine(arg);
+            //Console.WriteLine(arg);
 
             //if it returned true, the login was successful and we can do nothing
 
@@ -93,25 +93,6 @@ namespace UOCApp
                 GetResults();
             }
 
-            //the below code doesn't work
-            //let's try MessagingCenter
-
-            //Console.WriteLine("Check again?");
-
-            //we just finished logging in or failing to, so check again
-            //if (Application.Current.Properties.ContainsKey("loggedin"))
-            //{
-            //    loggedIn = Convert.ToBoolean(Application.Current.Properties["loggedin"]);
-            //}
-
-            //are we logged in now? no?
-            //if (!loggedIn)
-            //{
-                //leave the page
-            //    Navigation.PopAsync();
-            //}
-
-
         }
 
         //TODO: get the list of results from the server
@@ -121,7 +102,7 @@ namespace UOCApp
             //filters are dealt with in another method
             string url = App.API_URL + "results" + CreateQueryString();
 
-            Console.WriteLine(url);
+            //Console.WriteLine(url);
 
             var uri = new Uri(url);
             //UriBuilder builder = new UriBuilder(new Uri(url));
@@ -161,6 +142,38 @@ namespace UOCApp
                 Console.WriteLine("Caught exception " + e.Message);
             }
 
+        }
+
+        private void ResortResults(string selectedItem)
+        {
+            //resort the backing list on the provided string
+            switch (selectedItem)
+            {
+                case "Name":
+                    baseResults.Sort((o1, o2) => o1.student_name.CompareTo(o2.student_name));
+                    break;
+                case "Date":
+                    baseResults.Sort((o1, o2) => o2.sortableDate.CompareTo(o1.sortableDate)); //we want most recent
+                    break;
+                default:
+                    //default is to sort by time
+                    baseResults.Sort((o1, o2) => o1.sortableTime.CompareTo(o2.sortableTime));
+                    break;
+            }
+
+            //copy the results to the observable list
+            CopyResults();
+        }
+
+        //copy backing list to display list
+        private void CopyResults()
+        {
+            this.results.Clear();
+
+            foreach (AdminResult result in this.baseResults)
+            {
+                this.results.Add(result);
+            }
         }
 
         private string CreateQueryString()
@@ -212,16 +225,7 @@ namespace UOCApp
             return output;
         }
 
-        //copy backing list to display list
-        private void CopyResults()
-        {
-            this.results.Clear();
-
-            foreach (AdminResult result in this.baseResults)
-            {
-                this.results.Add(result);
-            }
-        }
+        
 
         
 
@@ -243,44 +247,26 @@ namespace UOCApp
             Console.WriteLine("Clicked delete result " + result_id);
         }
 
+        //Fired when any filter is changed, refilters the list
         private void FilterChange(object sender, EventArgs args)
         {
             //sanity check
             if (PickerGrade == null)
                 return;
 
-            //TODO: on change filters, refresh the list
-            //Console.WriteLine("Changed filter");
             GetResults();
         }
 
+        //Fired when the sort is changed, resorts the list
         private void SortChange(object sender, EventArgs args)
         {
             //abort if the picker isn't actually loaded yet
             if (PickerSort == null)
                 return;
 
-            //when the sort method is changed, resort the backing list
-            //Console.WriteLine("Changed sort");
             string selectedItem = PickerSort.Items[PickerSort.SelectedIndex];
-            //Console.WriteLine(PickerSort.SelectedIndex);
-            //string selectedItem = "";
-            switch(selectedItem)
-            {
-                case "Name":
-                    baseResults.Sort((o1, o2) => o1.student_name.CompareTo(o2.student_name));
-                    break;
-                case "Date":
-                    baseResults.Sort((o1, o2) => o2.sortableDate.CompareTo(o1.sortableDate)); //we want most recent
-                    break;
-                default:
-                    //default is to sort by time
-                    baseResults.Sort((o1, o2) => o1.sortableTime.CompareTo(o2.sortableTime));
-                    break;
-            }
 
-            //copy the results to the observable list
-            CopyResults();
+            ResortResults(selectedItem);
         }
 
         private void NavHome(object sender, EventArgs args)
