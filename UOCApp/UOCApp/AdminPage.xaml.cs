@@ -20,6 +20,7 @@ namespace UOCApp
         //should this be at the app level?
         HttpClient client;
         GetResultsHelper resultsHelper;
+        DeleteResultsHelper deleteHelper;
 
         List<AdminResult> baseResults = new List<AdminResult>();
         ObservableCollection<AdminResult> results = new ObservableCollection<AdminResult>();
@@ -34,6 +35,7 @@ namespace UOCApp
             client.MaxResponseContentBufferSize = 256000;
 
             resultsHelper = new GetResultsHelper(client, App.API_URL);
+            deleteHelper = new DeleteResultsHelper(client, App.API_URL)
 
             //test data
             //results.Add(new AdminResult {result_id = 5, student_name = "John Doe", date = "April 28 2016", time="11:11.111"});
@@ -161,11 +163,30 @@ namespace UOCApp
             Navigation.PopAsync();
         }
 
-        private void ButtonDeleteClick(object sender, EventArgs args)
+        private async void ButtonDeleteClick(object sender, EventArgs args)
         {
             int result_id = (int)((Button)sender).CommandParameter;
 
-            Console.WriteLine("Clicked delete result " + result_id);
+            bool success;
+            try
+            {
+                success = await deleteHelper.DeleteResult(result_id, App.password);
+            }
+            catch
+            {
+                success = false;
+            }
+
+            //if successful, refresh, if not, display a message
+            if(!success)
+            {
+                GetResults();
+            }
+            else
+            {                
+                await DisplayAlert("Alert", "An unexpected error occured. Please try again later.", "OK");
+            }
+
         }
 
         private void ButtonRefreshClick(object sender, EventArgs args)
