@@ -18,6 +18,7 @@
       <DependentUpon>EntryPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\GetResultsHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LeaderboardPage.xaml.cs">
       <DependentUpon>LeaderboardPage.xaml</DependentUpon>
       <SubType>Code</SubType>

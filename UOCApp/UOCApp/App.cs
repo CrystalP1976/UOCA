@@ -14,6 +14,8 @@ namespace UOCApp
         public const string password = "12345";
         public const string API_URL = @"http://uocb.xcvgsystems.net:8080/api/uocb/";
 
+        //TODO: move HTTPClient to the App class?
+
 		public App ()
 		{
             // The root page of your application
