@@ -44,7 +44,6 @@ namespace UOCApp
 		{
 			Console.WriteLine("Clicked Save Result");
 
-
 			// read the gender picker and assign values
 			var Gender = "";
 			var GenderIndex = picker_Gender.SelectedIndex;
@@ -93,30 +92,48 @@ namespace UOCApp
 				break;
 			}
 
-			SharedResult result1 = new SharedResult (picker_Date.Date, entry_Time.Text, false, false, entry_Name.Text, Gender, Grade, entry_School.Text);
-
-			var sure = await DisplayAlert ("Are you sure?", "Winners Don't Cheat, Champions Don't Lie! Please record accurate race times!", "Save", "Back");
-			if (sure == true) {
-
-				// save to client database - TODO
-
-				if (switch_Public.IsToggled) { // did the user specify that they wish to post to the leaderboard?
-					if (await result1.share ()) {
-						await DisplayAlert ("Thank-you!", "Your result has been shared with the leaderboard", "OK");
-
-					} else {
-						Console.WriteLine ("Failed to share with leaderboard");
-					}
-				} else 
-				{
-					await DisplayAlert ("Thank-you!", "Your result has been saved", "OK");
-				}
-				Navigation.PopToRootAsync(); // return to home once save complete
-			} 
-			else 
+			try 
 			{
-				//abort save
+				Result result = new Result (picker_Date.Date, entry_Time.Text, false, false, entry_Name.Text, Gender, Grade, entry_School.Text);
+				var sure = await DisplayAlert ("Confirm Save", "Winners Don't Cheat, \n Champions Don't Lie! \n Please record accurate race times!", "Save", "Back");
+				if (sure == true) {
+
+
+					// save to client database - TODO
+					if(true) // await joti(result)
+					{
+						if (switch_Public.IsToggled) { // did the user specify that they wish to post to the leaderboard?
+							if (await result.share ()) {
+								await DisplayAlert ("Thank you!", "Your result has been saved and shared with the leaderboard", "OK");
+								Navigation.PopToRootAsync (); // return to home once save complete
+
+							} else {
+								Console.WriteLine ("Failed to share with leaderboard");
+								//feedback to user in the event of leaderboard server failure
+							}
+						}
+						await DisplayAlert ("Thank you!", "Your result has been saved", "OK");
+						Navigation.PopToRootAsync (); // return to home once save complete
+
+
+					}
+					else 
+					{
+						// fail to save locally
+					}
+
+				} else {
+					//abort save
+				}
+
 			}
+			catch (ArgumentException e) 
+			{
+				await DisplayAlert ("Error", "Please fill in all your information", "OK");
+				Console.WriteLine (e);
+			}
+
+			
 		}
 
 
