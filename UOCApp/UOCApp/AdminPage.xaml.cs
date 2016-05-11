@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using UOCApp.Models;
 using Xamarin.Forms;
 using Newtonsoft.Json;
+using UOCApp.Helpers;
 
 namespace UOCApp
 {
@@ -18,6 +19,7 @@ namespace UOCApp
 
         //should this be at the app level?
         HttpClient client;
+        GetResultsHelper resultsHelper;
 
         List<AdminResult> baseResults = new List<AdminResult>();
         ObservableCollection<AdminResult> results = new ObservableCollection<AdminResult>();
@@ -30,6 +32,8 @@ namespace UOCApp
 
             client = new HttpClient();
             client.MaxResponseContentBufferSize = 256000;
+
+            resultsHelper = new GetResultsHelper(client, App.API_URL);
 
             //test data
             //results.Add(new AdminResult {result_id = 5, student_name = "John Doe", date = "April 28 2016", time="11:11.111"});
@@ -109,6 +113,9 @@ namespace UOCApp
             
             try
             { 
+
+
+
                 var response = await client.GetAsync(uri);
                 if (response.IsSuccessStatusCode)
                 {
