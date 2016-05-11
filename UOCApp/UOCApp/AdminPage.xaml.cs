@@ -99,74 +99,41 @@ namespace UOCApp
 
         }
 
-        //TODO: get the list of results from the server
+        //get the list of results from the server
         private async void GetResults()
         {
-            
-            //filters are dealt with in another method
-            string url = App.API_URL + "results" + CreateQueryString();
+            //build the querystring with the help of the helper
+            string selectedGrade = !(PickerGrade == null) ? PickerGrade.Items[PickerGrade.SelectedIndex] : "Grade 4";
+            string selectedGender = !(PickerGender == null) ? PickerGender.Items[PickerGender.SelectedIndex] : "Male";
+            string selectedSchool = !(EntrySchool == null) ? EntrySchool.Text : null;
+            string query = resultsHelper.CreateQueryString(selectedGrade, selectedGender, selectedSchool);
 
-            //Console.WriteLine(url);
-
-            var uri = new Uri(url);
-            //UriBuilder builder = new UriBuilder(new Uri(url));
-            
             try
-            { 
+            {
+                //see how elegant using the helper makes this?
 
+                List<RawResult> rawresults = await resultsHelper.GetRawResults(query);
 
-
-                var response = await client.GetAsync(uri);
-                if (response.IsSuccessStatusCode)
-                {
-                    //clear the current list
-                    this.baseResults.Clear();
-
-                    var content = await response.Content.ReadAsStringAsync();
-                    //Console.WriteLine(content);
-                    List<RawResult> rawresults = JsonConvert.DeserializeObject<List<RawResult>>(content);
-
-                    //List<AdminResult> pResults = new List<AdminResult>();
-
-                    //convert all RawResult into AdminResult and add to backing list 
-                    foreach(RawResult result in rawresults)
-                    {
-                        //Console.WriteLine(result.ToString());
-                        this.baseResults.Add(new AdminResult(result));
-                    }
+                this.baseResults = resultsHelper.ConvertAdminResults(rawresults);
 
                     //copy results
                     CopyResults();
 
-                }
-                else
-                {
-                    //TODO handle a failure that does not result in an exception being thrown
-                }
+
             }
             catch(Exception e) //pokemon exception handling
             {
                 Console.WriteLine("Caught exception " + e.Message);
+                await DisplayAlert("Alert", "An unexpected error occurred while getting the list", "OK");
             }
 
         }
 
         private void ResortResults(string selectedItem)
         {
-            //resort the backing list on the provided string
-            switch (selectedItem)
-            {
-                case "Name":
-                    baseResults.Sort((o1, o2) => o1.student_name.CompareTo(o2.student_name));
-                    break;
-                case "Date":
-                    baseResults.Sort((o1, o2) => o2.sortableDate.CompareTo(o1.sortableDate)); //we want most recent
-                    break;
-                default:
-                    //default is to sort by time
-                    baseResults.Sort((o1, o2) => o1.sortableTime.CompareTo(o2.sortableTime));
-                    break;
-            }
+
+            //sort results with helper
+            resultsHelper.SortResults(baseResults, selectedItem);
 
             //copy the results to the observable list
             CopyResults();
@@ -181,60 +148,7 @@ namespace UOCApp
             {
                 this.results.Add(result);
             }
-        }
-
-        private string CreateQueryString()
-        {
-            string output = "?";
-
-            //get grade and map and append
-            //TODO do this in a better spot
-            string selectedGrade = !(PickerGrade == null) ? PickerGrade.Items[PickerGrade.SelectedIndex] : "Grade 4";
-            int grade = 4;
-            switch(selectedGrade)
-            {
-                case "Grade 4":
-                    grade = 4;
-                    break;
-                case "Grade 5":
-                    grade = 5;
-                    break;
-                case "Grade 6":
-                    grade = 6;
-                    break;
-                case "Grade 7":
-                    grade = 7;
-                    break;
-                case "Teenager":
-                    grade = -1;
-                    break;
-                case "Adult Under 35":
-                    grade = -2;
-                    break;
-                case "Adult Over 35":
-                    grade = -3;
-                    break;
-            }
-            output += "student_grade=" + grade;
-
-            //get gender and map and append (null check and default)
-            string selectedGender = !(PickerGender == null) ? PickerGender.Items[PickerGender.SelectedIndex] : "Male";
-            string gender = Convert.ToString(selectedGender[0]);
-            output += "&student_gender=" + gender;
-
-            //get school and append if it's not null
-            string school = !(EntrySchool == null) ? EntrySchool.Text : null;
-            if(!String.IsNullOrEmpty(school))
-            {
-                output += "&school_name=" + school;
-            }
-
-            return output;
-        }
-
-        
-
-        
+        } 
 
         private async void ButtonLogoutClick(object sender, EventArgs args)
         {

@@ -50,7 +50,7 @@ namespace UOCApp.Helpers
             }
             else
             {
-                //TODO handle a failure that does not result in an exception being thrown
+                //explicitly throw an exception if the status cocde is other than successful
                 throw new GetResultsException(response.StatusCode.ToString());
             }
         }
