@@ -33,6 +33,28 @@ namespace UOCApp
             //results.Add(new LeaderboardResult { result_id = 41, ranked = true, student_name = "John Smith", school_name = "Cliff Drive", time = "12:11.111" });
 
             ListViewLeaderboard.ItemsSource = results;
+
+            //TODO refresh?
+
+            
+
+        }
+
+        protected override async void OnAppearing() //is this safe?
+        {
+            baseResults = resultsHelper.ConvertLeaderboardResults(await resultsHelper.GetRawResults(""));
+
+            CopyResults();
+        }
+
+        private void CopyResults()
+        {
+            this.results.Clear();
+
+            foreach (LeaderboardResult result in this.baseResults)
+            {
+                this.results.Add(result);
+            }
         }
 
         //TODO on filter change refresh resultss

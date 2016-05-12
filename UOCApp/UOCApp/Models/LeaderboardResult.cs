@@ -13,7 +13,7 @@ namespace UOCApp.Models
             student_name = input.student_name;
             time = input.time;
             school_name = input.school_name;
-            ranked = Convert.ToBoolean(input.ranked);
+            ranked = Convert.ToBoolean(input.ranked); //input can be 0 or 1
         }
         
 

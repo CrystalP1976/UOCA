@@ -68,6 +68,19 @@ namespace UOCApp.Helpers
             return results;
         }
 
+        public List<LeaderboardResult> ConvertLeaderboardResults(List<RawResult> rawresults)
+        {
+            List<LeaderboardResult> results = new List<LeaderboardResult>();
+
+            foreach (RawResult result in rawresults)
+            {
+                //Console.WriteLine(result.ToString());
+                results.Add(new LeaderboardResult(result));
+            }
+
+            return results;
+        }
+
         public string CreateQueryString(string selectedGrade, string selectedGender, string school)
         {
             string output = "?";
