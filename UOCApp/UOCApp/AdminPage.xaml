@@ -44,7 +44,7 @@
       </Picker.Items>
       <Picker.SelectedIndex>0</Picker.SelectedIndex>
     </Picker>
-    <Entry Placeholder="School" HorizontalOptions="FillAndExpand" TextChanged="FilterChange" x:Name="EntrySchool"/>
+    <Entry Placeholder="School" HorizontalOptions="FillAndExpand" Completed="FilterChange" x:Name="EntrySchool"/>
     <Picker Title="Sort By" HorizontalOptions="FillAndExpand" SelectedIndexChanged="SortChange" x:Name="PickerSort">
       <Picker.Items>        
         <x:String>Name</x:String>
