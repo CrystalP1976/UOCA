@@ -46,7 +46,7 @@ namespace UOCApp
 
 			try 
 			{
-				Result result = new Result (picker_Date.Date, entry_Time.Text, false, false, 
+				Result result = new Result (picker_Date.Date, ConvertTime(entry_Time.Text), false, false, 
 					entry_Name.Text, Gender(), Grade(), entry_School.Text);
 				var sure = await DisplayAlert ("Confirm Save", "Winners Don't Cheat, \n Champions Don't Lie! \n Please record accurate race times!", "Save", "Back");
 				if (sure == true) {
@@ -139,6 +139,31 @@ namespace UOCApp
 				break;
 			}
 			return Grade;
+		}
+
+		static decimal ConvertTime(string time)
+		{
+			decimal result;
+
+			if(time.Contains(':'))
+			{
+				//it's in mm:ss.iii format
+
+				int sepPos = time.IndexOf(':');
+
+				string minPart = time.Substring(0,sepPos);
+				string secPart = time.Substring(sepPos+1);
+
+				result = (Convert.ToInt32(minPart) * 60) + Convert.ToDecimal(secPart);
+
+			}
+			else
+			{
+				//it's in ss.iii format so we can just convert it
+				result = Convert.ToDecimal(time);
+			}
+
+			return Decimal.Round(result, 3);
 		}
 
 

@@ -30,7 +30,7 @@ namespace UOCApp
 
 		//int result_id; assigned by database
 		DateTime date { get; set; }
-		String time { get; set; }
+		Decimal time { get; set; }
 		Boolean ranked { get; set; }
 		Boolean flagged { get; set; }
 		String student_name { get; set; }
@@ -38,7 +38,7 @@ namespace UOCApp
 		int student_grade { get; set; }
 		String school_name { get; set; }
 
-		public Result (DateTime date, String time, Boolean ranked, Boolean flagged,
+		public Result (DateTime date, Decimal time, Boolean ranked, Boolean flagged,
 			String student_name, String student_gender, int student_grade, String school_name)
 		{
 
@@ -71,7 +71,7 @@ namespace UOCApp
 				var values = new Dictionary<string, string>
 				{
 					{ "date", this.date.ToString("yyyy-MM-dd") },
-					{ "time", this.time },
+					{ "time", this.time.ToString() },
 					{ "student_name", this.student_name },
 					{ "student_grade", this.student_grade.ToString() },
 					{ "student_gender", this.student_gender },
