@@ -20,6 +20,7 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\DeleteResultsHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\GetResultsHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\SwearCheckerHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LeaderboardPage.xaml.cs">
       <DependentUpon>LeaderboardPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -89,5 +90,8 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)terms.txt" />
   </ItemGroup>
 </Project>
