@@ -83,7 +83,7 @@ namespace UOCApp
 
 				var response = await client.PostAsync(App.API_URL +"result/", content);
 				Console.WriteLine ("post response code: " + response.StatusCode);
-				var responseString = await response.Content.ReadAsStringAsync();
+				var responseString = await response.Content.ReadAsStringAsync(); //what does this do??
 
 				if ((int)response.StatusCode == 201) {
 					return true;
