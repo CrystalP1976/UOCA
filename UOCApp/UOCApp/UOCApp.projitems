@@ -42,7 +42,7 @@
       <DependentUpon>TimesPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Models\SharedResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Result.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)GettingStarted.Xamarin" />

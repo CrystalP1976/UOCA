@@ -11,7 +11,7 @@ using UOCApp.Models;
 
 namespace UOCApp
 {
-	public class SharedResult
+	public class Result
 	{
 
 //		/* server-sided */
@@ -28,7 +28,7 @@ namespace UOCApp
 //			PRIMARY KEY (result_id)
 //		);
 
-		//int result_id; assigned by the database
+		//int result_id; assigned by database
 		DateTime date { get; set; }
 		String time { get; set; }
 		Boolean ranked { get; set; }
@@ -38,9 +38,16 @@ namespace UOCApp
 		int student_grade { get; set; }
 		String school_name { get; set; }
 
-		public SharedResult (DateTime date, String time, Boolean ranked, Boolean flagged,
+		public Result (DateTime date, String time, Boolean ranked, Boolean flagged,
 			String student_name, String student_gender, int student_grade, String school_name)
 		{
+
+			// swear filter here somewhere??
+
+			if (date != null && time != null && ranked != null && flagged != null &&
+				student_name != null && student_gender != null && student_grade != null && school_name != null
+			) 
+			{
 			this.date = date;
 			this.time = time;
 			this.ranked = ranked;
@@ -49,9 +56,14 @@ namespace UOCApp
 			this.student_gender = student_gender;
 			this.student_grade = student_grade;
 			this.school_name = school_name;
-
+			}
+			else 
+			{
+				throw new ArgumentException( "All parameters not set for result" );
+			}
 		}
 
+		// share (post) the result to the server
 		public async Task<Boolean> share()
 		{
 			using (var client = new HttpClient())
@@ -80,10 +92,10 @@ namespace UOCApp
 					values.ToList().ForEach(x => Console.WriteLine(x.Key + " : " + x.Value));
 					return false;
 				}
-
 			}
-
 		}
+
+
 
 
 
