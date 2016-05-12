@@ -39,6 +39,17 @@ namespace UOCApp
             Console.WriteLine("Clicked Nav Admin");
             Navigation.PushAsync(new AdminPage());
         }
+			
+
+		async void NavObstacle (object sender, EventArgs args)
+		{
+			Console.WriteLine("Clicked Obstacles");
+
+				var obstaclesPage = new ObstaclesPage ();
+
+					await Navigation.PushModalAsync (obstaclesPage);
+
+		}
 
 		private async void SaveResult(object sender, EventArgs args) //for debug
 		{
@@ -53,7 +64,10 @@ namespace UOCApp
 
 
 					// save to client database - TODO
-					if(true) // await joti(result)
+					if(true) 
+
+
+
 					{
 						if (switch_Public.IsToggled) { // did the user specify that they wish to post to the leaderboard?
 							if (await result.share ((bool)switch_Official.IsToggled)) { // post to server and return true if successful

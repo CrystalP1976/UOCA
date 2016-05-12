@@ -72,6 +72,8 @@
 
     <Button Text="Obstacles Completed"
            HorizontalOptions="CenterAndExpand"
+           Clicked="NavObstacle"
+
            />
 
     <Label FontSize="Small" Text="Public results will be shown in leaderboards."/>
