@@ -57,11 +57,27 @@ namespace UOCApp
             string selectedSchool = !(EntrySchool == null) ? EntrySchool.Text : null;
             string query = resultsHelper.CreateQueryString(selectedPeriod, selectedGrade, selectedGender, selectedSchool, official);
 
-            //Console.WriteLine(query);
+            //try to get the count
+            try
+            {
+                
+                int count = await resultsHelper.GetCount(query);
 
+                //Console.WriteLine(count);
+
+            }
+            catch (Exception e) //pokemon exception handling
+            {
+                //Console.WriteLine("Caught exception " + e.Message);
+                await DisplayAlert("Alert", "An unexpected error occurred while getting the count", "OK");
+            }
+
+            //try to get the results list
             try
             {
                 //see how elegant using the helper makes this?
+
+                //Console.WriteLine(await resultsHelper.GetCount(query));
 
                 List<RawResult> rawresults = await resultsHelper.GetRawResults(query);
 
@@ -74,9 +90,8 @@ namespace UOCApp
             }
             catch (Exception e) //pokemon exception handling
             {
-                Console.WriteLine("Caught exception " + e.Message);
+                //Console.WriteLine("Caught exception " + e.Message);
                 await DisplayAlert("Alert", "An unexpected error occurred while getting the list", "OK");
-                //abort the Page?
             }
 
         }
@@ -89,6 +104,11 @@ namespace UOCApp
             {
                 this.results.Add(result);
             }
+        }
+
+        private void UpdateDescription()
+        {
+            //TODO update count and text
         }
 
         //on filter change refresh, results

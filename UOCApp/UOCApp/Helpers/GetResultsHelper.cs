@@ -29,6 +29,29 @@ namespace UOCApp.Helpers
 
         }
 
+        public async Task<int> GetCount(string query)
+        {
+            string url = this.url + "count" + query;
+
+            //Console.WriteLine(url);
+
+            var uri = new Uri(url);
+
+            var response = await client.GetAsync(uri);
+            if (response.IsSuccessStatusCode)
+            {
+
+                var content = await response.Content.ReadAsStringAsync();
+
+                return Convert.ToInt32(content);
+            }
+            else
+            {
+                //explicitly throw an exception if the status cocde is other than successful
+                throw new GetResultsException(response.StatusCode.ToString());
+            }
+        }
+
         public async Task<List<RawResult>> GetRawResults(string query)
         {
             string url = this.url + "results" + query;
