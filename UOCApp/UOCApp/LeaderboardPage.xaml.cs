@@ -42,9 +42,47 @@ namespace UOCApp
 
         protected override async void OnAppearing() //is this safe?
         {
-            baseResults = resultsHelper.ConvertLeaderboardResults(await resultsHelper.GetRawResults(""));
+            //initial get
 
-            CopyResults();
+
+            //baseResults = resultsHelper.ConvertLeaderboardResults(await resultsHelper.GetRawResults(""));
+
+            //CopyResults();
+
+            GetResults();
+        }
+
+        private async void GetResults()
+        {
+            //build the querystring with the help of the helper
+            string selectedPeriod = !(PickerPeriod == null) ? PickerPeriod.Items[PickerPeriod.SelectedIndex] : "Daily";
+            string selectedGrade = !(PickerGrade == null) ? PickerGrade.Items[PickerGrade.SelectedIndex] : "Grade 4";
+            string selectedGender = !(PickerGender == null) ? PickerGender.Items[PickerGender.SelectedIndex] : "Male";
+            string selectedSchool = !(EntrySchool == null) ? EntrySchool.Text : null;
+            string query = resultsHelper.CreateQueryString(selectedPeriod, selectedGrade, selectedGender, selectedSchool);
+
+            Console.WriteLine(query);
+
+            try
+            {
+                //see how elegant using the helper makes this?
+
+                List<RawResult> rawresults = await resultsHelper.GetRawResults(query);
+
+                this.baseResults = resultsHelper.ConvertLeaderboardResults(rawresults);
+
+                //copy results
+                CopyResults();
+
+
+            }
+            catch (Exception e) //pokemon exception handling
+            {
+                Console.WriteLine("Caught exception " + e.Message);
+                await DisplayAlert("Alert", "An unexpected error occurred while getting the list", "OK");
+                //abort the Page?
+            }
+
         }
 
         private void CopyResults()
@@ -57,10 +95,14 @@ namespace UOCApp
             }
         }
 
-        //TODO on filter change refresh resultss
+        //on filter change refresh, results
         private void FilterChange(object sender, EventArgs args)
         {
+            //sanity check
+            if (PickerGrade == null)
+                return;
 
+            GetResults();
         }
 
         private void NavHome(object sender, EventArgs args)

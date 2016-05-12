@@ -81,9 +81,34 @@ namespace UOCApp.Helpers
             return results;
         }
 
-        public string CreateQueryString(string selectedGrade, string selectedGender, string school)
+        public string CreateQueryString(string selectedPeriod, string selectedGrade, string selectedGender, string school)
         {
-            string output = "?";
+            string output = String.Empty;
+
+            //check if a period is specified and deal with it
+            if(!String.IsNullOrEmpty(selectedPeriod))
+            {
+                //TODO switch on string
+                output += "/";
+
+                switch(selectedPeriod)
+                {
+                    case "Daily":
+                        output += "daily";
+                        break;
+                    case "Weekly":
+                        output += "weekly";
+                        break;
+                    case "Monthly":
+                        output += "monthly";
+                        break;
+                    default:
+                        output += "alltime";
+                        break;
+                }
+            }
+
+            output += "?";
 
             //map grade strings to grade
             int grade = 0;
@@ -124,6 +149,11 @@ namespace UOCApp.Helpers
             }
 
             return output;
+        }
+
+        public string CreateQueryString(string selectedGrade, string selectedGender, string school)
+        {
+            return CreateQueryString(null, selectedGrade, selectedGender, school);
         }
 
         public void SortResults(List<AdminResult> baseResults, string selectedItem)
