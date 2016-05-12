@@ -14,6 +14,13 @@ namespace UOCApp
 		{
 			InitializeComponent ();
 		}
+
+        //TODO on filter change refresh resultss
+        private void FilterChange(object sender, EventArgs args)
+        {
+
+        }
+
         private void NavHome(object sender, EventArgs args)
         {
             Console.WriteLine("Clicked Nav Home");
