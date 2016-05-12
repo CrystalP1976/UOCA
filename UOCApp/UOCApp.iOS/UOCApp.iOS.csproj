@@ -226,9 +226,6 @@
     <BundleResource Include="Resources\iinstagram.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="star.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\star.png" />
   </ItemGroup>
   <Import Project="..\UOCApp\UOCApp.projitems" Label="Shared" Condition="Exists('..\UOCApp\UOCApp.projitems')" />
