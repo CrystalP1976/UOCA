@@ -65,6 +65,8 @@ namespace UOCApp
 
                 //Console.WriteLine(count);
 
+                UpdateDescription(count);
+
             }
             catch (Exception e) //pokemon exception handling
             {
@@ -106,9 +108,17 @@ namespace UOCApp
             }
         }
 
-        private void UpdateDescription()
+        private void UpdateDescription(int count)
         {
-            //TODO update count and text
+            //update count and text
+            if(!official)
+            {
+                LabelDescription.Text = String.Format("All results ({0} total)", count);
+            }
+            else
+            {
+                LabelDescription.Text = String.Format("Official results ({0} total)", count);
+            }
         }
 
         //on filter change refresh, results
@@ -128,13 +138,13 @@ namespace UOCApp
             if(official)
             {
                 ButtonOfficial.Text = "Show Official";
-                LabelDescription.Text = "All results";
+                //LabelDescription.Text = "All results";
                 official = false;
             }
             else
             {
                 ButtonOfficial.Text = "Show All";
-                LabelDescription.Text = "Official results";
+                //LabelDescription.Text = "Official results";
                 official = true;
             }
 
