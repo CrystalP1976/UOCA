@@ -15,37 +15,52 @@
                      Padding="10,10,10,0">
 
       <Label Text="Leaderboard" FontSize="Large" VerticalOptions="Center" HorizontalOptions="Center" />
-      <Label Text="Open results" FontSize="Small" VerticalOptions="Center" HorizontalOptions="Center" />
+      <Label Text="Open results" FontSize="Small" VerticalOptions="Center" HorizontalOptions="Center" x:Name="LabelDescription"/>
 
-      <Picker Title="Period" HorizontalOptions="FillAndExpand" SelectedIndexChanged="FilterChange" x:Name="PickerPeriod">
-        <Picker.Items>
-          <x:String>Daily</x:String>
-          <x:String>Weekly</x:String>
-          <x:String>Monthly</x:String>
-          <x:String>All Time</x:String>
-        </Picker.Items>
-        <Picker.SelectedIndex>0</Picker.SelectedIndex>
-      </Picker>
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        
+        <Picker Title="Period" HorizontalOptions="FillAndExpand" SelectedIndexChanged="FilterChange" x:Name="PickerPeriod" Grid.Row="0" Grid.Column="0">
+          <Picker.Items>
+            <x:String>Daily</x:String>
+            <x:String>Weekly</x:String>
+            <x:String>Monthly</x:String>
+            <x:String>All Time</x:String>
+          </Picker.Items>
+          <Picker.SelectedIndex>0</Picker.SelectedIndex>
+        </Picker>
+        
+        <Button Text="Show Official" Clicked="ButtonOfficialClick" x:Name="ButtonOfficial" Grid.Row="0" Grid.Column="1"/>
+        
+        <Picker Title="Grade" HorizontalOptions="FillAndExpand" SelectedIndexChanged="FilterChange" x:Name="PickerGrade" Grid.Row="1" Grid.Column="0">
+          <Picker.Items>
+            <x:String>Grade 4</x:String>
+            <x:String>Grade 5</x:String>
+            <x:String>Grade 6</x:String>
+            <x:String>Grade 7</x:String>
+            <x:String>Teenager</x:String>
+            <x:String>Adult Under 35</x:String>
+            <x:String>Adult Over 35</x:String>
+          </Picker.Items>
+          <Picker.SelectedIndex>0</Picker.SelectedIndex>
+        </Picker>
+        <Picker Title="Gender" HorizontalOptions="FillAndExpand" SelectedIndexChanged="FilterChange" x:Name="PickerGender" Grid.Row="1" Grid.Column="1">
+          <Picker.Items>
+            <x:String>Male</x:String>
+            <x:String>Female</x:String>
+          </Picker.Items>
+          <Picker.SelectedIndex>0</Picker.SelectedIndex>
+        </Picker>
 
-      <Picker Title="Grade" HorizontalOptions="FillAndExpand" SelectedIndexChanged="FilterChange" x:Name="PickerGrade">
-      <Picker.Items>
-        <x:String>Grade 4</x:String>
-        <x:String>Grade 5</x:String>
-        <x:String>Grade 6</x:String>
-        <x:String>Grade 7</x:String>
-        <x:String>Teenager</x:String>
-        <x:String>Adult Under 35</x:String>
-        <x:String>Adult Over 35</x:String>
-      </Picker.Items>
-      <Picker.SelectedIndex>0</Picker.SelectedIndex>
-    </Picker>
-    <Picker Title="Gender" HorizontalOptions="FillAndExpand" SelectedIndexChanged="FilterChange" x:Name="PickerGender">
-      <Picker.Items>
-        <x:String>Male</x:String>
-        <x:String>Female</x:String>
-      </Picker.Items>
-      <Picker.SelectedIndex>0</Picker.SelectedIndex>
-    </Picker>
+      </Grid>
+        
     <Entry Placeholder="School" HorizontalOptions="FillAndExpand" TextChanged="FilterChange" x:Name="EntrySchool"/>
 
 

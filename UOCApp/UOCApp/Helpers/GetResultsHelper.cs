@@ -81,7 +81,7 @@ namespace UOCApp.Helpers
             return results;
         }
 
-        public string CreateQueryString(string selectedPeriod, string selectedGrade, string selectedGender, string school)
+        public string CreateQueryString(string selectedPeriod, string selectedGrade, string selectedGender, string school, bool official)
         {
             string output = String.Empty;
 
@@ -148,12 +148,18 @@ namespace UOCApp.Helpers
                 output += "&school_name=" + school;
             }
 
+            //filtering for official times if relevant
+            if(official)
+            {
+                output += "&ranked=true";
+            }
+
             return output;
         }
 
         public string CreateQueryString(string selectedGrade, string selectedGender, string school)
         {
-            return CreateQueryString(null, selectedGrade, selectedGender, school);
+            return CreateQueryString(null, selectedGrade, selectedGender, school, false);
         }
 
         public void SortResults(List<AdminResult> baseResults, string selectedItem)

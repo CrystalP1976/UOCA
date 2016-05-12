@@ -19,6 +19,8 @@ namespace UOCApp
         List<LeaderboardResult> baseResults = new List<LeaderboardResult>();
         ObservableCollection<LeaderboardResult> results = new ObservableCollection<LeaderboardResult>();
 
+        bool official;
+
         public LeaderboardPage ()
 		{
 			InitializeComponent ();
@@ -28,15 +30,9 @@ namespace UOCApp
 
             resultsHelper = new GetResultsHelper(client, App.API_URL);
 
-            //TEST DATA
-            //results.Add(new LeaderboardResult { result_id = 1, ranked = false, student_name = "Jenny Craig", school_name = "Charles Drive", time = "11:11.111" });
-            //results.Add(new LeaderboardResult { result_id = 41, ranked = true, student_name = "John Smith", school_name = "Cliff Drive", time = "12:11.111" });
-
             ListViewLeaderboard.ItemsSource = results;
 
-            //TODO refresh?
-
-            
+            official = false;
 
         }
 
@@ -59,9 +55,9 @@ namespace UOCApp
             string selectedGrade = !(PickerGrade == null) ? PickerGrade.Items[PickerGrade.SelectedIndex] : "Grade 4";
             string selectedGender = !(PickerGender == null) ? PickerGender.Items[PickerGender.SelectedIndex] : "Male";
             string selectedSchool = !(EntrySchool == null) ? EntrySchool.Text : null;
-            string query = resultsHelper.CreateQueryString(selectedPeriod, selectedGrade, selectedGender, selectedSchool);
+            string query = resultsHelper.CreateQueryString(selectedPeriod, selectedGrade, selectedGender, selectedSchool, official);
 
-            Console.WriteLine(query);
+            //Console.WriteLine(query);
 
             try
             {
@@ -101,6 +97,26 @@ namespace UOCApp
             //sanity check
             if (PickerGrade == null)
                 return;
+
+            GetResults();
+        }
+        
+        private void ButtonOfficialClick(object sender, EventArgs args)
+        {
+            Console.WriteLine("Clicked ButtonOfficial!");
+
+            if(official)
+            {
+                ButtonOfficial.Text = "Show Official";
+                LabelDescription.Text = "All results";
+                official = false;
+            }
+            else
+            {
+                ButtonOfficial.Text = "Show All";
+                LabelDescription.Text = "Official results";
+                official = true;
+            }
 
             GetResults();
         }
