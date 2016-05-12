@@ -12,21 +12,22 @@ namespace UOCApp.Helpers
 
         public SwearCheckerHelper()
         {
-            Console.WriteLine("Loading swear list!");
+            //Console.WriteLine("Loading swear list!");
 
-            //TODO load swear list in constructor
+            //load the list
             loadSwearList();
 
-            //THIS IS DEBUG STUFF
-            string allwords = "";
+        }
 
-            foreach(string word in swearList)
+        public bool IsSwear(string name)
+        {
+            foreach (string refstr in swearList)
             {
-                allwords += "," + word;
+                if (String.Equals(name, refstr))
+                    return true;
             }
 
-            Console.WriteLine(allwords);
-
+            return false;
         }
 
         private void loadSwearList()
@@ -44,7 +45,7 @@ namespace UOCApp.Helpers
                 var resourcePrefix = "UOCApp.WinPhone.";
 #endif
 
-            Console.WriteLine("Using this resource prefix: " + resourcePrefix.ToString());
+            //Console.WriteLine("Using this resource prefix: " + resourcePrefix.ToString());
 
 
             var assembly = typeof(App).GetTypeInfo().Assembly;
