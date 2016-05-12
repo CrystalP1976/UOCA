@@ -18,24 +18,66 @@
                      x:Name="AdminLayout">
     <Label Text="Administration" FontSize="Large" VerticalOptions="Center" HorizontalOptions="Center" />
 
-    <Button Text="Logout" HorizontalOptions="CenterAndExpand" Clicked="ButtonLogoutClick"/>
+    <StackLayout Orientation="Horizontal">
+      <Button Text="Logout" HorizontalOptions="CenterAndExpand" Clicked="ButtonLogoutClick"/>
+      <Button Text="Refresh" HorizontalOptions="CenterAndExpand" Clicked="ButtonRefreshClick"/>
+    </StackLayout>
+    
+    
 
-    <Picker Title="Grade" HorizontalOptions="FillAndExpand"/>
-    <Picker Title="Gender" HorizontalOptions="FillAndExpand"/>
-    <Picker Title="Sort By" HorizontalOptions="FillAndExpand"/>
+    <Picker Title="Grade" HorizontalOptions="FillAndExpand" SelectedIndexChanged="FilterChange" x:Name="PickerGrade">
+      <Picker.Items>
+        <x:String>Grade 4</x:String>
+        <x:String>Grade 5</x:String>
+        <x:String>Grade 6</x:String>
+        <x:String>Grade 7</x:String>
+        <x:String>Teenager</x:String>
+        <x:String>Adult Under 35</x:String>
+        <x:String>Adult Over 35</x:String>
+      </Picker.Items>
+      <Picker.SelectedIndex>0</Picker.SelectedIndex>
+    </Picker>
+    <Picker Title="Gender" HorizontalOptions="FillAndExpand" SelectedIndexChanged="FilterChange" x:Name="PickerGender">
+      <Picker.Items>
+        <x:String>Male</x:String>
+        <x:String>Female</x:String>
+      </Picker.Items>
+      <Picker.SelectedIndex>0</Picker.SelectedIndex>
+    </Picker>
+    <Entry Placeholder="School" HorizontalOptions="FillAndExpand" TextChanged="FilterChange" x:Name="EntrySchool"/>
+    <Picker Title="Sort By" HorizontalOptions="FillAndExpand" SelectedIndexChanged="SortChange" x:Name="PickerSort">
+      <Picker.Items>        
+        <x:String>Name</x:String>
+        <x:String>Date</x:String>
+        <x:String>Time</x:String>
+      </Picker.Items>
+      <Picker.SelectedIndex>2</Picker.SelectedIndex>
+    </Picker>
 
-    <ListView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" x:Name="ListViewAdmin">
+    <ListView RowHeight="-1" HasUnevenRows="True" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" x:Name="ListViewAdmin">
       <ListView.ItemTemplate>
         <DataTemplate>
           <ViewCell>
             <StackLayout BackgroundColor="#eee"
-            Orientation="Vertical">
-              <StackLayout Orientation="Horizontal">
-                <Label Text="{Binding student_name}" />
-                <Label Text="{Binding date}" />
-                <Label Text="{Binding time}" />
-                <Button Text="X" Clicked="ButtonDeleteClick"  CommandParameter="{Binding result_id}" />
-              </StackLayout>
+              Orientation="Vertical">
+                <Grid>
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                  </Grid.RowDefinitions>
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                  </Grid.ColumnDefinitions>
+              
+                    <Label Text="{Binding student_name}" Grid.Column="0" Grid.Row="0" />
+                    <Label Text="{Binding date}" Grid.Column="1" Grid.Row="0"/>
+                    <Label Text="{Binding time}" Grid.Column="2" Grid.Row="0"/>                
+                    <Button Text="X" Clicked="ButtonDeleteClick"  CommandParameter="{Binding result_id}" Grid.Column="3" Grid.Row="0" Grid.RowSpan="2" />
+                    <Label Text="{Binding school_name}" FontSize="Micro" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2"/>
+                  </Grid>
             </StackLayout>
           </ViewCell>
         </DataTemplate>

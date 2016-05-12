@@ -64,7 +64,7 @@ namespace UOCApp
 		}
 
 		// share (post) the result to the server
-		public async Task<Boolean> share()
+		public async Task<Boolean> share(Boolean Official)
 		{
 			using (var client = new HttpClient())
 			{
@@ -78,6 +78,17 @@ namespace UOCApp
 					{ "school_name", this.school_name }
 
 				};
+
+
+				bool loggedIn = false;
+				if (Application.Current.Properties.ContainsKey("loggedin"))
+				{
+					loggedIn = Convert.ToBoolean(Application.Current.Properties["loggedin"]);
+				}
+				if (Official && loggedIn) 
+				{
+					values.Add ("password", "12345"); //make better
+				}
 
 				var content = new FormUrlEncodedContent(values);
 

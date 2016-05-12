@@ -22,7 +22,7 @@
       </Grid.ColumnDefinitions>
 
       <Label Text="Password:" Grid.Row="0" Grid.Column="0" FontSize="Large" HorizontalTextAlignment="End"/>
-      <Entry Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" x:Name="TextBoxPassword"/>
+      <Entry Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" x:Name="TextBoxPassword" IsPassword="true"/>
 
       <Button Text="Login"
            HorizontalOptions="Center"

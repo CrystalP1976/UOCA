@@ -18,6 +18,8 @@
       <DependentUpon>EntryPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\DeleteResultsHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\GetResultsHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LeaderboardPage.xaml.cs">
       <DependentUpon>LeaderboardPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -27,6 +29,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Models\AdminResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\RawResult.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SplashPage.xaml.cs">
       <DependentUpon>SplashPage.xaml</DependentUpon>
       <SubType>Code</SubType>

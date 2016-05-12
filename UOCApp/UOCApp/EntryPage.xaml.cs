@@ -44,23 +44,70 @@ namespace UOCApp
 		{
 			Console.WriteLine("Clicked Save Result");
 
+			try 
+			{
+				Result result = new Result (picker_Date.Date, entry_Time.Text, false, false, 
+					entry_Name.Text, Gender(), Grade(), entry_School.Text);
+				var sure = await DisplayAlert ("Confirm Save", "Winners Don't Cheat, \n Champions Don't Lie! \n Please record accurate race times!", "Save", "Back");
+				if (sure == true) {
+
+
+					// save to client database - TODO
+					if(true) // await joti(result)
+					{
+						if (switch_Public.IsToggled) { // did the user specify that they wish to post to the leaderboard?
+							if (await result.share ((bool)switch_Official.IsToggled)) { // post to server and return true if successful
+								await DisplayAlert ("Thank you!", "Your result has been saved and shared with the leaderboard", "OK");
+								Navigation.PopToRootAsync (); // return to home once save complete
+
+							} else {
+								Console.WriteLine ("Failed to share with leaderboard");
+								// TODO feedback to user in the event of leaderboard server failure
+							}
+						}
+						await DisplayAlert ("Thank you!", "Your result has been saved", "OK");
+						Navigation.PopToRootAsync (); // return to home once save complete
+					}
+					else 
+					{
+						// fail to save locally
+						await DisplayAlert ("Sorry", "Unable to save. \n Please try again", "OK");
+						Console.WriteLine ("Failed to save result");
+					}
+				} else {
+					//abort save, do nothing
+				}
+			}
+			catch (ArgumentException e) // fail to create a result instance, bad parameters
+			{
+				await DisplayAlert ("Error", "Please fill in all your information", "OK");
+				Console.WriteLine (e);
+			}	
+		}
+
+		private String Gender()
+		{
 			// read the gender picker and assign values
 			var Gender = "";
 			var GenderIndex = picker_Gender.SelectedIndex;
 			switch (GenderIndex)
 			{
-				case 0:
-					Gender = "M";
-					break;
-				case 1:
-					Gender = "F";
-					break;
-				default:
-				// error behavior? no gender set
-					Gender = null;
-					break;
+			case 0:
+				Gender = "M";
+				break;
+			case 1:
+				Gender = "F";
+				break;
+			default:
+				// error behavior? no gender set, shouldn't be possible
+				Gender = null;
+				break;
 			}
+			return Gender;
+		}
 
+		private int Grade()
+		{
 			// read the grade picker and assign values
 			var Grade = 0;
 			var GradeIndex = picker_Grade.SelectedIndex;
@@ -91,49 +138,7 @@ namespace UOCApp
 				// error behavior? no grade set
 				break;
 			}
-
-			try 
-			{
-				Result result = new Result (picker_Date.Date, entry_Time.Text, false, false, entry_Name.Text, Gender, Grade, entry_School.Text);
-				var sure = await DisplayAlert ("Confirm Save", "Winners Don't Cheat, \n Champions Don't Lie! \n Please record accurate race times!", "Save", "Back");
-				if (sure == true) {
-
-
-					// save to client database - TODO
-					if(true) // await joti(result)
-					{
-						if (switch_Public.IsToggled) { // did the user specify that they wish to post to the leaderboard?
-							if (await result.share ()) {
-								await DisplayAlert ("Thank you!", "Your result has been saved and shared with the leaderboard", "OK");
-								Navigation.PopToRootAsync (); // return to home once save complete
-
-							} else {
-								Console.WriteLine ("Failed to share with leaderboard");
-								//feedback to user in the event of leaderboard server failure
-							}
-						}
-						await DisplayAlert ("Thank you!", "Your result has been saved", "OK");
-						Navigation.PopToRootAsync (); // return to home once save complete
-
-
-					}
-					else 
-					{
-						// fail to save locally
-					}
-
-				} else {
-					//abort save
-				}
-
-			}
-			catch (ArgumentException e) 
-			{
-				await DisplayAlert ("Error", "Please fill in all your information", "OK");
-				Console.WriteLine (e);
-			}
-
-			
+			return Grade;
 		}
 
 
