@@ -20,6 +20,7 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\DeleteResultsHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\GetResultsHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\SwearCheckerHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LeaderboardPage.xaml.cs">
       <DependentUpon>LeaderboardPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -29,6 +30,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Models\AdminResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\LeaderboardResult.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\RawResult.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SplashPage.xaml.cs">
       <DependentUpon>SplashPage.xaml</DependentUpon>
@@ -42,11 +44,10 @@
       <DependentUpon>TimesPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Result.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ObstaclesPage.xaml.cs">
       <DependentUpon>ObstaclesPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)SQLite.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\SharedResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)GettingStarted.Xamarin" />
@@ -59,6 +60,7 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)ObstaclesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)terms.txt" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)StopwatchPage.xaml">

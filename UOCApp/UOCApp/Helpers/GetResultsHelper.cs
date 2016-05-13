@@ -29,6 +29,29 @@ namespace UOCApp.Helpers
 
         }
 
+        public async Task<int> GetCount(string query)
+        {
+            string url = this.url + "count" + query;
+
+            //Console.WriteLine(url);
+
+            var uri = new Uri(url);
+
+            var response = await client.GetAsync(uri);
+            if (response.IsSuccessStatusCode)
+            {
+
+                var content = await response.Content.ReadAsStringAsync();
+
+                return Convert.ToInt32(content);
+            }
+            else
+            {
+                //explicitly throw an exception if the status cocde is other than successful
+                throw new GetResultsException(response.StatusCode.ToString());
+            }
+        }
+
         public async Task<List<RawResult>> GetRawResults(string query)
         {
             string url = this.url + "results" + query;
@@ -68,9 +91,47 @@ namespace UOCApp.Helpers
             return results;
         }
 
-        public string CreateQueryString(string selectedGrade, string selectedGender, string school)
+        public List<LeaderboardResult> ConvertLeaderboardResults(List<RawResult> rawresults)
         {
-            string output = "?";
+            List<LeaderboardResult> results = new List<LeaderboardResult>();
+
+            foreach (RawResult result in rawresults)
+            {
+                //Console.WriteLine(result.ToString());
+                results.Add(new LeaderboardResult(result));
+            }
+
+            return results;
+        }
+
+        public string CreateQueryString(string selectedPeriod, string selectedGrade, string selectedGender, string school, bool official)
+        {
+            string output = String.Empty;
+
+            //check if a period is specified and deal with it
+            if(!String.IsNullOrEmpty(selectedPeriod))
+            {
+                //TODO switch on string
+                output += "/";
+
+                switch(selectedPeriod)
+                {
+                    case "Daily":
+                        output += "daily";
+                        break;
+                    case "Weekly":
+                        output += "weekly";
+                        break;
+                    case "Monthly":
+                        output += "monthly";
+                        break;
+                    default:
+                        output += "alltime";
+                        break;
+                }
+            }
+
+            output += "?";
 
             //map grade strings to grade
             int grade = 0;
@@ -110,7 +171,18 @@ namespace UOCApp.Helpers
                 output += "&school_name=" + school;
             }
 
+            //filtering for official times if relevant
+            if(official)
+            {
+                output += "&ranked=true";
+            }
+
             return output;
+        }
+
+        public string CreateQueryString(string selectedGrade, string selectedGender, string school)
+        {
+            return CreateQueryString(null, selectedGrade, selectedGender, school, false);
         }
 
         public void SortResults(List<AdminResult> baseResults, string selectedItem)

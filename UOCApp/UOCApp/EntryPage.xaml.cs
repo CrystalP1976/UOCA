@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http;
-using SQLite;
+
 using UOCApp;
 using UOCApp.Models;
 
@@ -60,17 +60,13 @@ namespace UOCApp
 
 			try 
 			{
-				Result result = new Result (picker_Date.Date, ConvertTime(entry_Time.Text), false, false, 
+				SharedResult result = new SharedResult (picker_Date.Date, ConvertTime(entry_Time.Text), false, false, 
 					entry_Name.Text, Gender(), Grade(), entry_School.Text);
 				var sure = await DisplayAlert ("Confirm Save", "Winners Don't Cheat, \n Champions Don't Lie! \n Please record accurate race times!", "Save", "Back");
 				if (sure == true) {
 
-
-
-
-
 					// save to client database - TODO
-					if(true) 
+					if(true) // true to fake success of adding to local database
 
 					{
 						if (switch_Public.IsToggled) { // did the user specify that they wish to post to the leaderboard?
@@ -98,7 +94,7 @@ namespace UOCApp
 			}
 			catch (ArgumentException e) // fail to create a result instance, bad parameters
 			{
-				await DisplayAlert ("Error", "Please fill in all your information", "OK");
+				await DisplayAlert ("Error", e.Message, "OK");
 				Console.WriteLine (e);
 			}	
 		}

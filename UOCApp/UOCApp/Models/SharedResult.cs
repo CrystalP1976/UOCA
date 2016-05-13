@@ -9,9 +9,10 @@ using System.Threading.Tasks;
 using UOCApp.Models;
 
 
+
 namespace UOCApp
 {
-	public class Result
+	public class SharedResult
 	{
 
 //		/* server-sided */
@@ -38,28 +39,44 @@ namespace UOCApp
 		int student_grade { get; set; }
 		String school_name { get; set; }
 
-		public Result (DateTime date, Decimal time, Boolean ranked, Boolean flagged,
+		public SharedResult (DateTime date, Decimal time, Boolean ranked, Boolean flagged,
 			String student_name, String student_gender, int student_grade, String school_name)
 		{
 
-			// swear filter here somewhere??
+
+
 
 			if (date != null && time != null && ranked != null && flagged != null &&
 				student_name != null && student_gender != null && student_grade != null && school_name != null
 			) 
 			{
-			this.date = date;
-			this.time = time;
-			this.ranked = ranked;
-			this.flagged = flagged;
-			this.student_name = student_name;
-			this.student_gender = student_gender;
-			this.student_grade = student_grade;
-			this.school_name = school_name;
+
+				if (App.swearHelper.IsSwear (student_name)) 
+					{
+					throw new ArgumentException( "Invalid Student Name." );
+					}
+
+				if (App.swearHelper.IsSwear (school_name)) 
+					{
+						throw new ArgumentException( "Invalid School Name." );
+					}
+
+
+
+				this.date = date;
+				this.time = time;
+				this.ranked = ranked;
+				this.flagged = flagged;
+				this.student_name = student_name;
+				this.student_gender = student_gender;
+				this.student_grade = student_grade;
+				this.school_name = school_name;
+
+
 			}
 			else 
 			{
-				throw new ArgumentException( "All parameters not set for result" );
+				throw new ArgumentException( "Please enter all of your information." );
 			}
 		}
 
