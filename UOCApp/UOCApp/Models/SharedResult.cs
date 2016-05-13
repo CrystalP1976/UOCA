@@ -47,6 +47,17 @@ namespace UOCApp
 			if (date != null && time != null && ranked != null && flagged != null &&
 				student_name != null && student_gender != null && student_grade != null && school_name != null
 			) 
+
+				if (App.swearHelper.IsSwear (student_name)) 
+				{
+					throw new ArgumentException( "Invalid Student Name." );
+				}
+
+				if (App.swearHelper.IsSwear (school_name)) 
+				{
+					throw new ArgumentException( "Invalid School Name." );
+				}
+
 			{
 			this.date = date;
 			this.time = time;
