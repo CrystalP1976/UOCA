@@ -10,15 +10,18 @@ namespace UOCApp.Helpers
 {
     public class DatabaseHelper
     {
+
+        
+
         public SQLiteConnection db { get; private set; }
 
         public DatabaseHelper()
         {
-
+            
 
             copyDatabase();
 
-            tryDatabase();
+            //tryDatabase();
         }
 
         private void copyDatabase()
@@ -35,8 +38,7 @@ namespace UOCApp.Helpers
                 var resourcePrefix = "UOCApp.WinPhone.";
 #endif
 
-            var assembly = typeof(App).GetTypeInfo().Assembly;
-            Stream stream = assembly.GetManifestResourceStream(resourcePrefix + "db.sqlite");
+
 
             //Stream fs = File.OpenRead(@"E:\Dropbox\ACIT 4900 - Group 7\terms.txt");
             //StreamReader reader = new StreamReader(stream);
@@ -46,7 +48,8 @@ namespace UOCApp.Helpers
             var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             var filePath = Path.Combine(documentsPath, "db.sqlite");
 
-            //in production remove this
+            //This checks if the database already exists before copying the embedded one to the storage location
+            //remove this for production or the database will not be persistent
             /*
             if(File.Exists(filePath))
             {
@@ -56,6 +59,9 @@ namespace UOCApp.Helpers
             */
 
             Console.WriteLine("Copying database to folder");
+
+            var assembly = typeof(App).GetTypeInfo().Assembly;
+            Stream stream = assembly.GetManifestResourceStream(resourcePrefix + "db.sqlite");
 
             var fileStream = File.Create(filePath);
 
@@ -78,6 +84,10 @@ namespace UOCApp.Helpers
                 Console.WriteLine(line.ToString());
             }
 
+            int pk = db.Insert(new Result { date = "2016-12-12", ranked = 1, time = 240.123m, student_gender = "F", student_name = "Jamie Tang", student_grade = 4 });
+
+            Console.WriteLine("Inserted row with PK of " + pk);
+
             var query = db.Table<Result>();
 
             Console.WriteLine(query);
@@ -89,6 +99,7 @@ namespace UOCApp.Helpers
             }
 
             //Console.WriteLine(db.GetTableInfo("result").ToString());
+            //db.Insert(new Result {date="2016-12-12",ranked=1,time=240.123m, student_gender="M",student_name="Jamie Tang",student_grade=4 });
         }
 
     }

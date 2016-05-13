@@ -18,7 +18,7 @@ namespace UOCApp
         public readonly SwearCheckerHelper swearHelper;
         public readonly DatabaseHelper databaseHelper;
 
-        //TODO: move HTTPClient to the App class?
+        //TODO refactor App.x stuff into separate Singleton
 
 		public App ()
 		{
