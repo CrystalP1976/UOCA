@@ -46,6 +46,7 @@ namespace UOCApp.Helpers
             var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             var filePath = Path.Combine(documentsPath, "db.sqlite");
 
+            //in production remove this
             /*
             if(File.Exists(filePath))
             {
