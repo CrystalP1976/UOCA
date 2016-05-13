@@ -11,7 +11,7 @@ using UOCApp.Models;
 
 namespace UOCApp
 {
-	public class Result
+	public class SharedResult
 	{
 
 //		/* server-sided */
@@ -38,7 +38,7 @@ namespace UOCApp
 		int student_grade { get; set; }
 		String school_name { get; set; }
 
-		public Result (DateTime date, String time, Boolean ranked, Boolean flagged,
+		public SharedResult (DateTime date, String time, Boolean ranked, Boolean flagged,
 			String student_name, String student_gender, int student_grade, String school_name)
 		{
 
