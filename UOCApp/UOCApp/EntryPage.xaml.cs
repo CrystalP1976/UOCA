@@ -94,7 +94,7 @@ namespace UOCApp
 
 			try 
 			{
-				Result result = new Result (picker_Date.Date, entry_Time.Text, false, false, entry_Name.Text, Gender, Grade, entry_School.Text);
+				SharedResult result = new SharedResult (picker_Date.Date, entry_Time.Text, false, false, entry_Name.Text, Gender, Grade, entry_School.Text);
 				var sure = await DisplayAlert ("Confirm Save", "Winners Don't Cheat, \n Champions Don't Lie! \n Please record accurate race times!", "Save", "Back");
 				if (sure == true) {
 

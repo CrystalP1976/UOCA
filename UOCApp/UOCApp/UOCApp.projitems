@@ -18,6 +18,7 @@
       <DependentUpon>EntryPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\DatabaseHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\DeleteResultsHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\GetResultsHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\SwearCheckerHelper.cs" />
@@ -32,10 +33,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\AdminResult.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\LeaderboardResult.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\RawResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Result.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SplashPage.xaml.cs">
       <DependentUpon>SplashPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)SQLite.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)StopwatchPage.xaml.cs">
       <DependentUpon>StopwatchPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -44,10 +47,11 @@
       <DependentUpon>TimesPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Result.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\SharedResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)GettingStarted.Xamarin" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)db.sqlite" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)SplashPage.xaml">
