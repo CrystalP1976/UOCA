@@ -19,6 +19,7 @@ namespace UOCApp
         public readonly DatabaseHelper databaseHelper;
 
         //TODO refactor App.x stuff into separate Singleton
+        //for now try (Application)(App.Current).databaseHelper
 
 		public App ()
 		{
