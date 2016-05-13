@@ -4,11 +4,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Text;
+using UOCApp.Models;
 
 namespace UOCApp.Helpers
 {
     public class DatabaseHelper
     {
+        public SQLiteConnection db { get; private set; }
+
         public DatabaseHelper()
         {
 
@@ -43,11 +46,15 @@ namespace UOCApp.Helpers
             var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             var filePath = Path.Combine(documentsPath, "db.sqlite");
 
+            /*
             if(File.Exists(filePath))
             {
                 Console.WriteLine("DB already there!");
                 return;
             }
+            */
+
+            Console.WriteLine("Copying database to folder");
 
             var fileStream = File.Create(filePath);
 
@@ -63,10 +70,21 @@ namespace UOCApp.Helpers
             var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             var filePath = Path.Combine(documentsPath, "db.sqlite");
             var db = new SQLiteConnection(filePath);
+            this.db = db;
 
             foreach(var line in db.GetTableInfo("result"))
             {
                 Console.WriteLine(line.ToString());
+            }
+
+            var query = db.Table<Result>();
+
+            Console.WriteLine(query);
+            Console.WriteLine(query.Count());
+
+            foreach(var result in query)
+            {
+                Console.WriteLine(result.ToString());
             }
 
             //Console.WriteLine(db.GetTableInfo("result").ToString());
