@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http;
+using SQLite;
+using UOCApp;
+using UOCApp.Models;
 
 using Xamarin.Forms;
 
@@ -63,10 +66,11 @@ namespace UOCApp
 				if (sure == true) {
 
 
+
+
+
 					// save to client database - TODO
 					if(true) 
-
-
 
 					{
 						if (switch_Public.IsToggled) { // did the user specify that they wish to post to the leaderboard?
@@ -179,6 +183,7 @@ namespace UOCApp
 
 			return Decimal.Round(result, 3);
 		}
+
 
 
 
