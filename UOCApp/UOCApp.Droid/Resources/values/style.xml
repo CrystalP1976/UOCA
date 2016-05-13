@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <resources>
+  <style name="Theme.AppTheme" parent="android:Theme.DeviceDefault.Light">
+    <item name="android:actionBarStyle">@style/ActionBarStyle</item>
+  </style>
+  
+  <style name="ActionBarStyle" parent="android:style/Widget.DeviceDefault.Light.ActionBar">
+    <item name="android:colorBackground">#808080</item>
+    <item name="android:background">#808080</item>
+  </style>
+  
     <style name="Theme.Splash" parent="android:Theme">
         <item name="android:windowBackground">@drawable/SplashImage</item>
         <item name="android:windowNoTitle">true</item>

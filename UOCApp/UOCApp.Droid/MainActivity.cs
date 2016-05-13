@@ -15,7 +15,7 @@ namespace UOCApp.Droid
 		protected override void OnCreate (Bundle bundle)
 		{
             base.Window.RequestFeature(WindowFeatures.ActionBar);
-            base.SetTheme(global::Android.Resource.Style.ThemeDeviceDefaultLight); //not working, don't know  why
+            base.SetTheme(Resource.Style.Theme_AppTheme);
             base.OnCreate (bundle);            
             //base.ActionBar.Hide();
 

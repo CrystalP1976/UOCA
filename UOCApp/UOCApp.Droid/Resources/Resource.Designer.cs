@@ -4058,6 +4058,9 @@ namespace UOCApp.Droid
 		public partial class Style
 		{
 			
+			// aapt resource value: 0x7f070145
+			public const int ActionBarStyle = 2131165509;
+			
 			// aapt resource value: 0x7f070081
 			public const int AlertDialog_AppCompat = 2131165313;
 			
@@ -4778,14 +4781,17 @@ namespace UOCApp.Droid
 			// aapt resource value: 0x7f0700ed
 			public const int Theme_AppCompat_NoActionBar = 2131165421;
 			
+			// aapt resource value: 0x7f070144
+			public const int Theme_AppTheme = 2131165508;
+			
 			// aapt resource value: 0x7f070000
 			public const int Theme_MediaRouter = 2131165184;
 			
 			// aapt resource value: 0x7f070001
 			public const int Theme_MediaRouter_Light = 2131165185;
 			
-			// aapt resource value: 0x7f070144
-			public const int Theme_Splash = 2131165508;
+			// aapt resource value: 0x7f070146
+			public const int Theme_Splash = 2131165510;
 			
 			// aapt resource value: 0x7f0700ee
 			public const int ThemeOverlay_AppCompat = 2131165422;
