@@ -72,6 +72,8 @@
 
     <Button Text="Obstacles Completed"
            HorizontalOptions="CenterAndExpand"
+           Clicked="NavObstacle"
+
            />
 
     <Label FontSize="Small" Text="Public results will be shown in leaderboards."/>
@@ -90,7 +92,7 @@
       <Label Text="Public:" Grid.Row="0" Grid.Column="0"/>
       <Switch IsToggled="False" Grid.Row="0" Grid.Column="1" x:Name="switch_Public"/>
       <Label Text="Official:" Grid.Row="0" Grid.Column="2"/>
-      <Switch IsToggled="False" Grid.Row="0" Grid.Column="3"/>
+      <Switch IsToggled="False" Grid.Row="0" Grid.Column="3" x:Name="switch_Official"/>
       
     </Grid>
 
