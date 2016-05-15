@@ -19,21 +19,21 @@ namespace UOCApp.Helpers
 
         }
 
-		public bool IsSwear(string name)
-		{
-			string[] words = name.Split(null);
+        public bool IsSwear(string name)
+        {
+            string[] words = name.Split(null);
 
-			foreach (string refstr in swearList)
-			{
-				foreach (string word in words)
-				{
-					if (String.Equals(word.ToLower(), refstr))
-						return true;
-				}
-			}
+            foreach (string refstr in swearList)
+            {
+                foreach (string word in words)
+                {
+                    if (String.Equals(word.ToLower(), refstr))
+                        return true;
+                }
+            }
 
-			return false;
-		}
+            return false;
+        }
 
         private void loadSwearList()
         {
@@ -66,7 +66,7 @@ namespace UOCApp.Helpers
             {
                 swearList.Add(reader.ReadLine());
             }
-
+            
             //swearList = list;
             
         }

@@ -57,8 +57,8 @@
       <Label Text="School" Grid.Row="3" Grid.Column="0" FontSize="Large" HorizontalTextAlignment="End"/>
       <Entry Text="Cliff Drive Elementary" Grid.Row="3" Grid.Column="1" HorizontalOptions="FillAndExpand" x:Name="entry_School"/>
 
-      <Label Text="Time" Grid.Row="4" Grid.Column="0" FontSize="Large" HorizontalTextAlignment="End"/>
-      <Entry Text="11.111" Grid.Row="4" Grid.Column="1" HorizontalOptions="FillAndExpand" x:Name="entry_Time"/>
+      <Label Text="Time" Grid.Row="4" Grid.Column="0" FontSize="Large" HorizontalTextAlignment="End"/> 
+      <Entry Text="" Grid.Row="4" Grid.Column="1" HorizontalOptions="FillAndExpand" x:Name="entry_Time"/>
 
       <Label Text="Date" Grid.Row="5" Grid.Column="0" FontSize="Large" HorizontalTextAlignment="End" />
       <DatePicker Grid.Row="5" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" x:Name="picker_Date" Date="{x:Static sys:DateTime.Now}">
