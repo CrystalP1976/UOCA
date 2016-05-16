@@ -27,7 +27,16 @@
 
     <!-- <Label Text="Stop Watch" HorizontalOptions="Center" />  -->
 
-    <Label Text="" HorizontalOptions="Center" FontSize="36" FontFamily="monospace" x:Name="WatchText" />
+    <Label Text="" HorizontalOptions="Center" FontSize="36" x:Name="WatchText">
+      <Label.FontFamily>
+        <OnPlatform x:TypeArguments="x:String">
+          <OnPlatform.iOS>Courier</OnPlatform.iOS>
+          <OnPlatform.Android>monospace</OnPlatform.Android>
+          <OnPlatform.WinPhone>Consolas</OnPlatform.WinPhone>
+        </OnPlatform>
+      </Label.FontFamily>      
+    </Label>
+    
 
     <Grid Padding="20,0">
       <Grid.RowDefinitions>
