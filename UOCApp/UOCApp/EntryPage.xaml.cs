@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http;
+using UOCApp.Helpers;
 
 using Xamarin.Forms;
+using UOCApp.Models;
 
 namespace UOCApp
 {
@@ -95,11 +97,14 @@ namespace UOCApp
 			try 
 			{
 				SharedResult result = new SharedResult (picker_Date.Date, entry_Time.Text, false, false, entry_Name.Text, Gender, Grade, entry_School.Text);
+				Result localresult = new Result { date = picker_Date.Date.ToString(), ranked = Convert.ToInt32(switch_Official.IsToggled), time = Convert.ToDecimal(entry_Time.Text), student_gender = Gender, student_name = entry_Name.Text, student_grade = Grade };
+				//Result localresult = new Result (picker_Date.Date, entry_Time.Text, switch_Official.IsToggled, entry_Name.Text, Gender, Grade);
+
 				var sure = await DisplayAlert ("Confirm Save", "Winners Don't Cheat, \n Champions Don't Lie! \n Please record accurate race times!", "Save", "Back");
 				if (sure == true) {
+					// save to client database 
+					App.databaseHelper.insertTime(localresult);
 
-
-					// save to client database - TODO
 					if(true) // await joti(result)
 					{
 						if (switch_Public.IsToggled) { // did the user specify that they wish to post to the leaderboard?

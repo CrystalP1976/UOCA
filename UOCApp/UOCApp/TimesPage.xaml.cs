@@ -32,5 +32,6 @@ namespace UOCApp
             Console.WriteLine("Clicked Nav Admin");
             Navigation.PushAsync(new AdminPage());
         }
+
     }
 }

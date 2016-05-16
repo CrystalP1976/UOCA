@@ -6,7 +6,7 @@ using SQLite;
 namespace UOCApp.Models
 {
     [Table("result")]
-    class Result
+    public class Result
     {
         [PrimaryKey,AutoIncrement]
         public int result_id { get; set; }
