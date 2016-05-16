@@ -54,8 +54,8 @@ namespace UOCApp.Helpers
 
 
             var assembly = typeof(App).GetTypeInfo().Assembly;
-            //foreach (var res in assembly.GetManifestResourceNames())
-            //    System.Diagnostics.Debug.WriteLine("found resource: " + res);
+           // foreach (var res in assembly.GetManifestResourceNames())
+             //   System.Diagnostics.Debug.WriteLine("found resource: " + res);
 
             Stream stream = assembly.GetManifestResourceStream(resourcePrefix + "terms.txt");
 

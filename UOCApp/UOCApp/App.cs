@@ -15,8 +15,8 @@ namespace UOCApp
         //safe to put constants here?
         public const string password = "12345";
         public const string API_URL = @"http://uocb.xcvgsystems.net:8080/api/uocb/";
-        public readonly SwearCheckerHelper swearHelper;
-        public readonly DatabaseHelper databaseHelper;
+        public static SwearCheckerHelper swearHelper;
+        public static DatabaseHelper databaseHelper;
 
         //TODO refactor App.x stuff into separate Singleton
         //for now try (Application)(App.Current).databaseHelper
