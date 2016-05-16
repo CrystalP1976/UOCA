@@ -53,10 +53,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\SharedResult.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ObstacleList.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Obstacle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ScoreObstacles.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)GettingStarted.Xamarin" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)db.sqlite" />
+    <None Include="$(MSBuildThisFileDirectory)db.sqlite" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)SplashPage.xaml">

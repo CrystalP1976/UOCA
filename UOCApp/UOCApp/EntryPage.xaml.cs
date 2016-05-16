@@ -56,7 +56,6 @@ namespace UOCApp
 		{
 			Console.WriteLine("Clicked Obstacles");
 			await Navigation.PushModalAsync (obstaclesPage);
-			ShareButtonStatus ();
 		}
 
 		private async void SaveResult(object sender, EventArgs args) //for debug
