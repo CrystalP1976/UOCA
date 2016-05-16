@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,17 +8,22 @@ using Xamarin.Forms;
 
 namespace UOCApp
 {
-	public partial class StopwatchPage : ContentPage
-	{
+    public partial class StopwatchPage : ContentPage
+    {
         //for the stopwatch/timer
         bool timerActive;
         long startTime;
         long stopTime;
+        long result;
+        long time;
+        public string endTime;
+        public string displayTime;
 
-		public StopwatchPage ()
-		{
-			InitializeComponent ();
-		}
+
+        public StopwatchPage()
+        {
+            InitializeComponent();
+        }
 
         protected override void OnAppearing()
         {
@@ -49,10 +54,17 @@ namespace UOCApp
             Console.WriteLine("Clicked start button");
         }
 
+        private void ButtonPauseClick(object sender, EventArgs args)
+        {
+            pauseTimer();
+            Console.WriteLine("Clicked pause button");
+        }
+
         private void ButtonStopClick(object sender, EventArgs args)
         {
             stopTimer();
             Console.WriteLine("Clicked stop button");
+            Console.WriteLine(displayTime);
         }
 
         private void ButtonClearClick(object sender, EventArgs args)
@@ -67,6 +79,7 @@ namespace UOCApp
             Console.WriteLine("Clicked save button");
             //TODO use PushModal and await
             Navigation.PushAsync(new EntryPage()); //should this be modal?
+            //endTime = displayTime.ToString();
         }
 
         private void NavLeaderboard(object sender, EventArgs args)
@@ -91,6 +104,11 @@ namespace UOCApp
         {
             //get current time and note
             startTime = System.DateTime.Now.Ticks;
+            Console.WriteLine("Result in startTime initial " + startTime);
+            startTime = startTime - result;
+            Console.WriteLine("Result in startTime&time " + startTime);
+
+            Console.WriteLine("Result in startTimer: " + result + " StartTime " + startTime);
             timerActive = true;
 
             //actually start the update ticker
@@ -101,8 +119,22 @@ namespace UOCApp
                     updateTimer(System.DateTime.Now.Ticks - startTime);
                     return true; //continue
                 }
-                else return false;                
+                else return false;
             });
+            Console.WriteLine("2)Result in startTimer: " + result + " StartTime " + startTime);
+        }
+
+        private void pauseTimer()
+        {
+            if (timerActive)
+            {
+                //note final time and stop
+                stopTime = System.DateTime.Now.Ticks;
+                timerActive = false;
+                result = stopTime - startTime;
+                updateTimer(result);
+                Console.WriteLine("Result in pauseTimer" + result);
+            }
         }
 
         private void stopTimer()
@@ -112,16 +144,21 @@ namespace UOCApp
                 //note final time and stop
                 stopTime = System.DateTime.Now.Ticks;
                 timerActive = false;
-                updateTimer(stopTime - startTime);
+                result = stopTime - startTime;
+                updateTimer(result);
+                Console.WriteLine("Result in stopTimer" + result);
+                startTime = 0;
+                result = 0;
             }
         }
 
         private void clearTimer()
         {
-            if(!timerActive)
+            if (!timerActive)
             {
                 startTime = 0;
                 stopTime = 0;
+                result = 0;
                 //WatchText.Text = "00:00.000";
                 updateTimer(0);
             }
@@ -131,12 +168,13 @@ namespace UOCApp
         private void updateTimer(long time)
         {
             //display time
+            Console.WriteLine("Result in updateTimer" + time);
             DateTime dt = new DateTime(time);
+            Console.WriteLine(dt);
             string displayTime = String.Format("{0:00}:{1:00}.{2:000}", dt.Minute, dt.Second, dt.Millisecond);
             //string displayTime = dt.Minute + ":" + dt.Second + "." + dt.Millisecond;
             WatchText.Text = displayTime;
         }
-
-
+        
     }
 }

@@ -61,7 +61,7 @@
 
       </Grid>
         
-    <Entry Placeholder="School" HorizontalOptions="FillAndExpand" TextChanged="FilterChange" x:Name="EntrySchool"/>
+    <Entry Placeholder="School" HorizontalOptions="FillAndExpand" Completed="FilterChange" x:Name="EntrySchool"/>
 
 
    <ListView RowHeight="-1" HasUnevenRows="True" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" x:Name="ListViewLeaderboard">

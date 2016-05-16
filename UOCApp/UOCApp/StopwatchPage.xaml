@@ -27,7 +27,16 @@
 
     <!-- <Label Text="Stop Watch" HorizontalOptions="Center" />  -->
 
-    <Label Text="" HorizontalOptions="Center" FontSize="36" FontFamily="monospace" x:Name="WatchText" />
+    <Label Text="" HorizontalOptions="Center" FontSize="36" x:Name="WatchText">
+      <Label.FontFamily>
+        <OnPlatform x:TypeArguments="x:String">
+          <OnPlatform.iOS>Courier</OnPlatform.iOS>
+          <OnPlatform.Android>monospace</OnPlatform.Android>
+          <OnPlatform.WinPhone>Consolas</OnPlatform.WinPhone>
+        </OnPlatform>
+      </Label.FontFamily>      
+    </Label>
+    
 
     <Grid Padding="20,0">
       <Grid.RowDefinitions>
@@ -39,29 +48,36 @@
         <ColumnDefinition Width="*" />
         <ColumnDefinition Width="*" />
       </Grid.ColumnDefinitions>
-        <Button Text="Start"
-        HorizontalOptions="FillAndExpand"
-        VerticalOptions="CenterAndExpand"
-        Clicked="ButtonStartClick"
-              Grid.Row="0" Grid.Column="0"/>
+
+      <Button Text="Start"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="CenterAndExpand"
+            Clicked="ButtonStartClick"
+                Grid.Row="0" Grid.Column="0"/>
+      
+        <Button Text="Pause"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="CenterAndExpand"
+            Clicked="ButtonPauseClick"
+                Grid.Row="0" Grid.Column="1"/>
 
         <Button Text="Stop"
             HorizontalOptions="FillAndExpand"
             VerticalOptions="CenterAndExpand"
             Clicked="ButtonStopClick"
-                Grid.Row="0" Grid.Column="1"/>
+                Grid.Row="0" Grid.Column="2"/>
 
         <Button Text="Clear"
             HorizontalOptions="FillAndExpand"
             VerticalOptions="CenterAndExpand"
             Clicked="ButtonClearClick"
-                Grid.Row="0" Grid.Column="2"/>
+                Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"/>
 
         <Button Text="Save"
             HorizontalOptions="FillAndExpand"
             VerticalOptions="CenterAndExpand"
             Clicked="ButtonSaveClick"
-                Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"/>
+                Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"/>
       
     </Grid>
 

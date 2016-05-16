@@ -2431,32 +2431,32 @@ namespace UOCApp.Droid
 		public partial class Color
 		{
 			
-			// aapt resource value: 0x7f080047
-			public const int abc_background_cache_hint_selector_material_dark = 2131230791;
-			
-			// aapt resource value: 0x7f080048
-			public const int abc_background_cache_hint_selector_material_light = 2131230792;
-			
 			// aapt resource value: 0x7f080049
-			public const int abc_color_highlight_material = 2131230793;
+			public const int abc_background_cache_hint_selector_material_dark = 2131230793;
+			
+			// aapt resource value: 0x7f08004a
+			public const int abc_background_cache_hint_selector_material_light = 2131230794;
+			
+			// aapt resource value: 0x7f08004b
+			public const int abc_color_highlight_material = 2131230795;
 			
 			// aapt resource value: 0x7f080004
 			public const int abc_input_method_navigation_guard = 2131230724;
 			
-			// aapt resource value: 0x7f08004a
-			public const int abc_primary_text_disable_only_material_dark = 2131230794;
-			
-			// aapt resource value: 0x7f08004b
-			public const int abc_primary_text_disable_only_material_light = 2131230795;
-			
 			// aapt resource value: 0x7f08004c
-			public const int abc_primary_text_material_dark = 2131230796;
+			public const int abc_primary_text_disable_only_material_dark = 2131230796;
 			
 			// aapt resource value: 0x7f08004d
-			public const int abc_primary_text_material_light = 2131230797;
+			public const int abc_primary_text_disable_only_material_light = 2131230797;
 			
 			// aapt resource value: 0x7f08004e
-			public const int abc_search_url_text = 2131230798;
+			public const int abc_primary_text_material_dark = 2131230798;
+			
+			// aapt resource value: 0x7f08004f
+			public const int abc_primary_text_material_light = 2131230799;
+			
+			// aapt resource value: 0x7f080050
+			public const int abc_search_url_text = 2131230800;
 			
 			// aapt resource value: 0x7f080005
 			public const int abc_search_url_text_normal = 2131230725;
@@ -2467,11 +2467,11 @@ namespace UOCApp.Droid
 			// aapt resource value: 0x7f080007
 			public const int abc_search_url_text_selected = 2131230727;
 			
-			// aapt resource value: 0x7f08004f
-			public const int abc_secondary_text_material_dark = 2131230799;
+			// aapt resource value: 0x7f080051
+			public const int abc_secondary_text_material_dark = 2131230801;
 			
-			// aapt resource value: 0x7f080050
-			public const int abc_secondary_text_material_light = 2131230800;
+			// aapt resource value: 0x7f080052
+			public const int abc_secondary_text_material_light = 2131230802;
 			
 			// aapt resource value: 0x7f080008
 			public const int accent_material_dark = 2131230728;
@@ -2668,17 +2668,23 @@ namespace UOCApp.Droid
 			// aapt resource value: 0x7f08003b
 			public const int switch_thumb_disabled_material_light = 2131230779;
 			
-			// aapt resource value: 0x7f080051
-			public const int switch_thumb_material_dark = 2131230801;
+			// aapt resource value: 0x7f080053
+			public const int switch_thumb_material_dark = 2131230803;
 			
-			// aapt resource value: 0x7f080052
-			public const int switch_thumb_material_light = 2131230802;
+			// aapt resource value: 0x7f080054
+			public const int switch_thumb_material_light = 2131230804;
 			
 			// aapt resource value: 0x7f08003c
 			public const int switch_thumb_normal_material_dark = 2131230780;
 			
 			// aapt resource value: 0x7f08003d
 			public const int switch_thumb_normal_material_light = 2131230781;
+			
+			// aapt resource value: 0x7f080048
+			public const int uoca_gray = 2131230792;
+			
+			// aapt resource value: 0x7f080047
+			public const int uoca_silver = 2131230791;
 			
 			static Color()
 			{
@@ -4058,11 +4064,17 @@ namespace UOCApp.Droid
 		public partial class Style
 		{
 			
+			// aapt resource value: 0x7f070146
+			public const int ActionBarStyle = 2131165510;
+			
 			// aapt resource value: 0x7f070081
 			public const int AlertDialog_AppCompat = 2131165313;
 			
 			// aapt resource value: 0x7f070082
 			public const int AlertDialog_AppCompat_Light = 2131165314;
+			
+			// aapt resource value: 0x7f070145
+			public const int AlertDialogStyle = 2131165509;
 			
 			// aapt resource value: 0x7f070083
 			public const int Animation_AppCompat_Dialog = 2131165315;
@@ -4778,14 +4790,17 @@ namespace UOCApp.Droid
 			// aapt resource value: 0x7f0700ed
 			public const int Theme_AppCompat_NoActionBar = 2131165421;
 			
+			// aapt resource value: 0x7f070144
+			public const int Theme_AppTheme = 2131165508;
+			
 			// aapt resource value: 0x7f070000
 			public const int Theme_MediaRouter = 2131165184;
 			
 			// aapt resource value: 0x7f070001
 			public const int Theme_MediaRouter_Light = 2131165185;
 			
-			// aapt resource value: 0x7f070144
-			public const int Theme_Splash = 2131165508;
+			// aapt resource value: 0x7f070147
+			public const int Theme_Splash = 2131165511;
 			
 			// aapt resource value: 0x7f0700ee
 			public const int ThemeOverlay_AppCompat = 2131165422;

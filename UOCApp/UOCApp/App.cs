@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -15,7 +15,7 @@ namespace UOCApp
         //safe to put constants here?
         public const string password = "12345";
         public const string API_URL = @"http://uocb.xcvgsystems.net:8080/api/uocb/";
-        public readonly SwearCheckerHelper swearHelper;
+        public static SwearCheckerHelper swearHelper;
         public static DatabaseHelper databaseHelper;
 
         //TODO refactor App.x stuff into separate Singleton
