@@ -51,6 +51,8 @@
       <DependentUpon>ObstaclesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Models\SharedResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ObstacleList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Obstacle.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)GettingStarted.Xamarin" />

@@ -12,10 +12,18 @@ using Xamarin.Forms;
 
 namespace UOCApp
 {
+
+
+
 	public partial class EntryPage : ContentPage
 	{
+
+		public ObstaclesPage obstaclesPage;
+
+
 		public EntryPage ()
 		{
+			obstaclesPage = new ObstaclesPage ();
 			InitializeComponent ();
 		}
 
@@ -47,11 +55,8 @@ namespace UOCApp
 		async void NavObstacle (object sender, EventArgs args)
 		{
 			Console.WriteLine("Clicked Obstacles");
-
-				var obstaclesPage = new ObstaclesPage ();
-
-					await Navigation.PushModalAsync (obstaclesPage);
-
+			await Navigation.PushModalAsync (obstaclesPage);
+			ShareButtonStatus ();
 		}
 
 		private async void SaveResult(object sender, EventArgs args) //for debug
@@ -178,6 +183,46 @@ namespace UOCApp
 			}
 
 			return Decimal.Round(result, 3);
+		}
+
+		public void ShareButtonStatus() {
+
+			if (obstaclesPage.obstacleList.allComplete()) {
+				switch_Public.IsEnabled = true;
+			} else
+			{
+				switch_Public.IsToggled = false;
+				switch_Public.IsEnabled = false;
+			}
+
+		}
+
+		public void OfficialButtonStatus() {
+			bool loggedIn = false;
+			if (Application.Current.Properties.ContainsKey("loggedin"))
+			{
+				loggedIn = Convert.ToBoolean(Application.Current.Properties["loggedin"]);
+			}
+			if (loggedIn) {
+				switch_Official.IsEnabled = true;
+				switch_Official.Opacity = 1;
+				label_Official.Opacity = 1;
+			} 
+			else
+			{
+				switch_Official.IsToggled = false;
+				switch_Official.IsEnabled = false;
+				switch_Official.Opacity = 0;
+				label_Official.Opacity = 0;
+			}
+
+		}
+
+		protected override void OnAppearing()
+		{
+			base.OnAppearing ();
+			OfficialButtonStatus (); // update the offical button status dependant on if the user is logged in or not
+			ShareButtonStatus (); // update the share buttons status dependant on if all obstacles are complete
 		}
 
 
