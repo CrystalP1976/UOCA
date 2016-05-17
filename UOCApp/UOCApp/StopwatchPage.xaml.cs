@@ -79,7 +79,14 @@ namespace UOCApp
             Console.WriteLine("Clicked save button");
             //TODO use PushModal and await
             Navigation.PushAsync(new EntryPage()); //should this be modal?
-            //endTime = displayTime.ToString();
+
+           // endTime = displayTime.ToString();
+
+        }
+
+        private void ButtonAboutClick(object sender, EventArgs args)
+        {
+            Navigation.PushAsync(new AboutPage());
         }
 
         private void NavLeaderboard(object sender, EventArgs args)

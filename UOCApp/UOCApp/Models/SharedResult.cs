@@ -39,14 +39,14 @@ namespace UOCApp
         public SharedResult(DateTime date, Decimal time, Boolean ranked, Boolean flagged,
             String student_name, String student_gender, int student_grade, String school_name)
         {
-
-
-
-
             if (date != null && time != null && ranked != null && flagged != null &&
                 student_name != null && student_gender != null && student_grade != null && school_name != null
             )
             {
+				if (time < 30)// minimum acceptable time in seconds
+				{ 
+						throw new ArgumentException("Invalid Time");
+				}
 
                 if (App.swearHelper.IsSwear(student_name))
                 {
@@ -57,9 +57,7 @@ namespace UOCApp
                 {
                     throw new ArgumentException("Invalid School Name.");
                 }
-
-
-
+					
                 this.date = date;
                 this.time = time;
                 this.ranked = ranked;
@@ -68,8 +66,6 @@ namespace UOCApp
                 this.student_gender = student_gender;
                 this.student_grade = student_grade;
                 this.school_name = school_name;
-
-
             }
             else
             {
@@ -106,19 +102,28 @@ namespace UOCApp
 
                 var content = new FormUrlEncodedContent(values);
 
-                var response = await client.PostAsync(App.API_URL + "result/", content);
-                Console.WriteLine("post response code: " + response.StatusCode);
-                var responseString = await response.Content.ReadAsStringAsync(); //what does this do??
+				try {
+	                var response = await client.PostAsync(App.API_URL + "result/", content);
+					//Console.WriteLine("post response code: " + response.StatusCode);
+					var responseString = await response.Content.ReadAsStringAsync(); //what does this do??
+						if ((int)response.StatusCode == 201)
+						{
+							return true;
+						}
+						else
+						{
+							values.ToList().ForEach(x => Console.WriteLine(x.Key + " : " + x.Value));
+							return false;
+						}
+				}
+				catch(Exception e) { //pokemon
+					return false;
+				}
 
-                if ((int)response.StatusCode == 201)
-                {
-                    return true;
-                }
-                else
-                {
-                    values.ToList().ForEach(x => Console.WriteLine(x.Key + " : " + x.Value));
-                    return false;
-                }
+
+                
+
+                
             }
         }
     }

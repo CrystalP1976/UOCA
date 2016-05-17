@@ -4,7 +4,7 @@ using System.Text;
 
 namespace UOCApp.Models
 {
-    class LeaderboardResult
+    public class LeaderboardResult
     {
         
         public LeaderboardResult(RawResult input)

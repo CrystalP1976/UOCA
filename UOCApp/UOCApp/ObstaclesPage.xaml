@@ -1,81 +1,55 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
-			 xmlns:sys="clr-namespace:System;assembly=mscorlib"
-		     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-		     x:Class="UOCApp.ObstaclesPage">
-
-
-	  <StackLayout       VerticalOptions="FillAndExpand"
-                     HorizontalOptions="FillAndExpand"
-                     Orientation="Vertical"
-                     Spacing="10"
-                     Padding="20,20,20,10">
-
-    <Grid>
-      <Grid.RowDefinitions>
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="Auto" />
-      </Grid.RowDefinitions>
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="Auto" />
-        <ColumnDefinition Width="*" />
-      </Grid.ColumnDefinitions>
-
-            <Label Text="Select Incomplete Obstacles" Grid.Row="0" Grid.Column="0" FontSize="Large" HorizontalTextAlignment="End"/>
-
-            <Label Text="Quintuple Steps" Grid.Row="1" Grid.Column="0"/>
-      		<Switch IsToggled="False" Grid.Row="1" Grid.Column="1" x:Name="switch_0"/>
-
-      		<Label Text="Wall Pull" Grid.Row="2" Grid.Column="0"/>
-      		<Switch IsToggled="False" Grid.Row="2" Grid.Column="1" x:Name="switch_1"/>
-
-      		<Label Text="Wobbly Walk" Grid.Row="3" Grid.Column="0"/>
-      		<Switch IsToggled="False" Grid.Row="3" Grid.Column="1" x:Name="switch_2"/>
-
-      		<Label Text="Rubber Beams" Grid.Row="4" Grid.Column="0"/>
-      		<Switch IsToggled="False" Grid.Row="4" Grid.Column="1" x:Name="switch_3"/>
-
-      		<Label Text="Over/under Bars" Grid.Row="5" Grid.Column="0"/>
-      		<Switch IsToggled="False" Grid.Row="5" Grid.Column="1" x:Name="switch_4"/>
-
-      		<Label Text="Grid Steps" Grid.Row="6" Grid.Column="0"/>
-      		<Switch IsToggled="False" Grid.Row="6" Grid.Column="1" x:Name="switch_5"/>
-
-      		<Label Text="Sloth Slide" Grid.Row="7" Grid.Column="0"/>
-      		<Switch IsToggled="False" Grid.Row="7" Grid.Column="1" x:Name="switch_6"/>
-
-      		<Label Text="Spider Climber" Grid.Row="8" Grid.Column="0"/>
-      		<Switch IsToggled="False" Grid.Row="8" Grid.Column="1" x:Name="switch_7"/>
-
-      		<Label Text="Rope Pyramid" Grid.Row="9" Grid.Column="0"/>
-      		<Switch IsToggled="False" Grid.Row="9" Grid.Column="1" x:Name="switch_8"/>
-
-      		<Label Text="Monkey Swinger" Grid.Row="10" Grid.Column="0"/>
-      		<Switch IsToggled="False" Grid.Row="10" Grid.Column="1" x:Name="switch_9"/>
-
-      		<Label Text="Hang Board" Grid.Row="11" Grid.Column="0"/>
-      		<Switch IsToggled="False" Grid.Row="11" Grid.Column="1" x:Name="switch_10"/>
-
-      		<Label Text="Warped Wall" Grid.Row="12" Grid.Column="0"/>
-      		<Switch IsToggled="False" Grid.Row="12" Grid.Column="1" x:Name="switch_11"/>
-
-      		<Button Text="Save" HorizontalOptions="CenterAndExpand" Clicked="OnSaveButtonClicked"
-              Grid.Column="0" Grid.Row="13"
-           /> 
-
-           </Grid>
-
-           </StackLayout>
-
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="UOCApp.ObstaclesPage">
+	<StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Orientation="Vertical" Spacing="10" Padding="20,20,20,10">
+		<Label Text="Obstacle List" FontSize="Large" HorizontalTextAlignment="Center" />
+		<Label Text="Select obstacles that you have completed." FontSize="Small" HorizontalTextAlignment="Center" />
+		<ScrollView Padding="10">
+			<Grid HorizontalOptions="FillAndExpand">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="Auto" />
+				</Grid.ColumnDefinitions>
+				<Label Text="Quintuple Steps" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0" />
+				<Switch IsToggled="True" Grid.Row="1" Grid.Column="1" x:Name="switch_0" />
+				<Label Text="Wall Pull" Grid.Row="2" Grid.Column="0" />
+				<Switch IsToggled="True" Grid.Row="2" Grid.Column="1" x:Name="switch_1" />
+				<Label Text="Wobbly Walk" Grid.Row="3" Grid.Column="0" />
+				<Switch IsToggled="True" Grid.Row="3" Grid.Column="1" x:Name="switch_2" />
+				<Label Text="Rubber Beams" Grid.Row="4" Grid.Column="0" />
+				<Switch IsToggled="True" Grid.Row="4" Grid.Column="1" x:Name="switch_3" />
+				<Label Text="Over/under Bars" Grid.Row="5" Grid.Column="0" />
+				<Switch IsToggled="True" Grid.Row="5" Grid.Column="1" x:Name="switch_4" />
+				<Label Text="Grid Steps" Grid.Row="6" Grid.Column="0" />
+				<Switch IsToggled="True" Grid.Row="6" Grid.Column="1" x:Name="switch_5" />
+				<Label Text="Sloth Slide" Grid.Row="7" Grid.Column="0" />
+				<Switch IsToggled="True" Grid.Row="7" Grid.Column="1" x:Name="switch_6" />
+				<Label Text="Spider Climber" Grid.Row="8" Grid.Column="0" />
+				<Switch IsToggled="True" Grid.Row="8" Grid.Column="1" x:Name="switch_7" />
+				<Label Text="Rope Pyramid" Grid.Row="9" Grid.Column="0" />
+				<Switch IsToggled="True" Grid.Row="9" Grid.Column="1" x:Name="switch_8" />
+				<Label Text="Monkey Swinger" Grid.Row="10" Grid.Column="0" />
+				<Switch IsToggled="True" Grid.Row="10" Grid.Column="1" x:Name="switch_9" />
+				<Label Text="Hang Board" Grid.Row="11" Grid.Column="0" />
+				<Switch IsToggled="True" Grid.Row="11" Grid.Column="1" x:Name="switch_10" />
+				<Label Text="Warped Wall" Grid.Row="12" Grid.Column="0" />
+				<Switch IsToggled="True" Grid.Row="12" Grid.Column="1" x:Name="switch_11" />
+				<Button Text="Ok" HorizontalOptions="Center" Grid.ColumnSpan="2" Clicked="OnSaveButtonClicked" Grid.Row="13" Grid.Column="0" />
+			</Grid>
+		</ScrollView>
+	</StackLayout>
 </ContentPage>

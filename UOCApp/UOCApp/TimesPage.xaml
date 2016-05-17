@@ -15,16 +15,61 @@
                      Spacing="15"
                      Padding="10,0,10,0">
 
-    <Image Source="htitle.png"  />
+        <Label Text="My Times" FontSize="Large" VerticalOptions="Center" HorizontalOptions="Center" />
 
-    <Label Text="My Times" FontSize="Large" VerticalOptions="Center" HorizontalOptions="Center" />
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+          </Grid.RowDefinitions>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+          </Grid.ColumnDefinitions>
 
-       <ListView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+          <Label Text="Filter By" Grid.Column="0" Grid.Row="0"/>
+          <Entry Placeholder="Name" HorizontalOptions="FillAndExpand" Completed="FilterChange" x:Name="EntryName" Grid.Column="1" Grid.Row="0"/>
+
+          <Label Text="Sort By" Grid.Column="0" Grid.Row="1"/>
+          <Picker Title="Sort By" HorizontalOptions="FillAndExpand" SelectedIndexChanged="SortChange" x:Name="PickerSort" Grid.Column="1" Grid.Row="1">
+            <Picker.Items>
+              <x:String>Name</x:String>
+              <x:String>Date</x:String>
+              <x:String>Time</x:String>
+            </Picker.Items>
+            <Picker.SelectedIndex>2</Picker.SelectedIndex>
+          </Picker>
+
+        </Grid>
+        
+        
+
+       <ListView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" x:Name="ListViewTimes">
           <ListView.ItemTemplate>
       <DataTemplate>
+        <ViewCell>
+          <StackLayout BackgroundColor="#eee"
+            Orientation="Vertical">
+            <Grid>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+              </Grid.RowDefinitions>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <!-- <ColumnDefinition Width="Auto" /> -->
+              </Grid.ColumnDefinitions>
 
-        <!---<TextCell Text="{Binding DisplayName}" /> -->
-
+              <Label Text="{Binding student_name}" Grid.Column="0" Grid.Row="0" />
+              <Label Text="{Binding date}" Grid.Column="1" Grid.Row="0"/>
+              <Label Text="{Binding time}" Grid.Column="2" Grid.Row="0"/>
+              <Button Text="?" IsEnabled="{Binding missedObstacle}" Clicked="ButtonQueryClick"  CommandParameter="{Binding result_id}" Grid.Column="3" Grid.Row="0" />
+              <!-- <Button Text="S" Clicked="ButtonShareClick"  CommandParameter="{Binding result_id}" Grid.Column="4" Grid.Row="0" /> -->
+            </Grid>
+          </StackLayout>
+        </ViewCell>
       </DataTemplate>
     </ListView.ItemTemplate>
   </ListView>
