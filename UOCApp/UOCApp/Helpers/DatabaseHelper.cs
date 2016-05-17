@@ -102,5 +102,10 @@ namespace UOCApp.Helpers
             //db.Insert(new Result {date="2016-12-12",ranked=1,time=240.123m, student_gender="M",student_name="Jamie Tang",student_grade=4 });
         }
 
+        public List<Result> GetPrivateResults()
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

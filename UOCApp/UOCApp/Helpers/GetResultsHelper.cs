@@ -104,6 +104,12 @@ namespace UOCApp.Helpers
             return results;
         }
 
+        //TODO convert db results to private results
+        public List<PrivateResult> ConvertPrivateResults(List<Result> rawresults)
+        {
+            throw new NotImplementedException();
+        }
+
         public string CreateQueryString(string selectedPeriod, string selectedGrade, string selectedGender, string school, bool official)
         {
             string output = String.Empty;
@@ -200,6 +206,12 @@ namespace UOCApp.Helpers
                     baseResults.Sort((o1, o2) => o1.sortableTime.CompareTo(o2.sortableTime));
                     break;
             }
+        }
+
+        //TODO format time
+        public static string FormatTime(decimal time)
+        {
+            throw new NotImplementedException();
         }
 
     }
