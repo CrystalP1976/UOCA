@@ -29,47 +29,49 @@ namespace UOCApp
 
         private void NavHome(object sender, EventArgs args)
         {
-            Console.WriteLine("Clicked Nav Home");
+           // Console.WriteLine("Clicked Nav Home");
             Navigation.PopToRootAsync();
         }
 
         private void NavLeaderboard(object sender, EventArgs args)
         {
-            Console.WriteLine("Clicked Nav Leaderboard");
+           // Console.WriteLine("Clicked Nav Leaderboard");
             Navigation.PushAsync(new LeaderboardPage());
         }
 
         private void NavTimes(object sender, EventArgs args)
         {
-            Console.WriteLine("Clicked Nav Times");
+           // Console.WriteLine("Clicked Nav Times");
             Navigation.PushAsync(new TimesPage());
         }
 
         private void NavAdmin(object sender, EventArgs args)
         {
-            Console.WriteLine("Clicked Nav Admin");
+            //Console.WriteLine("Clicked Nav Admin");
             Navigation.PushAsync(new AdminPage());
         }
 			
 
 		async void NavObstacle (object sender, EventArgs args)
 		{
-			Console.WriteLine("Clicked Obstacles");
+			//Console.WriteLine("Clicked Obstacles");
 			await Navigation.PushModalAsync (obstaclesPage);
 		}
 
 		private async void SaveResult(object sender, EventArgs args) //for debug
 		{
-			Console.WriteLine("Clicked Save Result");
+			//Console.WriteLine("Clicked Save Result");
 
 			try 
 			{
 				SharedResult result = new SharedResult (picker_Date.Date, ConvertTime(entry_Time.Text), false, false, 
 					entry_Name.Text, Gender(), Grade(), entry_School.Text);
-				var sure = await DisplayAlert ("Confirm Save", "Winners Don't Cheat, \n Champions Don't Lie! \n Please record accurate race times!", "Save", "Back");
+				var sure = await DisplayAlert ("Confirm Save", "Please record accurate race times! \n \"Winners Don't Cheat, \n Champions Don't Lie!\"\n", "Save", "Back");
 				if (sure == true) {
 
-					// save to client database - TODO
+
+
+					// save to client database, unless in admin mode - TODO
 					if(true) // true to fake success of adding to local database
 
 					{
@@ -79,8 +81,8 @@ namespace UOCApp
 								Navigation.PopToRootAsync (); // return to home once save complete
 
 							} else {
-								Console.WriteLine ("Failed to share with leaderboard");
-								// TODO feedback to user in the event of leaderboard server failure
+								//Console.WriteLine ("Failed to share with leaderboard");
+								await DisplayAlert ("Sorry", "Unable to connect to leaderboard. \n Check your internet connection.", "OK");
 							}
 						}
 						await DisplayAlert ("Thank you!", "Your result has been saved", "OK");
@@ -90,7 +92,7 @@ namespace UOCApp
 					{
 						// fail to save locally
 						await DisplayAlert ("Sorry", "Unable to save. \n Please try again", "OK");
-						Console.WriteLine ("Failed to save result");
+						//Console.WriteLine ("Failed to save result");
 					}
 				} else {
 					//abort save, do nothing
@@ -99,7 +101,7 @@ namespace UOCApp
 			catch (ArgumentException e) // fail to create a result instance, bad parameters
 			{
 				await DisplayAlert ("Error", e.Message, "OK");
-				Console.WriteLine (e);
+				//Console.WriteLine (e);
 			}	
 		}
 
@@ -188,10 +190,12 @@ namespace UOCApp
 
 			if (obstaclesPage.obstacleList.allComplete()) {
 				switch_Public.IsEnabled = true;
+				label_obstacle.Opacity = 0;
 			} else
 			{
 				switch_Public.IsToggled = false;
 				switch_Public.IsEnabled = false;
+				label_obstacle.Opacity = 1;
 			}
 
 		}
@@ -214,7 +218,7 @@ namespace UOCApp
 				switch_Official.Opacity = 0;
 				label_Official.Opacity = 0;
 			}
-
+				
 		}
 
 		protected override void OnAppearing()
