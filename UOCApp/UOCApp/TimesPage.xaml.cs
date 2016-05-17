@@ -31,10 +31,18 @@ namespace UOCApp
         {
             base.OnAppearing();
 
-            //TODO initial get results
-            baseResults = App.databaseHelper.GetPrivateResults();
-            CopyResults();
+            RefreshResults();
+        }
 
+        private void RefreshResults()
+        {
+            LoadResults();
+            CopyResults();
+        }
+
+        private void LoadResults()
+        {
+            baseResults = App.databaseHelper.GetPrivateResults();            
         }
 
         private void CopyResults()
@@ -100,7 +108,12 @@ namespace UOCApp
         //Fired when any filter is changed, refilters the list
         private void FilterChange(object sender, EventArgs args)
         {
-            //TODO
+            LoadResults();
+
+            //filter the list to only have results where the name starts with the name entered into the filter box (not case sensitive)
+            baseResults = new List<PrivateResult>(baseResults.Where(x => x.student_name.ToLower().StartsWith(EntryName.Text.ToLower())));
+
+            CopyResults();
         }
 
         //Fired when the sort is changed, resorts the list
