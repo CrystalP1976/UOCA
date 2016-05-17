@@ -84,6 +84,11 @@ namespace UOCApp
 
         }
 
+        private void ButtonAboutClick(object sender, EventArgs args)
+        {
+            Navigation.PushAsync(new AboutPage());
+        }
+
         private void NavLeaderboard(object sender, EventArgs args)
         {
             Console.WriteLine("Clicked Nav Leaderboard");

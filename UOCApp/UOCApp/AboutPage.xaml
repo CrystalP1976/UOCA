@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="UOCApp.AboutPage">
+  
+<StackLayout       VerticalOptions="FillAndExpand"
+                     HorizontalOptions="FillAndExpand"
+                     Orientation="Vertical"
+                     Spacing="15"
+                     Padding="10,0,10,0">
+
+    <Image Source="htitle.png"  />
+  
+  	<Label Text="Hello!" VerticalOptions="Center" HorizontalOptions="Center" />
+
+</StackLayout>
+
+</ContentPage>
