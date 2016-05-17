@@ -14,5 +14,10 @@ namespace UOCApp
 		{
 			InitializeComponent ();
 		}
+
+        private void ButtonContactClick(object sender, EventArgs args)
+        {
+            Device.OpenUri(new Uri("mailto:ryan.hatfield@test.com"));
+        }
 	}
 }

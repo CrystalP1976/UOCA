@@ -11,8 +11,17 @@
 
     <Image Source="htitle.png"  />
   
-  	<Label Text="Hello!" VerticalOptions="Center" HorizontalOptions="Center" />
+    <Label Text="A MESSAGE FROM TARA (TODO)" VerticalOptions="Center" HorizontalOptions="Center" LineBreakMode="WordWrap"/>
+  
+  	<Label Text="The Ultimate Obstacle Course app was created by student from the British Columbia Institute of Technology." VerticalOptions="Center" HorizontalOptions="Center" LineBreakMode="WordWrap"/>
 
+    <Button Text="Contact" Clicked="ButtonContactClick"/>
+  
+    <!-- <WebView Source="http://www.xamarin.com/"
+        HeightRequest="1000"
+        WidthRequest="1000" />  -->
+
+  
 </StackLayout>
 
 </ContentPage>
