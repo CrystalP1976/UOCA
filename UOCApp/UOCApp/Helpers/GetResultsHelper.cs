@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 
 namespace UOCApp.Helpers
 {
-    class GetResultsException : Exception
+    public class GetResultsException : Exception
     {
         public GetResultsException(string message)
         {
@@ -17,7 +17,7 @@ namespace UOCApp.Helpers
 
     }
 
-    class GetResultsHelper
+    public class GetResultsHelper
     {
         private HttpClient client;
         private string url;
@@ -78,7 +78,7 @@ namespace UOCApp.Helpers
             }
         }
 
-        public List<AdminResult> ConvertAdminResults(List<RawResult> rawresults)
+        public static List<AdminResult> ConvertAdminResults(List<RawResult> rawresults)
         {
             List<AdminResult> results = new List<AdminResult>();
 
@@ -91,7 +91,7 @@ namespace UOCApp.Helpers
             return results;
         }
 
-        public List<LeaderboardResult> ConvertLeaderboardResults(List<RawResult> rawresults)
+        public static List<LeaderboardResult> ConvertLeaderboardResults(List<RawResult> rawresults)
         {
             List<LeaderboardResult> results = new List<LeaderboardResult>();
 
@@ -104,10 +104,17 @@ namespace UOCApp.Helpers
             return results;
         }
 
-        //TODO convert db results to private results
-        public List<PrivateResult> ConvertPrivateResults(List<Result> rawresults)
+        //convert db results to private results
+        public static List<PrivateResult> ConvertPrivateResults(List<Result> rawresults)
         {
-            throw new NotImplementedException();
+            List<PrivateResult> results = new List<PrivateResult>();
+
+            foreach (Result result in rawresults)
+            {
+                results.Add(new PrivateResult(result));
+            }
+
+            return results;
         }
 
         public string CreateQueryString(string selectedPeriod, string selectedGrade, string selectedGender, string school, bool official)
@@ -191,7 +198,7 @@ namespace UOCApp.Helpers
             return CreateQueryString(null, selectedGrade, selectedGender, school, false);
         }
 
-        public void SortResults(List<AdminResult> baseResults, string selectedItem)
+        public static void SortResults(List<AdminResult> baseResults, string selectedItem)
         {
             switch (selectedItem)
             {

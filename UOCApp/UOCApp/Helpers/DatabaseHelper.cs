@@ -20,6 +20,7 @@ namespace UOCApp.Helpers
             
 
             copyDatabase();
+            connectDatabase();
 
             //tryDatabase();
         }
@@ -72,6 +73,13 @@ namespace UOCApp.Helpers
 
         }
 
+        private void connectDatabase()
+        {
+            var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            var filePath = Path.Combine(documentsPath, "db.sqlite");
+            db = new SQLiteConnection(filePath);
+        }
+
         private void tryDatabase()
         {
             var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
@@ -104,7 +112,9 @@ namespace UOCApp.Helpers
 
         public List<Result> GetPrivateResults()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            //var query = db.Table<Result>();
+            return new List<Result>(db.Table<Result>());
         }
 
     }

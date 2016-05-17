@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UOCApp.Helpers;
 using UOCApp.Models;
 using Xamarin.Forms;
 
@@ -23,7 +24,7 @@ namespace UOCApp
 
             ListViewTimes.ItemsSource = results;
 
-            results.Add(new PrivateResult { result_id = 5, student_name = "John Doe", date = "April 28 2016", time = "11:11.111" });
+            //results.Add(new PrivateResult { result_id = 5, student_name = "John Doe", date = "April 28 2016", time = "11:11.111" });
         }
 
         protected override async void OnAppearing()
@@ -31,6 +32,8 @@ namespace UOCApp
             base.OnAppearing();
 
             //TODO initial get results
+            baseResults = GetResultsHelper.ConvertPrivateResults(App.databaseHelper.GetPrivateResults());
+            CopyResults();
 
         }
 

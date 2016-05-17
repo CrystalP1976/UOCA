@@ -4,7 +4,7 @@ using System.Text;
 
 namespace UOCApp.Models
 {
-    class RawResult
+    public class RawResult
     {
         public string result_id { get; set; }
         public string date { get; set; }
