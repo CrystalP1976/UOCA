@@ -70,31 +70,35 @@
 
     </Grid>
 
-    <Button Text="Obstacles Completed"
+
+
+    <Button Text="View Obstacles"
            HorizontalOptions="CenterAndExpand"
-           Clicked="NavObstacle"
+           Clicked="NavObstacle"/>
 
-           />
-
-    <Label FontSize="Small" Text="Public results will be shown in leaderboards."/>
+   <Label FontSize="Small" Opacity="0" TextColor="Red" Text="Complete all obstacles to share your time." x:Name="label_obstacle" />
 
     <Grid>
       <Grid.RowDefinitions>
         <RowDefinition Height="Auto" />
       </Grid.RowDefinitions>
       <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="*" />
         <ColumnDefinition Width="Auto" />
         <ColumnDefinition Width="*" />
         <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="*" />
       </Grid.ColumnDefinitions>
 
-      <Label Text="Public:" Grid.Row="0" Grid.Column="0"/>
-      <Switch IsToggled="False" Grid.Row="0" Grid.Column="1" x:Name="switch_Public"/>
-      <Label Text="Official:" Grid.Row="0" Grid.Column="2" x:Name="label_Official"/>
-      <Switch IsToggled="False" Grid.Row="0" Grid.Column="3" x:Name="switch_Official"/>
+      <Label Text="Share with leaderboard:" Grid.Row="0" Grid.Column="0"/>
+      <Switch IsToggled="True" Grid.Row="0" Grid.Column="1" x:Name="switch_Public"/>
+      <Label Text="Official:" Opacity="0" Grid.Row="0" Grid.Column="2" x:Name="label_Official"/>
+      <Switch IsToggled="False" Opacity="0" Grid.Row="0" Grid.Column="3" x:Name="switch_Official"/>
+		
+
       
     </Grid>
+
+<Label FontSize="Small"  Text="Fastest times will be visible on the leaderboard."/>
 
     <Grid>
       <Grid.RowDefinitions>

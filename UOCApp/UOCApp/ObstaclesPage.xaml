@@ -11,6 +11,9 @@
                      Spacing="10"
                      Padding="20,20,20,10">
 
+                     <Label Text="Obstacle List" FontSize="Large" HorizontalTextAlignment="End"/>
+                    <Label Text="Select obstacles that you have completed"  FontSize="Small" HorizontalTextAlignment="End"/>
+<ScrollView Padding="10">
     <Grid>
       <Grid.RowDefinitions>
         <RowDefinition Height="Auto" />
@@ -32,7 +35,7 @@
         <ColumnDefinition Width="*" />
       </Grid.ColumnDefinitions>
 
-            <Label Text="Select Incomplete Obstacles" Grid.Row="0" Grid.Column="0" FontSize="Large" HorizontalTextAlignment="End"/>
+            
 
             <Label Text="Quintuple Steps" Grid.Row="1" Grid.Column="0"/>
       		<Switch IsToggled="True" Grid.Row="1" Grid.Column="1" x:Name="switch_0"/>
@@ -70,12 +73,13 @@
       		<Label Text="Warped Wall" Grid.Row="12" Grid.Column="0"/>
       		<Switch IsToggled="True" Grid.Row="12" Grid.Column="1" x:Name="switch_11"/>
 
-      		<Button Text="Save" HorizontalOptions="CenterAndExpand" Clicked="OnSaveButtonClicked"
+      		<Button Text="Ok" HorizontalOptions="CenterAndExpand" Clicked="OnSaveButtonClicked"
               Grid.Column="0" Grid.Row="13"
            /> 
 
            </Grid>
 
+      </ScrollView>
            </StackLayout>
 
 </ContentPage>
