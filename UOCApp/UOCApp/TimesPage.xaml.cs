@@ -32,7 +32,7 @@ namespace UOCApp
             base.OnAppearing();
 
             //TODO initial get results
-            baseResults = GetResultsHelper.ConvertPrivateResults(App.databaseHelper.GetPrivateResults());
+            baseResults = App.databaseHelper.GetPrivateResults();
             CopyResults();
 
         }
@@ -65,15 +65,24 @@ namespace UOCApp
             Navigation.PushAsync(new AdminPage());
         }
 
-        private async void ButtonDeleteClick(object sender, EventArgs args)
+        private void ButtonDeleteClick(object sender, EventArgs args)
         {
             //TODO
 
         }
 
-        private async void ButtonShareClick(object sender, EventArgs args)
+        private void ButtonShareClick(object sender, EventArgs args)
         {
             //TODO
+
+        }
+
+        private void ButtonQueryClick(object sender, EventArgs args)
+        {
+            //TODO
+            int result_id = (int)((Button)sender).CommandParameter;
+
+            Console.WriteLine("Clicked id: " + result_id);
 
         }
 

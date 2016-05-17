@@ -104,19 +104,6 @@ namespace UOCApp.Helpers
             return results;
         }
 
-        //convert db results to private results
-        public static List<PrivateResult> ConvertPrivateResults(List<Result> rawresults)
-        {
-            List<PrivateResult> results = new List<PrivateResult>();
-
-            foreach (Result result in rawresults)
-            {
-                results.Add(new PrivateResult(result));
-            }
-
-            return results;
-        }
-
         public string CreateQueryString(string selectedPeriod, string selectedGrade, string selectedGender, string school, bool official)
         {
             string output = String.Empty;

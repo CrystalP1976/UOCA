@@ -51,13 +51,13 @@ namespace UOCApp.Helpers
 
             //This checks if the database already exists before copying the embedded one to the storage location
             //remove this for production or the database will not be persistent
-            /*
+            
             if(File.Exists(filePath))
             {
                 Console.WriteLine("DB already there!");
-                return;
-            }
-            */
+                File.Delete(filePath); //for debugging only
+                //return;
+            }            
 
             Console.WriteLine("Copying database to folder");
 
@@ -110,12 +110,27 @@ namespace UOCApp.Helpers
             //db.Insert(new Result {date="2016-12-12",ranked=1,time=240.123m, student_gender="M",student_name="Jamie Tang",student_grade=4 });
         }
 
+        //convert db results to private results
+        public List<PrivateResult> GetPrivateResults()
+        {
+            List<PrivateResult> results = new List<PrivateResult>();
+
+            foreach (Result result in db.Table<Result>())
+            {
+                results.Add(new PrivateResult(result));
+            }
+
+            return results;
+        }
+
+        /*
         public List<Result> GetPrivateResults()
         {
             //throw new NotImplementedException();
             //var query = db.Table<Result>();
             return new List<Result>(db.Table<Result>());
         }
+        */
 
     }
 }

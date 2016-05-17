@@ -23,7 +23,7 @@
             <RowDefinition Height="Auto" />
           </Grid.RowDefinitions>
           <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
           </Grid.ColumnDefinitions>
 
@@ -59,14 +59,14 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
+                <!-- <ColumnDefinition Width="Auto" /> -->
               </Grid.ColumnDefinitions>
 
               <Label Text="{Binding student_name}" Grid.Column="0" Grid.Row="0" />
               <Label Text="{Binding date}" Grid.Column="1" Grid.Row="0"/>
               <Label Text="{Binding time}" Grid.Column="2" Grid.Row="0"/>
-              <Button Text="X" Clicked="ButtonDeleteClick"  CommandParameter="{Binding result_id}" Grid.Column="3" Grid.Row="0" />
-              <Button Text="S" Clicked="ButtonShareClick"  CommandParameter="{Binding result_id}" Grid.Column="4" Grid.Row="0" />
+              <Button Text="?" Clicked="ButtonQueryClick"  CommandParameter="{Binding result_id}" Grid.Column="3" Grid.Row="0" />
+              <!-- <Button Text="S" Clicked="ButtonShareClick"  CommandParameter="{Binding result_id}" Grid.Column="4" Grid.Row="0" /> -->
             </Grid>
           </StackLayout>
         </ViewCell>
