@@ -78,7 +78,7 @@ namespace UOCApp
             //TODO on click
             Console.WriteLine("Clicked save button");
             //TODO use PushModal and await
-            Navigation.PushAsync(new EntryPage()); //should this be modal?
+            Navigation.PushAsync(new EntryPage(displayTime));
 
            // endTime = displayTime.ToString();
 
@@ -175,7 +175,7 @@ namespace UOCApp
         private void updateTimer(long time)
         {
             //display time
-            Console.WriteLine("Result in updateTimer" + time);
+
             DateTime dt = new DateTime(time);
             Console.WriteLine(dt);
             string displayTime = String.Format("{0:00}:{1:00}.{2:000}", dt.Minute, dt.Second, dt.Millisecond);
