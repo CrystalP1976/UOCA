@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="UOCApp.AboutPage">
+
+<StackLayout       VerticalOptions="FillAndExpand"
+                     HorizontalOptions="FillAndExpand"
+                     Orientation="Vertical"
+                     Spacing="15"
+                     Padding="10,0,10,0">
+
+    <Image Source="htitle.png"  />
+  
+    <Button Text="Contact" Clicked="ButtonContactClick"/>
+  
+    
+  
+  <ScrollView Padding="10">
+    
+    <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Spacing="15">      
+      <Label Text="A MESSAGE FROM TARA (TODO)" VerticalOptions="Center" HorizontalOptions="Center" LineBreakMode="WordWrap"/>
+    
+      <Label Text="The Ultimate Obstacle Course app was created by student from the British Columbia Institute of Technology." VerticalOptions="Center" HorizontalOptions="Center" LineBreakMode="WordWrap"/>
+
+      <Label Text="THIRD PARTY TECHNOLOGY CREDITS" VerticalOptions="Center" HorizontalOptions="Center" LineBreakMode="WordWrap"/>   
+    </StackLayout>
+
+    
+  </ScrollView>
+  
+</StackLayout>
+
+</ContentPage>
