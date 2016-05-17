@@ -170,6 +170,11 @@ namespace UOCApp
 		{
 			decimal result;
 
+            if (String.IsNullOrEmpty(time))
+            {
+                return 0;
+            }
+
 			if (time.Contains(':'))
 			{
 				//it's in mm:ss.iii format
@@ -190,6 +195,7 @@ namespace UOCApp
 
 			return Decimal.Round(result, 3);
 		}
+
 
 		public void ShareButtonStatus()
 		{
