@@ -14,93 +14,98 @@ namespace UOCApp
 {
 
 
-
 	public partial class EntryPage : ContentPage
 	{
 
 		public ObstaclesPage obstaclesPage;
 
 
-		public EntryPage ()
+		public EntryPage()
 		{
-			obstaclesPage = new ObstaclesPage ();
-			InitializeComponent ();
+			obstaclesPage = new ObstaclesPage();
+			InitializeComponent();
 		}
 
-        private void NavHome(object sender, EventArgs args)
-        {
-           // Console.WriteLine("Clicked Nav Home");
-            Navigation.PopToRootAsync();
-        }
+		private void NavHome(object sender, EventArgs args)
+		{
+			// Console.WriteLine("Clicked Nav Home");
+			Navigation.PopToRootAsync();
+		}
 
-        private void NavLeaderboard(object sender, EventArgs args)
-        {
-           // Console.WriteLine("Clicked Nav Leaderboard");
-            Navigation.PushAsync(new LeaderboardPage());
-        }
+		private void NavLeaderboard(object sender, EventArgs args)
+		{
+			// Console.WriteLine("Clicked Nav Leaderboard");
+			Navigation.PushAsync(new LeaderboardPage());
+		}
 
-        private void NavTimes(object sender, EventArgs args)
-        {
-           // Console.WriteLine("Clicked Nav Times");
-            Navigation.PushAsync(new TimesPage());
-        }
+		private void NavTimes(object sender, EventArgs args)
+		{
+			// Console.WriteLine("Clicked Nav Times");
+			Navigation.PushAsync(new TimesPage());
+		}
 
-        private void NavAdmin(object sender, EventArgs args)
-        {
-            //Console.WriteLine("Clicked Nav Admin");
-            Navigation.PushAsync(new AdminPage());
-        }
-			
+		private void NavAdmin(object sender, EventArgs args)
+		{
+			//Console.WriteLine("Clicked Nav Admin");
+			Navigation.PushAsync(new AdminPage());
+		}
 
-		async void NavObstacle (object sender, EventArgs args)
+
+		async void NavObstacle(object sender, EventArgs args)
 		{
 			//Console.WriteLine("Clicked Obstacles");
-			await Navigation.PushModalAsync (obstaclesPage);
+			await Navigation.PushModalAsync(obstaclesPage);
 		}
 
 		private async void SaveResult(object sender, EventArgs args) //for debug
 		{
 			//Console.WriteLine("Clicked Save Result");
 
-			try 
+			try
 			{
-				SharedResult result = new SharedResult (picker_Date.Date, ConvertTime(entry_Time.Text), false, false, 
-					entry_Name.Text, Gender(), Grade(), entry_School.Text);
-				var sure = await DisplayAlert ("Confirm Save", "Please record accurate race times! \n \"Winners Don't Cheat, \n Champions Don't Lie!\"\n", "Save", "Back");
-				if (sure == true) {
+				SharedResult result = new SharedResult(picker_Date.Date, ConvertTime(entry_Time.Text), false, false, 
+					                      entry_Name.Text, Gender(), Grade(), entry_School.Text);
+				var sure = await DisplayAlert("Confirm Save", "Please record accurate race times! \n \"Winners Don't Cheat, \n Champions Don't Lie!\"\n", "Save", "Back");
+				if (sure == true)
+				{
 
 
-
+					//selected obstacles can be obtained from obstaclesPage.obstacleList
 					// save to client database, unless in admin mode - TODO
-					if(true) // true to fake success of adding to local database
+					if (true)
+					{ // true to fake success of adding to local database
+						if (switch_Public.IsToggled)
+						{ // did the user specify that they wish to post to the leaderboard?
+							if (await result.share((bool)switch_Official.IsToggled))
+							{ // post to server and return true if successful
+								await DisplayAlert("Thank you!", "Your result has been saved and shared with the leaderboard", "OK");
+								Navigation.PopToRootAsync(); // return to home once save complete
 
-					{
-						if (switch_Public.IsToggled) { // did the user specify that they wish to post to the leaderboard?
-							if (await result.share ((bool)switch_Official.IsToggled)) { // post to server and return true if successful
-								await DisplayAlert ("Thank you!", "Your result has been saved and shared with the leaderboard", "OK");
-								Navigation.PopToRootAsync (); // return to home once save complete
-
-							} else {
+							}
+							else
+							{
 								//Console.WriteLine ("Failed to share with leaderboard");
-								await DisplayAlert ("Sorry", "Unable to connect to leaderboard. \n Check your internet connection.", "OK");
+								await DisplayAlert("Sorry", "Unable to connect to leaderboard. \n Check your internet connection.", "OK");
 							}
 						}
-						await DisplayAlert ("Thank you!", "Your result has been saved", "OK");
-						Navigation.PopToRootAsync (); // return to home once save complete
+						await DisplayAlert("Thank you!", "Your result has been saved", "OK");
+						Navigation.PopToRootAsync(); // return to home once save complete
 					}
-					else 
+					else
 					{
 						// fail to save locally
-						await DisplayAlert ("Sorry", "Unable to save. \n Please try again", "OK");
+						await DisplayAlert("Sorry", "Unable to save. \n Please try again", "OK");
 						//Console.WriteLine ("Failed to save result");
 					}
-				} else {
+				}
+				else
+				{
 					//abort save, do nothing
 				}
 			}
-			catch (ArgumentException e) // fail to create a result instance, bad parameters
-			{
-				await DisplayAlert ("Error", e.Message, "OK");
+			catch (ArgumentException e)
+			{ // fail to create a result instance, bad parameters
+				await DisplayAlert("Error", e.Message, "OK");
 				//Console.WriteLine (e);
 			}	
 		}
@@ -112,16 +117,16 @@ namespace UOCApp
 			var GenderIndex = picker_Gender.SelectedIndex;
 			switch (GenderIndex)
 			{
-			case 0:
-				Gender = "M";
-				break;
-			case 1:
-				Gender = "F";
-				break;
-			default:
+				case 0:
+					Gender = "M";
+					break;
+				case 1:
+					Gender = "F";
+					break;
+				default:
 				// error behavior? no gender set, shouldn't be possible
-				Gender = null;
-				break;
+					Gender = null;
+					break;
 			}
 			return Gender;
 		}
@@ -133,30 +138,30 @@ namespace UOCApp
 			var GradeIndex = picker_Grade.SelectedIndex;
 			switch (GradeIndex)
 			{
-			case 0:
-				Grade = 4;
-				break;
-			case 1:
-				Grade = 5;
-				break;
-			case 2:
-				Grade = 6;
-				break;
-			case 3:
-				Grade = 7;
-				break;
-			case 4:  //				GRADE_TEENAGER = -1
-				Grade = -1;
-				break;
-			case 5:  //				GRADE_ADULT = -2
-				Grade = -2;
-				break;
-			case 6:  //				GRADE_OLDADULT = -3
-				Grade = -3;
-				break;
-			default:
+				case 0:
+					Grade = 4;
+					break;
+				case 1:
+					Grade = 5;
+					break;
+				case 2:
+					Grade = 6;
+					break;
+				case 3:
+					Grade = 7;
+					break;
+				case 4:  //				GRADE_TEENAGER = -1
+					Grade = -1;
+					break;
+				case 5:  //				GRADE_ADULT = -2
+					Grade = -2;
+					break;
+				case 6:  //				GRADE_OLDADULT = -3
+					Grade = -3;
+					break;
+				default:
 				// error behavior? no grade set
-				break;
+					break;
 			}
 			return Grade;
 		}
@@ -165,14 +170,14 @@ namespace UOCApp
 		{
 			decimal result;
 
-			if(time.Contains(':'))
+			if (time.Contains(':'))
 			{
 				//it's in mm:ss.iii format
 
 				int sepPos = time.IndexOf(':');
 
-				string minPart = time.Substring(0,sepPos);
-				string secPart = time.Substring(sepPos+1);
+				string minPart = time.Substring(0, sepPos);
+				string secPart = time.Substring(sepPos + 1);
 
 				result = (Convert.ToInt32(minPart) * 60) + Convert.ToDecimal(secPart);
 
@@ -186,12 +191,15 @@ namespace UOCApp
 			return Decimal.Round(result, 3);
 		}
 
-		public void ShareButtonStatus() {
+		public void ShareButtonStatus()
+		{
 
-			if (obstaclesPage.obstacleList.allComplete()) {
+			if (obstaclesPage.obstacleList.allComplete())
+			{
 				switch_Public.IsEnabled = true;
 				label_obstacle.Opacity = 0;
-			} else
+			}
+			else
 			{
 				switch_Public.IsToggled = false;
 				switch_Public.IsEnabled = false;
@@ -200,17 +208,19 @@ namespace UOCApp
 
 		}
 
-		public void OfficialButtonStatus() {
+		public void OfficialButtonStatus()
+		{
 			bool loggedIn = false;
 			if (Application.Current.Properties.ContainsKey("loggedin"))
 			{
 				loggedIn = Convert.ToBoolean(Application.Current.Properties["loggedin"]);
 			}
-			if (loggedIn) {
+			if (loggedIn)
+			{
 				switch_Official.IsEnabled = true;
 				switch_Official.Opacity = 1;
 				label_Official.Opacity = 1;
-			} 
+			}
 			else
 			{
 				switch_Official.IsToggled = false;
@@ -223,9 +233,9 @@ namespace UOCApp
 
 		protected override void OnAppearing()
 		{
-			base.OnAppearing ();
-			OfficialButtonStatus (); // update the offical button status dependant on if the user is logged in or not
-			ShareButtonStatus (); // update the share buttons status dependant on if all obstacles are complete
+			base.OnAppearing();
+			OfficialButtonStatus(); // update the offical button status dependant on if the user is logged in or not
+			ShareButtonStatus(); // update the share buttons status dependant on if all obstacles are complete
 		}
 
 
