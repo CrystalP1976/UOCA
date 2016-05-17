@@ -4,7 +4,7 @@ using System.Text;
 
 namespace UOCApp.Models
 {
-    class AdminResult
+    public class AdminResult
     {
 
         public AdminResult(RawResult input)

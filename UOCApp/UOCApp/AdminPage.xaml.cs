@@ -116,7 +116,7 @@ namespace UOCApp
 
                 List<RawResult> rawresults = await resultsHelper.GetRawResults(query);
 
-                this.baseResults = resultsHelper.ConvertAdminResults(rawresults);
+                this.baseResults = GetResultsHelper.ConvertAdminResults(rawresults);
 
                     //copy results
                     CopyResults();
@@ -135,7 +135,7 @@ namespace UOCApp
         {
 
             //sort results with helper
-            resultsHelper.SortResults(baseResults, selectedItem);
+            GetResultsHelper.SortResults(baseResults, selectedItem);
 
             //copy the results to the observable list
             CopyResults();
