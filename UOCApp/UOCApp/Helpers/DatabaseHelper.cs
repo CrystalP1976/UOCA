@@ -55,8 +55,8 @@ namespace UOCApp.Helpers
             if(File.Exists(filePath))
             {
                 Console.WriteLine("DB already there!");
-                File.Delete(filePath); //for debugging only
-                //return;
+                //File.Delete(filePath); //for debugging only
+                return;
             }            
 
             Console.WriteLine("Copying database to folder");
