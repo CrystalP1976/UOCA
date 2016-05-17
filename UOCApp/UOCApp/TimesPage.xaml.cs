@@ -85,10 +85,15 @@ namespace UOCApp
             Console.WriteLine("Clicked id: " + result_id);
             //this checks baseResults for a matching result_id, gets the first match, gets the missedObstacles list
             List<string> obstacles = baseResults.Where(v => v.result_id == result_id).First().missedObstacles;
+
+            string obstaclesString = "";
+
             foreach(string obstacle in obstacles)
             {
-                Console.WriteLine(obstacle);
-            } 
+                obstaclesString += obstacle + "\n";
+            }
+
+            DisplayAlert("Missed obstacles", obstaclesString, "OK");
 
         }
 
