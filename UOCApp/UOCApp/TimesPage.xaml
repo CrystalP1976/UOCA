@@ -15,16 +15,34 @@
                      Spacing="15"
                      Padding="10,0,10,0">
 
-        <Entry Placeholder="School" HorizontalOptions="FillAndExpand" Completed="FilterChange" x:Name="EntryName"/>
+        <Label Text="My Times" FontSize="Large" VerticalOptions="Center" HorizontalOptions="Center" />
 
-       <Picker Title="Sort By" HorizontalOptions="FillAndExpand" SelectedIndexChanged="SortChange" x:Name="PickerSort">
-        <Picker.Items>
-          <x:String>Name</x:String>
-          <x:String>Date</x:String>
-          <x:String>Time</x:String>
-        </Picker.Items>
-        <Picker.SelectedIndex>2</Picker.SelectedIndex>
-      </Picker>
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+          </Grid.RowDefinitions>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+          </Grid.ColumnDefinitions>
+
+          <Label Text="Filter By" Grid.Column="0" Grid.Row="0"/>
+          <Entry Placeholder="Name" HorizontalOptions="FillAndExpand" Completed="FilterChange" x:Name="EntryName" Grid.Column="1" Grid.Row="0"/>
+
+          <Label Text="Sort By" Grid.Column="0" Grid.Row="1"/>
+          <Picker Title="Sort By" HorizontalOptions="FillAndExpand" SelectedIndexChanged="SortChange" x:Name="PickerSort" Grid.Column="1" Grid.Row="1">
+            <Picker.Items>
+              <x:String>Name</x:String>
+              <x:String>Date</x:String>
+              <x:String>Time</x:String>
+            </Picker.Items>
+            <Picker.SelectedIndex>2</Picker.SelectedIndex>
+          </Picker>
+
+        </Grid>
+        
+        
 
        <ListView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" x:Name="ListViewTimes">
           <ListView.ItemTemplate>
@@ -35,20 +53,20 @@
             <Grid>
               <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
               </Grid.RowDefinitions>
               <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
               </Grid.ColumnDefinitions>
 
               <Label Text="{Binding student_name}" Grid.Column="0" Grid.Row="0" />
               <Label Text="{Binding date}" Grid.Column="1" Grid.Row="0"/>
               <Label Text="{Binding time}" Grid.Column="2" Grid.Row="0"/>
-              <Button Text="X" Clicked="ButtonDeleteClick"  CommandParameter="{Binding result_id}" Grid.Column="3" Grid.Row="0" Grid.RowSpan="2" />
-              <Label Text="{Binding school_name}" FontSize="Micro" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2"/>
+              <Button Text="X" Clicked="ButtonDeleteClick"  CommandParameter="{Binding result_id}" Grid.Column="3" Grid.Row="0" />
+              <Button Text="S" Clicked="ButtonShareClick"  CommandParameter="{Binding result_id}" Grid.Column="4" Grid.Row="0" />
             </Grid>
           </StackLayout>
         </ViewCell>

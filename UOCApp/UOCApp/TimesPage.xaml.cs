@@ -68,6 +68,12 @@ namespace UOCApp
 
         }
 
+        private async void ButtonShareClick(object sender, EventArgs args)
+        {
+            //TODO
+
+        }
+
         //Fired when any filter is changed, refilters the list
         private void FilterChange(object sender, EventArgs args)
         {
