@@ -36,6 +36,7 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Models\AdminResult.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\LeaderboardResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\PrivateResult.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\RawResult.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Result.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SplashPage.xaml.cs">
