@@ -6,7 +6,7 @@ namespace UOCApp.Models
 {
     public class PrivateResult
     {
-        public PrivateResult(Result input)
+        public PrivateResult(Result input, List<string> missedObstacles)
         {
             result_id = Convert.ToInt32(input.result_id);
             student_name = input.student_name;
@@ -14,6 +14,15 @@ namespace UOCApp.Models
             time = input.time.ToString(); //TODO use helper to convert nicely
             sortableDate = input.date;
             sortableTime = Convert.ToDouble(input.time);
+            if (missedObstacles == null || missedObstacles.Count == 0)
+            {
+                missedObstacle = false;
+            }
+            else
+            {
+                missedObstacle = true;
+                this.missedObstacles = missedObstacles;
+            }
         }
 
         public int result_id { get; set; }
@@ -24,5 +33,6 @@ namespace UOCApp.Models
         public double sortableTime { get; set; }
         //TODO obstacle handling
         public bool missedObstacle { get; set; }
+        public List<string> missedObstacles { get; set; }
     }
 }

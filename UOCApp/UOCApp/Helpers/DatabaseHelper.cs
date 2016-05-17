@@ -115,9 +115,27 @@ namespace UOCApp.Helpers
         {
             List<PrivateResult> results = new List<PrivateResult>();
 
+            //this is going to be slow and could be optimized
             foreach (Result result in db.Table<Result>())
             {
-                results.Add(new PrivateResult(result));
+                List<string> obstaclesList = null;
+                bool missedObstacle;
+
+                var bridgeQuery = db.Table<ResultObstacle>().Where(v => v.result_id == result.result_id);
+
+                if(bridgeQuery.Count() != 0)
+                {
+                    obstaclesList = new List<string>();
+
+                    foreach(ResultObstacle ro in bridgeQuery)
+                    {
+                        var obstaclesQuery = db.Table<Obstacle>().Where(v => v.obstacle_id == ro.obstacle_id);
+                        obstaclesList.Add(obstaclesQuery.First().obstacle_name);
+                    }
+                    
+                }
+
+                results.Add(new PrivateResult(result,obstaclesList));
             }
 
             return results;
