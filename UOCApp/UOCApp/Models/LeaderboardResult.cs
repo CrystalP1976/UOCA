@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using UOCApp.Helpers;
 
 namespace UOCApp.Models
 {
@@ -11,7 +12,7 @@ namespace UOCApp.Models
         {
             result_id = Convert.ToInt32(input.result_id);
             student_name = input.student_name;
-            time = input.time;
+            time = GetResultsHelper.FormatTime(Convert.ToDecimal(input.time));
             school_name = input.school_name;
             ranked = Convert.ToBoolean(Convert.ToInt32(input.ranked)); //input can be 0 or 1
         }

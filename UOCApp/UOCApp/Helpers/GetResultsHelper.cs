@@ -202,10 +202,10 @@ namespace UOCApp.Helpers
             }
         }
 
-        //TODO format time
+        //format time function
         public static string FormatTime(decimal time)
         {
-            throw new NotImplementedException();
+            return String.Format("{0}:{1:00.000}", ((int)Decimal.Truncate(time) / 60), (time % 60m));
         }
 
     }
