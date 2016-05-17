@@ -42,7 +42,8 @@ namespace UOCApp
 
         private void LoadResults()
         {
-            baseResults = App.databaseHelper.GetPrivateResults();            
+            baseResults = App.databaseHelper.GetPrivateResults();
+            baseResults.Sort((o1, o2) => o1.sortableTime.CompareTo(o2.sortableTime));            
         }
 
         private void CopyResults()
@@ -119,7 +120,29 @@ namespace UOCApp
         //Fired when the sort is changed, resorts the list
         private void SortChange(object sender, EventArgs args)
         {
-            //TODO
+            //sanity check prevents this from running before the view is loaded
+            if (PickerSort == null)
+                return;
+
+            LoadResults();
+
+            switch(PickerSort.SelectedIndex)
+            {
+                case 0:
+                    //sort by name
+                    baseResults.Sort((o1, o2) => o1.student_name.CompareTo(o2.student_name));
+                    break;
+                case 1:
+                    //sort by date
+                    baseResults.Sort((o1, o2) => o2.sortableDate.CompareTo(o1.sortableDate));
+                    break;
+                default:
+                    //sort by time
+                    //do nothing, we're sorting this way by default
+                    break;
+            }
+
+            CopyResults();
         }
     }
 }
