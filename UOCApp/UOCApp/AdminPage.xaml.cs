@@ -167,7 +167,7 @@ namespace UOCApp
         {
             int result_id = (int)((Button)sender).CommandParameter;
 
-            var sure = await DisplayAlert("Confirm", "Delete this record permanently/", "Yes", "No");
+            var sure = await DisplayAlert("Confirm", "Delete this record permanently", "Yes", "No");
             if(!(bool)sure)
             {
                 return;
