@@ -3,8 +3,6 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{0EAB4644-6AA6-4821-AA59-7977065F45BD}</ProjectGuid>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
@@ -94,8 +92,8 @@
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <ITunesArtwork Include="iTunesArtwork" />
-    <ITunesArtwork Include="iTunesArtwork@2x" />
     <None Include="packages.config" />
+    <ITunesArtwork Include="iTunesArtwork%402x" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Default-568h%402x.png" />
@@ -141,7 +139,6 @@
       <HintPath>..\..\packages\Xamarin.Forms.2.2.0.31\lib\Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\logo.png" />
@@ -159,58 +156,58 @@
     <BundleResource Include="Resources\ileaderboard.png" />
   </ItemGroup>
   <ItemGroup>
-    <ImageAsset Include="Resources/Media.xcassets/AppIcons.appiconset/120x120.png">
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\120x120.png">
       <InProject>false</InProject>
     </ImageAsset>
-    <ImageAsset Include="Resources/Media.xcassets/AppIcons.appiconset/152x152.png">
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\152x152.png">
       <InProject>false</InProject>
     </ImageAsset>
-    <ImageAsset Include="Resources/Media.xcassets/AppIcons.appiconset/167x167.png">
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\167x167.png">
       <InProject>false</InProject>
     </ImageAsset>
-    <ImageAsset Include="Resources/Media.xcassets/AppIcons.appiconset/180x180.png">
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\180x180.png">
       <InProject>false</InProject>
     </ImageAsset>
-    <ImageAsset Include="Resources/Media.xcassets/AppIcons.appiconset/29x29.png">
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\29x29.png">
       <InProject>false</InProject>
     </ImageAsset>
-    <ImageAsset Include="Resources/Media.xcassets/AppIcons.appiconset/40x40.png">
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\40x40.png">
       <InProject>false</InProject>
     </ImageAsset>
-    <ImageAsset Include="Resources/Media.xcassets/AppIcons.appiconset/58x58.png">
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\58x58.png">
       <InProject>false</InProject>
     </ImageAsset>
-    <ImageAsset Include="Resources/Media.xcassets/AppIcons.appiconset/76x76.png">
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\76x76.png">
       <InProject>false</InProject>
     </ImageAsset>
-    <ImageAsset Include="Resources/Media.xcassets/AppIcons.appiconset/80x80.png">
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\80x80.png">
       <InProject>false</InProject>
     </ImageAsset>
-    <ImageAsset Include="Resources/Media.xcassets/AppIcons.appiconset/87x87.png">
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\87x87.png">
       <InProject>false</InProject>
     </ImageAsset>
-    <ImageAsset Include="Resources/Media.xcassets/AppIcons.appiconset/Contents.json">
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\Contents.json">
       <InProject>false</InProject>
     </ImageAsset>
-    <ImageAsset Include="Resources/Media.xcassets/LaunchImages.launchimage/Contents.json">
+    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\Contents.json">
       <InProject>false</InProject>
     </ImageAsset>
-    <ImageAsset Include="Resources/Media.xcassets/LaunchImages.launchimage/ipad1.png">
+    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\ipad1.png">
       <InProject>false</InProject>
     </ImageAsset>
-    <ImageAsset Include="Resources/Media.xcassets/LaunchImages.launchimage/ipad2.png">
+    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\ipad2.png">
       <InProject>false</InProject>
     </ImageAsset>
-    <ImageAsset Include="Resources/Media.xcassets/LaunchImages.launchimage/iphone1.png">
+    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\iphone1.png">
       <InProject>false</InProject>
     </ImageAsset>
-    <ImageAsset Include="Resources/Media.xcassets/LaunchImages.launchimage/iphone4.png">
+    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\iphone4.png">
       <InProject>false</InProject>
     </ImageAsset>
-    <ImageAsset Include="Resources/Media.xcassets/LaunchImages.launchimage/iphone5.png">
+    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\iphone5.png">
       <InProject>false</InProject>
     </ImageAsset>
-    <ImageAsset Include="Resources/Media.xcassets/LaunchImages.launchimage/iphone6.png">
+    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\iphone6.png">
       <InProject>false</InProject>
     </ImageAsset>
   </ItemGroup>

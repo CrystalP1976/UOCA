@@ -15,10 +15,7 @@ namespace UOCApp
         long startTime;
         long stopTime;
         long result;
-        long time;
-        public string endTime;
         public string displayTime;
-
 
         public StopwatchPage()
         {
@@ -78,9 +75,14 @@ namespace UOCApp
             //TODO on click
             Console.WriteLine("Clicked save button");
             //TODO use PushModal and await
-            Navigation.PushAsync(new EntryPage()); //should this be modal?
-            //endTime = displayTime.ToString();
+            Navigation.PushAsync(new EntryPage(displayTime)); //should this be modal?
         }
+
+        private void ButtonAboutClick(object sender, EventArgs args)
+        {
+            Navigation.PushAsync(new AboutPage());
+        }
+
 
         private void NavLeaderboard(object sender, EventArgs args)
         {
@@ -168,10 +170,9 @@ namespace UOCApp
         private void updateTimer(long time)
         {
             //display time
-            Console.WriteLine("Result in updateTimer" + time);
             DateTime dt = new DateTime(time);
             Console.WriteLine(dt);
-            string displayTime = String.Format("{0:00}:{1:00}.{2:000}", dt.Minute, dt.Second, dt.Millisecond);
+            displayTime = String.Format("{0:00}:{1:00}.{2:000}", dt.Minute, dt.Second, dt.Millisecond);
             //string displayTime = dt.Minute + ":" + dt.Second + "." + dt.Millisecond;
             WatchText.Text = displayTime;
         }

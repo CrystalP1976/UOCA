@@ -9,6 +9,10 @@
     <Import_RootNamespace>UOCApp</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AboutPage.xaml.cs">
+      <DependentUpon>AboutPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)AdminPage.xaml.cs">
       <DependentUpon>AdminPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -32,8 +36,10 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Models\AdminResult.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\LeaderboardResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\PrivateResult.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\RawResult.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Result.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ResultObstacle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SplashPage.xaml.cs">
       <DependentUpon>SplashPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -51,10 +57,12 @@
       <DependentUpon>ObstaclesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Models\SharedResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ObstacleList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Obstacle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ScoreObstacles.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)GettingStarted.Xamarin" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)db.sqlite" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)SplashPage.xaml">
@@ -65,6 +73,7 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)terms.txt" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)db.sqlite" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)StopwatchPage.xaml">
@@ -104,5 +113,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)AboutPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>
