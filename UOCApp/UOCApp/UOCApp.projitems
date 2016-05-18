@@ -63,7 +63,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)GettingStarted.Xamarin" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)db.sqlite" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)SplashPage.xaml">
@@ -74,6 +73,7 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)terms.txt" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)db.sqlite" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)StopwatchPage.xaml">

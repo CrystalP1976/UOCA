@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="UOCApp.ObstaclesPage">
 	<StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Orientation="Vertical" Spacing="10" Padding="20,20,20,10">
 		<Label Text="Obstacle List" FontSize="Large" HorizontalTextAlignment="Center" />
-		<Label Text="Select obstacles that you have completed." FontSize="Small" HorizontalTextAlignment="Center" />
+		<Label Text="Deselect incomplete obstacles." FontSize="Small" HorizontalTextAlignment="Center" />
 		<ScrollView Padding="10">
 			<Grid HorizontalOptions="FillAndExpand">
 				<Grid.RowDefinitions>

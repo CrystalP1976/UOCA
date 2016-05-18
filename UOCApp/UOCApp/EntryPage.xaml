@@ -25,7 +25,7 @@
 				<ColumnDefinition Width="*" />
 			</Grid.ColumnDefinitions>
 			<Label Text="Name" Grid.Row="0" Grid.Column="0" FontSize="Large" HorizontalTextAlignment="End" />
-			<Entry Text="John Doe" Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" x:Name="entry_Name" />
+			<Entry Placeholder="Your Name" Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" x:Name="entry_Name" />
 			<Label Text="Grade" Grid.Row="1" Grid.Column="0" FontSize="Large" HorizontalTextAlignment="End" />
 			<Picker Title="Grade" Grid.Row="1" Grid.Column="1" HorizontalOptions="FillAndExpand" x:Name="picker_Grade">
 				<Picker.Items>
@@ -48,7 +48,7 @@
 			<Label Text="School" Grid.Row="3" Grid.Column="0" FontSize="Large" HorizontalTextAlignment="End" />
 			<Entry Text="Cliff Drive Elementary" Grid.Row="3" Grid.Column="1" HorizontalOptions="FillAndExpand" x:Name="entry_School" />
 			<Label Text="Time" Grid.Row="4" Grid.Column="0" FontSize="Large" HorizontalTextAlignment="End" />
-			<Entry Text="" Grid.Row="4" Grid.Column="1" HorizontalOptions="FillAndExpand" x:Name="entry_Time" />
+			<Entry Grid.Row="4" Grid.Column="1" HorizontalOptions="FillAndExpand" x:Name="entry_Time" />
 			<Label Text="Date" Grid.Row="5" Grid.Column="0" FontSize="Large" HorizontalTextAlignment="End" />
 			<DatePicker Grid.Row="5" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" x:Name="picker_Date" Date="{x:Static sys:DateTime.Now}">
 				<DatePicker.Format>yyyy-MM-dd</DatePicker.Format>
@@ -84,7 +84,7 @@
 				<ColumnDefinition Width="*" />
 			</Grid.ColumnDefinitions>
 			<!-- <Label Text="Share" HorizontalTextAlignment="Center" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/> -->
-			<Button Text="Save Result" HorizontalOptions="CenterAndExpand" Clicked="SaveResult" Grid.Column="0" Grid.Row="1" />
+			<Button Text="Save Result" HorizontalOptions="Center" Grid.ColumnSpan="3" Clicked="SaveResult" Grid.Column="0" Grid.Row="1" />
 		</Grid>
 	</StackLayout>
 </ContentPage>

@@ -19,6 +19,7 @@ namespace UOCApp
 
 		async void OnSaveButtonClicked (object sender, EventArgs args)
 		{
+            obstacleList.Switch_0 = switch_0.IsToggled;
 			obstacleList.Switch_1 = switch_1.IsToggled;
 			obstacleList.Switch_2 = switch_2.IsToggled;
 			obstacleList.Switch_3 = switch_3.IsToggled;
