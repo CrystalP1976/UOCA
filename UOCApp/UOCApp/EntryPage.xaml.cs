@@ -17,14 +17,19 @@ namespace UOCApp
 	public partial class EntryPage : ContentPage
 	{
 
-		public ObstaclesPage obstaclesPage;
+        public ObstaclesPage obstaclesPage;
 
 
-		public EntryPage()
-		{
-			obstaclesPage = new ObstaclesPage();
-			InitializeComponent();
-		}
+
+
+        public EntryPage(string displayTime)
+        {
+            obstaclesPage = new ObstaclesPage();
+            InitializeComponent();
+            entry_Time.Text = displayTime;
+
+
+        }
 
 		private void NavHome(object sender, EventArgs args)
 		{

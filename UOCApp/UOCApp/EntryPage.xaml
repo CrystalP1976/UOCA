@@ -29,13 +29,13 @@
 			<Label Text="Grade" Grid.Row="1" Grid.Column="0" FontSize="Large" HorizontalTextAlignment="End" />
 			<Picker Title="Grade" Grid.Row="1" Grid.Column="1" HorizontalOptions="FillAndExpand" x:Name="picker_Grade">
 				<Picker.Items>
-					<x:String>Grade 4</x:String>
+					<x:String>Grade 4</x:String> 
 					<x:String>Grade 5</x:String>
 					<x:String>Grade 6</x:String>
 					<x:String>Grade 7</x:String>
-					<x:String>Teenager</x:String>
-					<x:String>Adult under 35</x:String>
-					<x:String>Adult over 35</x:String>
+					<x:String>Teenager 14+</x:String>
+					<x:String>Adult 19+</x:String>
+					<x:String>Adult 35+</x:String>
 				</Picker.Items>
 			</Picker>
 			<Label Text="Gender" Grid.Row="2" Grid.Column="0" FontSize="Large" HorizontalTextAlignment="End" />
