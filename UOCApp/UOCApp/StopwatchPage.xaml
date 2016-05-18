@@ -81,9 +81,10 @@
       
     </Grid>
 
-    <Button Text="About This App" Clicked="ButtonAboutClick" VerticalOptions="End"></Button>
-
-
+    <Button Text="About This App" 
+            Clicked="ButtonAboutClick" 
+            VerticalOptions="End">
+    </Button>
 
   </StackLayout>
 
