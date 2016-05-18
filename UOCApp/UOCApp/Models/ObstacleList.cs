@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using UOCApp.Models;
 
 namespace UOCApp
 {
@@ -17,6 +19,7 @@ namespace UOCApp
 		public Boolean Switch_9  { get; set; }
 		public Boolean Switch_10  { get; set; }
 		public Boolean Switch_11 { get; set; }
+
 
 
 
@@ -52,6 +55,10 @@ namespace UOCApp
 			+ " 8:" + Switch_8 + " 9:" + Switch_9 + " 10:" + Switch_10 + " 11:" + Switch_11;
 
 		}
+
+
+
+
 	}
 }
 

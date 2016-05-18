@@ -60,6 +60,8 @@ namespace UOCApp.Helpers
 
             var uri = new Uri(url);
 
+            //Console.WriteLine(uri.ToString());
+
             var response = await client.GetAsync(uri);
             if (response.IsSuccessStatusCode)
             {
@@ -149,13 +151,13 @@ namespace UOCApp.Helpers
                 case "Grade 7":
                     grade = 7;
                     break;
-                case "Teenager":
+                case "Teenager 14+":
                     grade = -1;
                     break;
-                case "Adult Under 35":
+                case "Adult 19+":
                     grade = -2;
                     break;
-                case "Adult Over 35":
+                case "Adult 35+":
                     grade = -3;
                     break;
             }
