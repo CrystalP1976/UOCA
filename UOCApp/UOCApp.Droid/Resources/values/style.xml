@@ -3,7 +3,7 @@
   <style name="Theme.AppTheme" parent="android:Theme.DeviceDefault.Light">
     <item name="android:windowBackground">@color/uoca_silver</item>
     <item name="android:actionBarStyle">@style/ActionBarStyle</item>
-    <item name="android:alertDialogStyle">@style/AlertDialogStyle</item>
+    <!--<item name="android:alertDialogStyle">@style/AlertDialogStyle</item>-->
   </style>
 
   <style name="AlertDialogStyle" parent="android:style/Theme.DeviceDefault.Light.Dialog.Alert">
