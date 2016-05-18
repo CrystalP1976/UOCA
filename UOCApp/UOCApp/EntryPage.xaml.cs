@@ -4,56 +4,58 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http;
-using UOCApp.Helpers;
 
 using UOCApp;
 using UOCApp.Models;
 
 using Xamarin.Forms;
-using UOCApp.Models;
 
 namespace UOCApp
 {
+
+
+
 	public partial class EntryPage : ContentPage
 	{
+
+		public ObstaclesPage obstaclesPage;
+
+
 		public EntryPage ()
 		{
+			obstaclesPage = new ObstaclesPage ();
 			InitializeComponent ();
 		}
 
-        private void NavHome(object sender, EventArgs args)
-        {
-            Console.WriteLine("Clicked Nav Home");
-            Navigation.PopToRootAsync();
-        }
+		private void NavHome(object sender, EventArgs args)
+		{
+			Console.WriteLine("Clicked Nav Home");
+			Navigation.PopToRootAsync();
+		}
 
-        private void NavLeaderboard(object sender, EventArgs args)
-        {
-            Console.WriteLine("Clicked Nav Leaderboard");
-            Navigation.PushAsync(new LeaderboardPage());
-        }
+		private void NavLeaderboard(object sender, EventArgs args)
+		{
+			Console.WriteLine("Clicked Nav Leaderboard");
+			Navigation.PushAsync(new LeaderboardPage());
+		}
 
-        private void NavTimes(object sender, EventArgs args)
-        {
-            Console.WriteLine("Clicked Nav Times");
-            Navigation.PushAsync(new TimesPage());
-        }
+		private void NavTimes(object sender, EventArgs args)
+		{
+			Console.WriteLine("Clicked Nav Times");
+			Navigation.PushAsync(new TimesPage());
+		}
 
-        private void NavAdmin(object sender, EventArgs args)
-        {
-            Console.WriteLine("Clicked Nav Admin");
-            Navigation.PushAsync(new AdminPage());
-        }
-			
+		private void NavAdmin(object sender, EventArgs args)
+		{
+			Console.WriteLine("Clicked Nav Admin");
+			Navigation.PushAsync(new AdminPage());
+		}
+
 
 		async void NavObstacle (object sender, EventArgs args)
 		{
 			Console.WriteLine("Clicked Obstacles");
-
-				var obstaclesPage = new ObstaclesPage ();
-
-					await Navigation.PushModalAsync (obstaclesPage);
-
+			await Navigation.PushModalAsync (obstaclesPage);
 		}
 
 		private async void SaveResult(object sender, EventArgs args) //for debug
@@ -64,10 +66,14 @@ namespace UOCApp
 			{
 				SharedResult result = new SharedResult (picker_Date.Date, ConvertTime(entry_Time.Text), false, false, 
 					entry_Name.Text, Gender(), Grade(), entry_School.Text);
+				Result localresult = new Result { date = picker_Date.Date.ToString(), ranked = Convert.ToInt32(switch_Official.IsToggled), time = Convert.ToDecimal(entry_Time.Text), student_gender = Gender(), student_name = entry_Name.Text, student_grade = Grade() };
+
 				var sure = await DisplayAlert ("Confirm Save", "Winners Don't Cheat, \n Champions Don't Lie! \n Please record accurate race times!", "Save", "Back");
 				if (sure == true) {
 
 					// save to client database - TODO
+					App.databaseHelper.insertTime(localresult);
+
 					if(true) // true to fake success of adding to local database
 
 					{
@@ -157,23 +163,6 @@ namespace UOCApp
 			return Grade;
 		}
 
-			try 
-			{
-				SharedResult result = new SharedResult (picker_Date.Date, entry_Time.Text, false, false, entry_Name.Text, Gender, Grade, entry_School.Text);
-				Result localresult = new Result { date = picker_Date.Date.ToString(), ranked = Convert.ToInt32(switch_Official.IsToggled), time = Convert.ToDecimal(entry_Time.Text), student_gender = Gender, student_name = entry_Name.Text, student_grade = Grade };
-				//Result localresult = new Result (picker_Date.Date, entry_Time.Text, switch_Official.IsToggled, entry_Name.Text, Gender, Grade);
-
-				var sure = await DisplayAlert ("Confirm Save", "Winners Don't Cheat, \n Champions Don't Lie! \n Please record accurate race times!", "Save", "Back");
-				if (sure == true) {
-					// save to client database 
-					App.databaseHelper.insertTime(localresult);
-
-					if(true) // await joti(result)
-					{
-						if (switch_Public.IsToggled) { // did the user specify that they wish to post to the leaderboard?
-							if (await result.share ()) {
-								await DisplayAlert ("Thank you!", "Your result has been saved and shared with the leaderboard", "OK");
-								Navigation.PopToRootAsync (); // return to home once save complete
 		static decimal ConvertTime(string time)
 		{
 			decimal result;
@@ -199,10 +188,48 @@ namespace UOCApp
 			return Decimal.Round(result, 3);
 		}
 
+		public void ShareButtonStatus() {
+
+			if (obstaclesPage.obstacleList.allComplete()) {
+				switch_Public.IsEnabled = true;
+			} else
+			{
+				switch_Public.IsToggled = false;
+				switch_Public.IsEnabled = false;
+			}
+
+		}
+
+		public void OfficialButtonStatus() {
+			bool loggedIn = false;
+			if (Application.Current.Properties.ContainsKey("loggedin"))
+			{
+				loggedIn = Convert.ToBoolean(Application.Current.Properties["loggedin"]);
+			}
+			if (loggedIn) {
+				switch_Official.IsEnabled = true;
+				switch_Official.Opacity = 1;
+				label_Official.Opacity = 1;
+			} 
+			else
+			{
+				switch_Official.IsToggled = false;
+				switch_Official.IsEnabled = false;
+				switch_Official.Opacity = 0;
+				label_Official.Opacity = 0;
+			}
+
+		}
+
+		protected override void OnAppearing()
+		{
+			base.OnAppearing ();
+			OfficialButtonStatus (); // update the offical button status dependant on if the user is logged in or not
+			ShareButtonStatus (); // update the share buttons status dependant on if all obstacles are complete
+		}
+
 
 
 
 	}
 }
-    
-

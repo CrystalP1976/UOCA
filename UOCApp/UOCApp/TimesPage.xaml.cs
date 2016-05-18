@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using UOCApp.Models;
 using Xamarin.Forms;
 
 namespace UOCApp
 {
 	public partial class TimesPage : ContentPage
 	{
+		List<Result> MyResults = new List<Result>();
+
 		public TimesPage ()
 		{
 			InitializeComponent ();

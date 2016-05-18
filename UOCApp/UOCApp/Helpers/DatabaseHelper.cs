@@ -11,7 +11,6 @@ namespace UOCApp.Helpers
     public class DatabaseHelper
     {
 
-		static object locker = new object ();
         public SQLiteConnection db { get; private set; }
 
         public DatabaseHelper()
