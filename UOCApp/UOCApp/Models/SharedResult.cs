@@ -112,7 +112,7 @@ namespace UOCApp
 						}
 						else
 						{
-							values.ToList().ForEach(x => Console.WriteLine(x.Key + " : " + x.Value));
+							//values.ToList().ForEach(x => Console.WriteLine(x.Key + " : " + x.Value));
 							return false;
 						}
 				}

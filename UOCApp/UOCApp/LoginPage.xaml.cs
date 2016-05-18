@@ -20,8 +20,6 @@ namespace UOCApp
             string password = App.password;
             string entered = TextBoxPassword.Text;
 
-            Console.WriteLine(entered);
-
             if(!String.IsNullOrEmpty(entered) && String.Equals(password, entered))
             {
                 //password matches, so log in!

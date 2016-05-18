@@ -125,7 +125,7 @@ namespace UOCApp
             }
             catch(Exception e) //pokemon exception handling
             {
-                Console.WriteLine("Caught exception " + e.Message);
+                //Console.WriteLine("Caught exception " + e.Message);
                 await DisplayAlert("Alert", "An unexpected error occurred while getting the list", "OK");
             }
 
@@ -180,7 +180,7 @@ namespace UOCApp
             }
             catch(Exception e)
             {
-                Console.WriteLine(e.Message);
+                //Console.WriteLine(e.Message);
                 success = false;
             }
 

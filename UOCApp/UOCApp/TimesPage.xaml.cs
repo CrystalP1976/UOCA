@@ -58,19 +58,16 @@ namespace UOCApp
 
         private void NavHome(object sender, EventArgs args)
         {
-            Console.WriteLine("Clicked Nav Home");
             Navigation.PopToRootAsync();
         }
 
         private void NavLeaderboard(object sender, EventArgs args)
         {
-            Console.WriteLine("Clicked Nav Leaderboard");
             Navigation.PushAsync(new LeaderboardPage());
         }
 
         private void NavAdmin(object sender, EventArgs args)
         {
-            Console.WriteLine("Clicked Nav Admin");
             Navigation.PushAsync(new AdminPage());
         }
 
@@ -91,7 +88,7 @@ namespace UOCApp
             //TODO
             int result_id = (int)((Button)sender).CommandParameter;
 
-            Console.WriteLine("Clicked id: " + result_id);
+            //Console.WriteLine("Clicked id: " + result_id);
             //this checks baseResults for a matching result_id, gets the first match, gets the missedObstacles list
             List<string> obstacles = baseResults.Where(v => v.result_id == result_id).First().missedObstacles;
 

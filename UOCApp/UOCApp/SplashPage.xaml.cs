@@ -40,8 +40,6 @@ namespace UOCApp
         {
             inPage = false;
 
-            Console.WriteLine("Tapped image");
-
             Navigation.PushModalAsync(new NavigationPage(new UOCApp.StopwatchPage()));
         }
     }

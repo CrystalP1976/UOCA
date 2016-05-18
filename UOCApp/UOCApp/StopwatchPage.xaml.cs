@@ -41,40 +41,31 @@ namespace UOCApp
 
         private void ButtonTimesClick(object sender, EventArgs args)
         {
-            //TODO on click
-            Console.WriteLine("Clicked top times button");
+
         }
 
         private void ButtonStartClick(object sender, EventArgs args)
         {
             startTimer();
-            Console.WriteLine("Clicked start button");
         }
 
         private void ButtonPauseClick(object sender, EventArgs args)
         {
             pauseTimer();
-            Console.WriteLine("Clicked pause button");
         }
 
         private void ButtonStopClick(object sender, EventArgs args)
         {
             stopTimer();
-            Console.WriteLine("Clicked stop button");
-            Console.WriteLine(displayTime);
         }
 
         private void ButtonClearClick(object sender, EventArgs args)
         {
             clearTimer();
-            Console.WriteLine("Clicked clear button");
         }
 
         private void ButtonSaveClick(object sender, EventArgs args)
         {
-            //TODO on click
-            Console.WriteLine("Clicked save button");
-            //TODO use PushModal and await
             Navigation.PushAsync(new EntryPage(displayTime)); //should this be modal?
         }
 
@@ -86,19 +77,16 @@ namespace UOCApp
 
         private void NavLeaderboard(object sender, EventArgs args)
         {
-            Console.WriteLine("Clicked Nav Leaderboard");
             Navigation.PushAsync(new LeaderboardPage());
         }
 
         private void NavTimes(object sender, EventArgs args)
         {
-            Console.WriteLine("Clicked Nav Times");
             Navigation.PushAsync(new TimesPage());
         }
 
         private void NavAdmin(object sender, EventArgs args)
         {
-            Console.WriteLine("Clicked Nav Admin");
             Navigation.PushAsync(new AdminPage());
         }
 
@@ -106,11 +94,8 @@ namespace UOCApp
         {
             //get current time and note
             startTime = System.DateTime.Now.Ticks;
-            Console.WriteLine("Result in startTime initial " + startTime);
             startTime = startTime - result;
-            Console.WriteLine("Result in startTime&time " + startTime);
 
-            Console.WriteLine("Result in startTimer: " + result + " StartTime " + startTime);
             timerActive = true;
 
             //actually start the update ticker
@@ -123,7 +108,6 @@ namespace UOCApp
                 }
                 else return false;
             });
-            Console.WriteLine("2)Result in startTimer: " + result + " StartTime " + startTime);
         }
 
         private void pauseTimer()
@@ -135,7 +119,6 @@ namespace UOCApp
                 timerActive = false;
                 result = stopTime - startTime;
                 updateTimer(result);
-                Console.WriteLine("Result in pauseTimer" + result);
             }
         }
 
@@ -148,7 +131,6 @@ namespace UOCApp
                 timerActive = false;
                 result = stopTime - startTime;
                 updateTimer(result);
-                Console.WriteLine("Result in stopTimer" + result);
                 startTime = 0;
                 result = 0;
             }
@@ -171,7 +153,6 @@ namespace UOCApp
         {
             //display time
             DateTime dt = new DateTime(time);
-            Console.WriteLine(dt);
             displayTime = String.Format("{0:00}:{1:00}.{2:000}", dt.Minute, dt.Second, dt.Millisecond);
             //string displayTime = dt.Minute + ":" + dt.Second + "." + dt.Millisecond;
             WatchText.Text = displayTime;
