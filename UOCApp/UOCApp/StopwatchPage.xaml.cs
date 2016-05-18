@@ -178,7 +178,7 @@ namespace UOCApp
 
             DateTime dt = new DateTime(time);
             Console.WriteLine(dt);
-            string displayTime = String.Format("{0:00}:{1:00}.{2:000}", dt.Minute, dt.Second, dt.Millisecond);
+            displayTime = String.Format("{0:00}:{1:00}.{2:000}", dt.Minute, dt.Second, dt.Millisecond);
             //string displayTime = dt.Minute + ":" + dt.Second + "." + dt.Millisecond;
             WatchText.Text = displayTime;
         }

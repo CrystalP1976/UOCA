@@ -11,4 +11,12 @@ namespace UOCApp.Models
         public int result_id { get; set; }
         public int obstacle_id { get; set; }
     }
+
+
+        
+
+
+
+
+
 }

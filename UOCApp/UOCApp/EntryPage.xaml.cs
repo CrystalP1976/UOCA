@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http;
-
+using UOCApp.Helpers;
 using UOCApp;
 using UOCApp.Models;
 
@@ -24,6 +24,8 @@ namespace UOCApp
 
         public EntryPage(string displayTime)
         {
+            Console.WriteLine("Display Time:" + displayTime);
+
             obstaclesPage = new ObstaclesPage();
             InitializeComponent();
             entry_Time.Text = displayTime;
@@ -68,20 +70,37 @@ namespace UOCApp
 
 			try
 			{
-				SharedResult result = new SharedResult(picker_Date.Date, ConvertTime(entry_Time.Text), false, false, 
+				SharedResult sharedResult = new SharedResult(picker_Date.Date, ConvertTime(entry_Time.Text), false, false, 
 					                      entry_Name.Text, Gender(), Grade(), entry_School.Text);
-				var sure = await DisplayAlert("Confirm Save", "Please record accurate race times! \n \"Winners Don't Cheat, \n Champions Don't Lie!\"\n", "Save", "Back");
+
+
+                Result result = new Result();
+                result.date = picker_Date.Date.ToString();
+                result.time = ConvertTime(entry_Time.Text);
+                result.ranked = Convert.ToInt32(switch_Public.IsToggled);
+                result.student_name = entry_Name.Text;
+                result.student_gender = Gender();
+                result.student_grade =  Grade();
+
+                var sure = await DisplayAlert("Confirm Save", "Please record accurate race times! \n \"Winners Don't Cheat, \n Champions Don't Lie!\"\n", "Save", "Back");
+
+
 				if (sure == true)
 				{
 
 
 					//selected obstacles can be obtained from obstaclesPage.obstacleList
 					// save to client database, unless in admin mode - TODO
-					if (true)
+
+                  
+                    var LocalID = App.databaseHelper.InsertResult(result, obstaclesPage.obstacleList);
+                 
+
+                    if (LocalID >= 1)
 					{ // true to fake success of adding to local database
 						if (switch_Public.IsToggled)
 						{ // did the user specify that they wish to post to the leaderboard?
-							if (await result.share((bool)switch_Official.IsToggled))
+							if (await sharedResult.share((bool)switch_Official.IsToggled))
 							{ // post to server and return true if successful
 								await DisplayAlert("Thank you!", "Your result has been saved and shared with the leaderboard", "OK");
 								Navigation.PopToRootAsync(); // return to home once save complete
@@ -248,6 +267,13 @@ namespace UOCApp
 			OfficialButtonStatus(); // update the offical button status dependant on if the user is logged in or not
 			ShareButtonStatus(); // update the share buttons status dependant on if all obstacles are complete
 		}
+
+  
+            
+
+
+
+        
 
 
 

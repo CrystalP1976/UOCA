@@ -63,7 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)GettingStarted.Xamarin" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)db.sqlite" />
+    <None Include="$(MSBuildThisFileDirectory)db.sqlite" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)SplashPage.xaml">
