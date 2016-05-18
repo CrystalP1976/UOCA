@@ -13,24 +13,25 @@ using Xamarin.Forms;
 namespace UOCApp
 {
 
+
 	public partial class EntryPage : ContentPage
 	{
 
-        public ObstaclesPage obstaclesPage;
+		public ObstaclesPage obstaclesPage;
 
 
 
 
-        public EntryPage(string displayTime)
-        {
-            Console.WriteLine("Display Time:" + displayTime);
+		public EntryPage(string displayTime)
+		{
+			Console.WriteLine("Display Time:" + displayTime);
 
-            obstaclesPage = new ObstaclesPage();
-            InitializeComponent();
-            entry_Time.Text = displayTime;
+			obstaclesPage = new ObstaclesPage();
+			InitializeComponent();
+			entry_Time.Text = displayTime;
 
 
-        }
+		}
 
 		private void NavHome(object sender, EventArgs args)
 		{
@@ -69,23 +70,23 @@ namespace UOCApp
 
 			try
 			{
-
 				SharedResult sharedResult = new SharedResult(picker_Date.Date, ConvertTime(entry_Time.Text), false, false, 
-					                      entry_Name.Text, Gender(), Grade(), entry_School.Text);
+					entry_Name.Text, Gender(), Grade(), entry_School.Text);
 
 
-                Result result = new Result();
-                result.result_id = null;
+				Result result = new Result();
+				result.result_id = null;
 
 
-                result.date =  String.Format("{0:yyyy-MM-dd}", picker_Date.Date);
-                result.time = ConvertTime(entry_Time.Text);
-                result.shared = Convert.ToInt32(switch_Public.IsToggled);
-                result.student_name = entry_Name.Text;
-                result.student_gender = Gender();
-                result.student_grade =  Grade();
+				result.date =  String.Format("{0:yyyy-MM-dd}", picker_Date.Date);
+				result.time = ConvertTime(entry_Time.Text);
+				result.shared = Convert.ToInt32(switch_Public.IsToggled);
+				result.student_name = entry_Name.Text;
+				result.student_gender = Gender();
+				result.student_grade =  Grade();
 
-                var sure = await DisplayAlert("Confirm Save", "Please record accurate race times! \n \"Winners Don't Cheat, \n Champions Don't Lie!\"\n", "Save", "Back");
+				var sure = await DisplayAlert("Confirm Save", "Please record accurate race times! \n \"Winners Don't Cheat, \n Champions Don't Lie!\"\n", "Save", "Back");
+
 
 				if (sure == true)
 				{
@@ -94,11 +95,11 @@ namespace UOCApp
 					//selected obstacles can be obtained from obstaclesPage.obstacleList
 					// save to client database, unless in admin mode - TODO
 
-                  
-                    var LocalID = App.databaseHelper.InsertResult(result, obstaclesPage.obstacleList);
-                 
 
-                    if (LocalID >= 1)
+					var LocalID = App.databaseHelper.InsertResult(result, obstaclesPage.obstacleList);
+
+
+					if (LocalID >= 1)
 					{ // true to fake success of adding to local database
 						if (switch_Public.IsToggled)
 						{ // did the user specify that they wish to post to the leaderboard?
@@ -112,7 +113,6 @@ namespace UOCApp
 							{
 								//Console.WriteLine ("Failed to share with leaderboard");
 								await DisplayAlert("Sorry", "Unable to connect to leaderboard. \n Check your internet connection.", "OK");
-
 							}
 						}
 						await DisplayAlert("Thank you!", "Your result has been saved", "OK");
@@ -144,16 +144,16 @@ namespace UOCApp
 			var GenderIndex = picker_Gender.SelectedIndex;
 			switch (GenderIndex)
 			{
-				case 0:
-					Gender = "M";
-					break;
-				case 1:
-					Gender = "F";
-					break;
-				default:
+			case 0:
+				Gender = "M";
+				break;
+			case 1:
+				Gender = "F";
+				break;
+			default:
 				// error behavior? no gender set, shouldn't be possible
-					Gender = null;
-					break;
+				Gender = null;
+				break;
 			}
 			return Gender;
 		}
@@ -165,30 +165,30 @@ namespace UOCApp
 			var GradeIndex = picker_Grade.SelectedIndex;
 			switch (GradeIndex)
 			{
-				case 0:
-					Grade = 4;
-					break;
-				case 1:
-					Grade = 5;
-					break;
-				case 2:
-					Grade = 6;
-					break;
-				case 3:
-					Grade = 7;
-					break;
-				case 4:  //				GRADE_TEENAGER = -1
-					Grade = -1;
-					break;
-				case 5:  //				GRADE_ADULT = -2
-					Grade = -2;
-					break;
-				case 6:  //				GRADE_OLDADULT = -3
-					Grade = -3;
-					break;
-				default:
+			case 0:
+				Grade = 4;
+				break;
+			case 1:
+				Grade = 5;
+				break;
+			case 2:
+				Grade = 6;
+				break;
+			case 3:
+				Grade = 7;
+				break;
+			case 4:  //				GRADE_TEENAGER = -1
+				Grade = -1;
+				break;
+			case 5:  //				GRADE_ADULT = -2
+				Grade = -2;
+				break;
+			case 6:  //				GRADE_OLDADULT = -3
+				Grade = -3;
+				break;
+			default:
 				// error behavior? no grade set
-					break;
+				break;
 			}
 			return Grade;
 		}
@@ -197,10 +197,10 @@ namespace UOCApp
 		{
 			decimal result;
 
-            if (String.IsNullOrEmpty(time))
-            {
-                return 0;
-            }
+			if (String.IsNullOrEmpty(time))
+			{
+				return 0;
+			}
 
 			if (time.Contains(':'))
 			{
@@ -261,7 +261,7 @@ namespace UOCApp
 				switch_Official.Opacity = 0;
 				label_Official.Opacity = 0;
 			}
-				
+
 		}
 
 		protected override void OnAppearing()
@@ -271,51 +271,12 @@ namespace UOCApp
 			ShareButtonStatus(); // update the share buttons status dependant on if all obstacles are complete
 		}
 
-  
-            
 
 
 
-        
 
 
-			if (obstaclesPage.obstacleList.allComplete()) {
-				switch_Public.IsEnabled = true;
-			} else
-			{
-				switch_Public.IsToggled = false;
-				switch_Public.IsEnabled = false;
-			}
 
-		}
-
-		public void OfficialButtonStatus() {
-			bool loggedIn = false;
-			if (Application.Current.Properties.ContainsKey("loggedin"))
-			{
-				loggedIn = Convert.ToBoolean(Application.Current.Properties["loggedin"]);
-			}
-			if (loggedIn) {
-				switch_Official.IsEnabled = true;
-				switch_Official.Opacity = 1;
-				label_Official.Opacity = 1;
-			} 
-			else
-			{
-				switch_Official.IsToggled = false;
-				switch_Official.IsEnabled = false;
-				switch_Official.Opacity = 0;
-				label_Official.Opacity = 0;
-			}
-
-		}
-
-		protected override void OnAppearing()
-		{
-			base.OnAppearing ();
-			OfficialButtonStatus (); // update the offical button status dependant on if the user is logged in or not
-			ShareButtonStatus (); // update the share buttons status dependant on if all obstacles are complete
-		}
 
 
 

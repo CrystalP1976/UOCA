@@ -152,26 +152,6 @@
     <BundleResource Include="Resources\ileaderboard.png" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\120x120.png" />
-    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\152x152.png" />
-    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\167x167.png" />
-    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\180x180.png" />
-    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\29x29.png" />
-    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\40x40.png" />
-    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\58x58.png" />
-    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\76x76.png" />
-    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\80x80.png" />
-    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\87x87.png" />
-    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\Contents.json" />
-    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\Contents.json" />
-    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\ipad1.png" />
-    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\ipad2.png" />
-    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\iphone1.png" />
-    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\iphone4.png" />
-    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\iphone5.png" />
-    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\iphone6.png" />
-=======
     <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\120x120.png">
       <InProject>false</InProject>
     </ImageAsset>
@@ -226,7 +206,6 @@
     <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\iphone6.png">
       <InProject>false</InProject>
     </ImageAsset>
->>>>>>> b40e8dca61fdbc5f2e53ffb41b2548dfeae2c617
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\itimes.png" />
