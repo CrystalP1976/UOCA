@@ -1,124 +1,90 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:sys="clr-namespace:System;assembly=mscorlib"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="UOCApp.EntryPage">
-  <ContentPage.ToolbarItems>
-    <ToolbarItem x:Name="Home" Text="Home" Icon="ihome.png" Clicked="NavHome"></ToolbarItem>
-    <ToolbarItem x:Name="Leaderboard" Text="Leaderboard" Icon="ileaderboard.png" Clicked="NavLeaderboard"></ToolbarItem>
-    <ToolbarItem x:Name="Times" Text="My Times" Icon="itimes.png" Clicked="NavTimes"></ToolbarItem>
-    <ToolbarItem x:Name="Admin" Text="Admin" Icon="iadmin.png" Clicked="NavAdmin"></ToolbarItem>
-  </ContentPage.ToolbarItems>
-
-  <StackLayout       VerticalOptions="FillAndExpand"
-                     HorizontalOptions="FillAndExpand"
-                     Orientation="Vertical"
-                     Spacing="10"
-                     Padding="10,10,10,0">
-
-    <Grid>
-      <Grid.RowDefinitions>
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="Auto" />
-      </Grid.RowDefinitions>
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="Auto" />
-        <ColumnDefinition Width="*" />
-      </Grid.ColumnDefinitions>
-
-      <Label Text="Name" Grid.Row="0" Grid.Column="0" FontSize="Large" HorizontalTextAlignment="End"/>
-      <Entry Text="John Doe" Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" x:Name="entry_Name"/>
-
-      <Label Text="Grade" Grid.Row="1" Grid.Column="0" FontSize="Large" HorizontalTextAlignment="End"/>
-      <Picker Title="Grade" Grid.Row="1" Grid.Column="1" HorizontalOptions="FillAndExpand" x:Name="picker_Grade">
-      	      <Picker.Items>
-	            <x:String>Grade 4</x:String> 
-	            <x:String>Grade 5</x:String>
-	            <x:String>Grade 6</x:String>
-	            <x:String>Grade 7</x:String>
-	            <x:String>Teenager</x:String>
-	            <x:String>Adult under 35</x:String>
-	            <x:String>Adult over 35</x:String>
-	        </Picker.Items>
-	   </Picker>
-
-      <Label Text="Gender" Grid.Row="2" Grid.Column="0" FontSize="Large" HorizontalTextAlignment="End"/>
-      <Picker Title="Gender" Grid.Row="2" Grid.Column="1" HorizontalOptions="FillAndExpand" x:Name="picker_Gender">
-	      <Picker.Items>
-	            <x:String>Male</x:String> 
-	            <x:String>Female</x:String>
-	        </Picker.Items>
-       </Picker>
-
-      <Label Text="School" Grid.Row="3" Grid.Column="0" FontSize="Large" HorizontalTextAlignment="End"/>
-      <Entry Text="Cliff Drive Elementary" Grid.Row="3" Grid.Column="1" HorizontalOptions="FillAndExpand" x:Name="entry_School"/>
-
-      <Label Text="Time" Grid.Row="4" Grid.Column="0" FontSize="Large" HorizontalTextAlignment="End"/> 
-      <Entry Text="" Grid.Row="4" Grid.Column="1" HorizontalOptions="FillAndExpand" x:Name="entry_Time"/>
-
-      <Label Text="Date" Grid.Row="5" Grid.Column="0" FontSize="Large" HorizontalTextAlignment="End" />
-      <DatePicker Grid.Row="5" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" x:Name="picker_Date" Date="{x:Static sys:DateTime.Now}">
-        <DatePicker.Format>yyyy-MM-dd</DatePicker.Format>
-      </DatePicker>
-
-      <!--<Entry Text="May 5 2016" Grid.Row="5" Grid.Column="1" HorizontalOptions="FillAndExpand"/>-->
-
-
-    </Grid>
-
-    <Button Text="Obstacles Completed"
-           HorizontalOptions="CenterAndExpand"
-           Clicked="NavObstacle"
-
-           />
-
-    <Label FontSize="Small" Text="Public results will be shown in leaderboards."/>
-
-    <Grid>
-      <Grid.RowDefinitions>
-        <RowDefinition Height="Auto" />
-      </Grid.RowDefinitions>
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="*" />
-        <ColumnDefinition Width="Auto" />
-        <ColumnDefinition Width="*" />
-        <ColumnDefinition Width="Auto" />
-      </Grid.ColumnDefinitions>
-
-      <Label Text="Public:" Grid.Row="0" Grid.Column="0"/>
-      <Switch IsToggled="False" Grid.Row="0" Grid.Column="1" x:Name="switch_Public"/>
-      <Label Text="Official:" Grid.Row="0" Grid.Column="2" x:Name="label_Official"/>
-      <Switch IsToggled="False" Grid.Row="0" Grid.Column="3" x:Name="switch_Official"/>
-      
-    </Grid>
-
-    <Grid>
-      <Grid.RowDefinitions>
-        <!-- <RowDefinition Height="Auto" /> -->
-        <RowDefinition Height="Auto" />
-      </Grid.RowDefinitions>
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="Auto" />
-        <ColumnDefinition Width="*" />
-        <ColumnDefinition Width="*" />
-      </Grid.ColumnDefinitions>
-      
-      <!-- <Label Text="Share" HorizontalTextAlignment="Center" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/> -->
-
-      <Button Text="Save Result"
-           HorizontalOptions="CenterAndExpand"
-           Clicked="SaveResult"
-              Grid.Column="0" Grid.Row="1"
-           />      
-
-
-
-    </Grid>
-
-  </StackLayout>
-    
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="UOCApp.EntryPage">
+	<ContentPage.ToolbarItems>
+		<ToolbarItem x:Name="Home" Text="Home" Icon="ihome.png" Clicked="NavHome">
+		</ToolbarItem>
+		<ToolbarItem x:Name="Leaderboard" Text="Leaderboard" Icon="ileaderboard.png" Clicked="NavLeaderboard">
+		</ToolbarItem>
+		<ToolbarItem x:Name="Times" Text="My Times" Icon="itimes.png" Clicked="NavTimes">
+		</ToolbarItem>
+		<ToolbarItem x:Name="Admin" Text="Admin" Icon="iadmin.png" Clicked="NavAdmin">
+		</ToolbarItem>
+	</ContentPage.ToolbarItems>
+	<StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Orientation="Vertical" Spacing="10" Padding="10,10,10,0">
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="*" />
+			</Grid.ColumnDefinitions>
+			<Label Text="Name" Grid.Row="0" Grid.Column="0" FontSize="Large" HorizontalTextAlignment="End" />
+			<Entry Text="John Doe" Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" x:Name="entry_Name" />
+			<Label Text="Grade" Grid.Row="1" Grid.Column="0" FontSize="Large" HorizontalTextAlignment="End" />
+			<Picker Title="Grade" Grid.Row="1" Grid.Column="1" HorizontalOptions="FillAndExpand" x:Name="picker_Grade">
+				<Picker.Items>
+					<x:String>Grade 4</x:String> 
+					<x:String>Grade 5</x:String>
+					<x:String>Grade 6</x:String>
+					<x:String>Grade 7</x:String>
+					<x:String>Teenager 14+</x:String>
+					<x:String>Adult 19+</x:String>
+					<x:String>Adult 35+</x:String>
+				</Picker.Items>
+			</Picker>
+			<Label Text="Gender" Grid.Row="2" Grid.Column="0" FontSize="Large" HorizontalTextAlignment="End" />
+			<Picker Title="Gender" Grid.Row="2" Grid.Column="1" HorizontalOptions="FillAndExpand" x:Name="picker_Gender">
+				<Picker.Items>
+					<x:String>Male</x:String>
+					<x:String>Female</x:String>
+				</Picker.Items>
+			</Picker>
+			<Label Text="School" Grid.Row="3" Grid.Column="0" FontSize="Large" HorizontalTextAlignment="End" />
+			<Entry Text="Cliff Drive Elementary" Grid.Row="3" Grid.Column="1" HorizontalOptions="FillAndExpand" x:Name="entry_School" />
+			<Label Text="Time" Grid.Row="4" Grid.Column="0" FontSize="Large" HorizontalTextAlignment="End" />
+			<Entry Text="" Grid.Row="4" Grid.Column="1" HorizontalOptions="FillAndExpand" x:Name="entry_Time" />
+			<Label Text="Date" Grid.Row="5" Grid.Column="0" FontSize="Large" HorizontalTextAlignment="End" />
+			<DatePicker Grid.Row="5" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" x:Name="picker_Date" Date="{x:Static sys:DateTime.Now}">
+				<DatePicker.Format>yyyy-MM-dd</DatePicker.Format>
+			</DatePicker>
+			<!--<Entry Text="May 5 2016" Grid.Row="5" Grid.Column="1" HorizontalOptions="FillAndExpand"/>-->
+		</Grid>
+		<Button Text="View Obstacles" HorizontalOptions="CenterAndExpand" Clicked="NavObstacle" />
+		<Label FontSize="Small" Opacity="0" TextColor="Red" Text="Complete all obstacles to share your time." x:Name="label_obstacle" />
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="*" />
+			</Grid.ColumnDefinitions>
+			<Label Text="Share with leaderboard:" Grid.Row="0" Grid.Column="0" />
+			<Switch IsToggled="True" Grid.Row="0" Grid.Column="1" x:Name="switch_Public" />
+			<Label Text="Official:" Opacity="0" Grid.Row="0" Grid.Column="2" x:Name="label_Official" />
+			<Switch IsToggled="False" Opacity="0" Grid.Row="0" Grid.Column="3" x:Name="switch_Official" />
+		</Grid>
+		<Label FontSize="Small" Text="Fastest times will be visible on the leaderboard." />
+		<Grid>
+			<Grid.RowDefinitions>
+				<!-- <RowDefinition Height="Auto" /> -->
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="*" />
+			</Grid.ColumnDefinitions>
+			<!-- <Label Text="Share" HorizontalTextAlignment="Center" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/> -->
+			<Button Text="Save Result" HorizontalOptions="CenterAndExpand" Clicked="SaveResult" Grid.Column="0" Grid.Row="1" />
+		</Grid>
+	</StackLayout>
 </ContentPage>

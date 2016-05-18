@@ -73,7 +73,7 @@
             Clicked="ButtonClearClick"
                 Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"/>
 
-        <Button Text="Save"
+        <Button Text="Enter Result"
             HorizontalOptions="FillAndExpand"
             VerticalOptions="CenterAndExpand"
             Clicked="ButtonSaveClick"
@@ -81,7 +81,10 @@
       
     </Grid>
 
-
+    <Button Text="About This App" 
+            Clicked="ButtonAboutClick" 
+            VerticalOptions="End">
+    </Button>
 
   </StackLayout>
 

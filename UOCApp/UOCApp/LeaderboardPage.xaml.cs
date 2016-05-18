@@ -83,7 +83,7 @@ namespace UOCApp
 
                 List<RawResult> rawresults = await resultsHelper.GetRawResults(query);
 
-                this.baseResults = resultsHelper.ConvertLeaderboardResults(rawresults);
+                this.baseResults = GetResultsHelper.ConvertLeaderboardResults(rawresults);
 
                 //copy results
                 CopyResults();

@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using UOCApp.Helpers;
 
 namespace UOCApp.Models
 {
-    class AdminResult
+    public class AdminResult
     {
 
         public AdminResult(RawResult input)
@@ -13,7 +14,7 @@ namespace UOCApp.Models
             result_id = Convert.ToInt32(input.result_id);
             student_name = input.student_name;
             date = input.date;
-            time = input.time;
+            time = GetResultsHelper.FormatTime(Convert.ToDecimal(input.time));
             school_name = input.school_name;
             sortableDate = input.date; //this may change
             sortableTime = Convert.ToDouble(input.time);

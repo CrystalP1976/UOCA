@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 
 namespace UOCApp.Helpers
 {
-    class GetResultsException : Exception
+    public class GetResultsException : Exception
     {
         public GetResultsException(string message)
         {
@@ -17,7 +17,7 @@ namespace UOCApp.Helpers
 
     }
 
-    class GetResultsHelper
+    public class GetResultsHelper
     {
         private HttpClient client;
         private string url;
@@ -78,7 +78,7 @@ namespace UOCApp.Helpers
             }
         }
 
-        public List<AdminResult> ConvertAdminResults(List<RawResult> rawresults)
+        public static List<AdminResult> ConvertAdminResults(List<RawResult> rawresults)
         {
             List<AdminResult> results = new List<AdminResult>();
 
@@ -91,7 +91,7 @@ namespace UOCApp.Helpers
             return results;
         }
 
-        public List<LeaderboardResult> ConvertLeaderboardResults(List<RawResult> rawresults)
+        public static List<LeaderboardResult> ConvertLeaderboardResults(List<RawResult> rawresults)
         {
             List<LeaderboardResult> results = new List<LeaderboardResult>();
 
@@ -185,7 +185,7 @@ namespace UOCApp.Helpers
             return CreateQueryString(null, selectedGrade, selectedGender, school, false);
         }
 
-        public void SortResults(List<AdminResult> baseResults, string selectedItem)
+        public static void SortResults(List<AdminResult> baseResults, string selectedItem)
         {
             switch (selectedItem)
             {
@@ -200,6 +200,12 @@ namespace UOCApp.Helpers
                     baseResults.Sort((o1, o2) => o1.sortableTime.CompareTo(o2.sortableTime));
                     break;
             }
+        }
+
+        //format time function
+        public static string FormatTime(decimal time)
+        {
+            return String.Format("{0}:{1:00.000}", ((int)Decimal.Truncate(time) / 60), (time % 60m));
         }
 
     }
