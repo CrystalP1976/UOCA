@@ -75,9 +75,12 @@ namespace UOCApp
 
 
                 Result result = new Result();
-                result.date = picker_Date.Date.ToString();
+                result.result_id = null;
+
+
+                result.date =  String.Format("{0:yyyy-MM-dd}", picker_Date.Date);
                 result.time = ConvertTime(entry_Time.Text);
-                result.ranked = Convert.ToInt32(switch_Public.IsToggled);
+                result.shared = Convert.ToInt32(switch_Public.IsToggled);
                 result.student_name = entry_Name.Text;
                 result.student_gender = Gender();
                 result.student_grade =  Grade();

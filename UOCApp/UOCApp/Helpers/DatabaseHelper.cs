@@ -92,7 +92,7 @@ namespace UOCApp.Helpers
                 Console.WriteLine(line.ToString());
             }
 
-            int pk = db.Insert(new Result { date = "2016-12-12", ranked = 1, time = 240.123m, student_gender = "F", student_name = "Jamie Tang", student_grade = 4 });
+            int pk = db.Insert(new Result { date = "2016-12-12", shared = 1, time = 240.123m, student_gender = "F", student_name = "Jamie Tang", student_grade = 4 });
 
             Console.WriteLine("Inserted row with PK of " + pk);
 
@@ -154,72 +154,86 @@ namespace UOCApp.Helpers
         public int InsertResult(Result result, ObstacleList obstacleList)
         {
             int pk = 0;
-            pk = db.Insert(result);
+            db.Insert(result);
+            pk = (int)result.result_id;
+            Console.WriteLine("Inserted row with PK of " + pk);
             ResultObstacle obstacle = new ResultObstacle();
             obstacle.result_id = pk;
      
 
-            if (obstacleList.Switch_0) //eww multiple ifs
+            if (!obstacleList.Switch_0) //eww multiple ifs
             {
                 obstacle.obstacle_id = 0;
                 db.Insert(obstacle);
+         
             }
 
-            if (obstacleList.Switch_1)
+            if (!obstacleList.Switch_1)
             {
                 obstacle.obstacle_id = 1;
                 db.Insert(obstacle);
+          
             }
 
-            if (obstacleList.Switch_2)
+            if (!obstacleList.Switch_2)
             {
                 obstacle.obstacle_id = 2;
                 db.Insert(obstacle);
+         
             }
-            if (obstacleList.Switch_3)
+            if (!obstacleList.Switch_3)
             {
                 obstacle.obstacle_id = 3;
                 db.Insert(obstacle);
+               
             }
-            if (obstacleList.Switch_4)
+            if (!obstacleList.Switch_4)
             {
                 obstacle.obstacle_id = 4;
                 db.Insert(obstacle);
+              
             }
-            if (obstacleList.Switch_5)
+            if (!obstacleList.Switch_5)
             {
                 obstacle.obstacle_id = 5;
                 db.Insert(obstacle);
+               
             }
-            if (obstacleList.Switch_6)
+            if (!obstacleList.Switch_6)
             {
                 obstacle.obstacle_id = 6;
                 db.Insert(obstacle);
+              
             }
-            if (obstacleList.Switch_7)
+            if (!obstacleList.Switch_7)
             {
                 obstacle.obstacle_id = 7;
                 db.Insert(obstacle);
+               
             }
-            if (obstacleList.Switch_8)
+            if (!obstacleList.Switch_8)
             {
                 obstacle.obstacle_id = 8;
                 db.Insert(obstacle);
+               
             }
-            if (obstacleList.Switch_9)
+            if (!obstacleList.Switch_9)
             {
                 obstacle.obstacle_id = 9;
                 db.Insert(obstacle);
+         
             }
-            if (obstacleList.Switch_10)
+            if (!obstacleList.Switch_10)
             {
                 obstacle.obstacle_id = 10;
                 db.Insert(obstacle);
+             
             }
-            if (obstacleList.Switch_11)
+            if (!obstacleList.Switch_11)
             {
                 obstacle.obstacle_id = 11;
                 db.Insert(obstacle);
+           
             }
 
 
