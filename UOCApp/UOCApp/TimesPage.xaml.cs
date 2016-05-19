@@ -37,13 +37,51 @@ namespace UOCApp
         private void RefreshResults()
         {
             LoadResults();
+            FilterResults();
+            SortResults();
             CopyResults();
         }
 
         private void LoadResults()
         {
-            baseResults = App.databaseHelper.GetPrivateResults();
-            baseResults.Sort((o1, o2) => o1.sortableTime.CompareTo(o2.sortableTime));            
+            baseResults = App.databaseHelper.GetPrivateResults();       
+        }
+
+        private void SortResults()
+        {
+
+            //if the picker hasn't loaded, sort default and return
+            if(PickerSort == null)
+            {
+                baseResults.Sort((o1, o2) => o1.sortableTime.CompareTo(o2.sortableTime));
+                return;
+            }
+
+            switch (PickerSort.SelectedIndex)
+            {
+                case 0:
+                    //sort by name
+                    baseResults.Sort((o1, o2) => o1.student_name.CompareTo(o2.student_name));
+                    break;
+                case 1:
+                    //sort by date
+                    baseResults.Sort((o1, o2) => o2.sortableDate.CompareTo(o1.sortableDate));
+                    break;
+                default:
+                    //sort by time
+                    baseResults.Sort((o1, o2) => o1.sortableTime.CompareTo(o2.sortableTime));
+                    break;
+            }
+        }
+
+        private void FilterResults()
+        {
+            //abort if the Entry is not loaded or is empty
+            if (EntryName == null || String.IsNullOrEmpty(EntryName.Text))
+                return;
+
+            //filter the list to only have results where the name starts with the name entered into the filter box (not case sensitive)
+            baseResults = new List<PrivateResult>(baseResults.Where(x => x.student_name.ToLower().StartsWith(EntryName.Text.ToLower())));
         }
 
         private void CopyResults()
@@ -116,12 +154,7 @@ namespace UOCApp
         //Fired when any filter is changed, refilters the list
         private void FilterChange(object sender, EventArgs args)
         {
-            LoadResults();
-
-            //filter the list to only have results where the name starts with the name entered into the filter box (not case sensitive)
-            baseResults = new List<PrivateResult>(baseResults.Where(x => x.student_name.ToLower().StartsWith(EntryName.Text.ToLower())));
-
-            CopyResults();
+            RefreshResults();
         }
 
         //Fired when the sort is changed, resorts the list
@@ -131,25 +164,7 @@ namespace UOCApp
             if (PickerSort == null)
                 return;
 
-            LoadResults();
-
-            switch(PickerSort.SelectedIndex)
-            {
-                case 0:
-                    //sort by name
-                    baseResults.Sort((o1, o2) => o1.student_name.CompareTo(o2.student_name));
-                    break;
-                case 1:
-                    //sort by date
-                    baseResults.Sort((o1, o2) => o2.sortableDate.CompareTo(o1.sortableDate));
-                    break;
-                default:
-                    //sort by time
-                    //do nothing, we're sorting this way by default
-                    break;
-            }
-
-            CopyResults();
+            RefreshResults();
         }
     }
 }
