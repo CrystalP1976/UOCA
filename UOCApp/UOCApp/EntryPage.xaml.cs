@@ -24,7 +24,7 @@ namespace UOCApp
 
         public EntryPage(string displayTime)
         {
-            Console.WriteLine("Display Time:" + displayTime);
+            //Console.WriteLine("Display Time:" + displayTime);
 
             obstaclesPage = new ObstaclesPage();
             InitializeComponent();
@@ -108,39 +108,45 @@ namespace UOCApp
                             if (!obstaclesPage.obstacleList.allComplete())//added dilibrate check to obstacle list due to known android bug
                             {
                                 await DisplayAlert("Thank you!", "Your result has been saved", "OK");
-                                Navigation.PopToRootAsync(); // return to home once save complete
+                                await Navigation.PopToRootAsync(); // return to home once save complete
+                                return;
                             }
 
                             if (await sharedResult.share((bool)switch_Official.IsToggled)) // post to server and return true if successful
 							{ 
 								await DisplayAlert("Thank you!", "Your result has been saved and shared with the leaderboard", "OK");
-								Navigation.PopToRootAsync(); // return to home once save complete
-
+								await Navigation.PopToRootAsync(); // return to home once save complete
+                                return;
 							}
 							else
 							{
 								//Console.WriteLine ("Failed to share with leaderboard");
 								await DisplayAlert("Sorry", "Unable to connect to leaderboard. \n Check your internet connection.", "OK");
+                                return;
 							}
 						}
 						await DisplayAlert("Thank you!", "Your result has been saved", "OK");
-						Navigation.PopToRootAsync(); // return to home once save complete
+						await Navigation.PopToRootAsync(); // return to home once save complete
+                        return;
 					}
 					else
 					{
 						// fail to save locally
 						await DisplayAlert("Sorry", "Unable to save. \n Please try again", "OK");
+                        return;
 						//Console.WriteLine ("Failed to save result");
 					}
 				}
 				else
 				{
 					//abort save, do nothing
+                    return;
 				}
 			}
 			catch (ArgumentException e)
 			{ // fail to create a result instance, bad parameters
 				await DisplayAlert("Error", e.Message, "OK");
+                return;
 				//Console.WriteLine (e);
 			}	
 		}
