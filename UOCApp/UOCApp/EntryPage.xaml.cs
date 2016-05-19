@@ -17,21 +17,21 @@ namespace UOCApp
 	public partial class EntryPage : ContentPage
 	{
 
-		public ObstaclesPage obstaclesPage;
+        public ObstaclesPage obstaclesPage;
 
 
 
 
-		public EntryPage(string displayTime)
-		{
-			Console.WriteLine("Display Time:" + displayTime);
+        public EntryPage(string displayTime)
+        {
+            //Console.WriteLine("Display Time:" + displayTime);
 
-			obstaclesPage = new ObstaclesPage();
-			InitializeComponent();
-			entry_Time.Text = displayTime;
+            obstaclesPage = new ObstaclesPage();
+            InitializeComponent();
+            entry_Time.Text = displayTime;
 
 
-		}
+        }
 
 		private void NavHome(object sender, EventArgs args)
 		{
@@ -71,21 +71,21 @@ namespace UOCApp
 			try
 			{
 				SharedResult sharedResult = new SharedResult(picker_Date.Date, ConvertTime(entry_Time.Text), false, false, 
-					entry_Name.Text, Gender(), Grade(), entry_School.Text);
+					                      entry_Name.Text, Gender(), Grade(), entry_School.Text);
 
 
-				Result result = new Result();
-				result.result_id = null;
+                Result result = new Result();
+                result.result_id = null;
 
 
-				result.date =  String.Format("{0:yyyy-MM-dd}", picker_Date.Date);
-				result.time = ConvertTime(entry_Time.Text);
-				result.shared = Convert.ToInt32(switch_Public.IsToggled);
-				result.student_name = entry_Name.Text;
-				result.student_gender = Gender();
-				result.student_grade =  Grade();
+                result.date =  String.Format("{0:yyyy-MM-dd}", picker_Date.Date);
+                result.time = ConvertTime(entry_Time.Text);
+                result.shared = Convert.ToInt32(switch_Public.IsToggled);
+                result.student_name = entry_Name.Text;
+                result.student_gender = Gender();
+                result.student_grade =  Grade();
 
-				var sure = await DisplayAlert("Confirm Save", "Please record accurate race times! \n \"Winners Don't Cheat, \n Champions Don't Lie!\"\n", "Save", "Back");
+                var sure = await DisplayAlert("Confirm Save", "Please record accurate race times! \n \"Winners Don't Cheat, \n Champions Don't Lie!\"\n", "Save", "Back");
 
 
 				if (sure == true)
@@ -95,44 +95,58 @@ namespace UOCApp
 					//selected obstacles can be obtained from obstaclesPage.obstacleList
 					// save to client database, unless in admin mode - TODO
 
+                  
+                    var LocalID = App.databaseHelper.InsertResult(result, obstaclesPage.obstacleList);
+                 
 
-					var LocalID = App.databaseHelper.InsertResult(result, obstaclesPage.obstacleList);
+                    if (LocalID >= 1) // verify local insertion success by primary key
+					{ 
 
-
-					if (LocalID >= 1)
-					{ // true to fake success of adding to local database
-						if (switch_Public.IsToggled)
+                        if (switch_Public.IsToggled) 
 						{ // did the user specify that they wish to post to the leaderboard?
-							if (await sharedResult.share((bool)switch_Official.IsToggled))
-							{ // post to server and return true if successful
-								await DisplayAlert("Thank you!", "Your result has been saved and shared with the leaderboard", "OK");
-								Navigation.PopToRootAsync(); // return to home once save complete
 
+                            if (!obstaclesPage.obstacleList.allComplete())//added dilibrate check to obstacle list due to known android bug
+                            {
+                                await DisplayAlert("Thank you!", "Your result has been saved", "OK");
+                                await Navigation.PopToRootAsync(); // return to home once save complete
+                                return;
+                            }
+
+                            if (await sharedResult.share((bool)switch_Official.IsToggled)) // post to server and return true if successful
+							{ 
+								await DisplayAlert("Thank you!", "Your result has been saved and shared with the leaderboard", "OK");
+								await Navigation.PopToRootAsync(); // return to home once save complete
+                                return;
 							}
 							else
 							{
 								//Console.WriteLine ("Failed to share with leaderboard");
 								await DisplayAlert("Sorry", "Unable to connect to leaderboard. \n Check your internet connection.", "OK");
+                                return;
 							}
 						}
 						await DisplayAlert("Thank you!", "Your result has been saved", "OK");
-						Navigation.PopToRootAsync(); // return to home once save complete
+						await Navigation.PopToRootAsync(); // return to home once save complete
+                        return;
 					}
 					else
 					{
 						// fail to save locally
 						await DisplayAlert("Sorry", "Unable to save. \n Please try again", "OK");
+                        return;
 						//Console.WriteLine ("Failed to save result");
 					}
 				}
 				else
 				{
 					//abort save, do nothing
+                    return;
 				}
 			}
 			catch (ArgumentException e)
 			{ // fail to create a result instance, bad parameters
 				await DisplayAlert("Error", e.Message, "OK");
+                return;
 				//Console.WriteLine (e);
 			}	
 		}
@@ -144,16 +158,16 @@ namespace UOCApp
 			var GenderIndex = picker_Gender.SelectedIndex;
 			switch (GenderIndex)
 			{
-			case 0:
-				Gender = "M";
-				break;
-			case 1:
-				Gender = "F";
-				break;
-			default:
+				case 0:
+					Gender = "M";
+					break;
+				case 1:
+					Gender = "F";
+					break;
+				default:
 				// error behavior? no gender set, shouldn't be possible
-				Gender = null;
-				break;
+					Gender = null;
+					break;
 			}
 			return Gender;
 		}
@@ -165,42 +179,43 @@ namespace UOCApp
 			var GradeIndex = picker_Grade.SelectedIndex;
 			switch (GradeIndex)
 			{
-			case 0:
-				Grade = 4;
-				break;
-			case 1:
-				Grade = 5;
-				break;
-			case 2:
-				Grade = 6;
-				break;
-			case 3:
-				Grade = 7;
-				break;
-			case 4:  //				GRADE_TEENAGER = -1
-				Grade = -1;
-				break;
-			case 5:  //				GRADE_ADULT = -2
-				Grade = -2;
-				break;
-			case 6:  //				GRADE_OLDADULT = -3
-				Grade = -3;
-				break;
-			default:
+				case 0:
+					Grade = 4;
+					break;
+				case 1:
+					Grade = 5;
+					break;
+				case 2:
+					Grade = 6;
+					break;
+				case 3:
+					Grade = 7;
+					break;
+				case 4:  //				GRADE_TEENAGER = -1
+					Grade = -1;
+					break;
+				case 5:  //				GRADE_ADULT = -2
+					Grade = -2;
+					break;
+				case 6:  //				GRADE_OLDADULT = -3
+					Grade = -3;
+					break;
+				default:
 				// error behavior? no grade set
-				break;
+					break;
 			}
 			return Grade;
 		}
 
 		static decimal ConvertTime(string time)
 		{
+            try {
 			decimal result;
 
-			if (String.IsNullOrEmpty(time))
-			{
-				return 0;
-			}
+            if (String.IsNullOrEmpty(time))
+            {
+                return 0;
+            }
 
 			if (time.Contains(':'))
 			{
@@ -221,6 +236,13 @@ namespace UOCApp
 			}
 
 			return Decimal.Round(result, 3);
+            }
+        
+        catch (FormatException e)
+        {
+                throw new ArgumentException("Invalid Time\n Please enter as Minutes:Seconds");
+
+        }
 		}
 
 
@@ -261,7 +283,7 @@ namespace UOCApp
 				switch_Official.Opacity = 0;
 				label_Official.Opacity = 0;
 			}
-
+				
 		}
 
 		protected override void OnAppearing()
@@ -271,12 +293,12 @@ namespace UOCApp
 			ShareButtonStatus(); // update the share buttons status dependant on if all obstacles are complete
 		}
 
+  
+            
 
 
 
-
-
-
+        
 
 
 

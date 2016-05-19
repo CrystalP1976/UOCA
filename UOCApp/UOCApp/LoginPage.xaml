@@ -26,13 +26,13 @@
 
       <Button Text="Login"
            HorizontalOptions="Center"
-              Grid.Column="0" Grid.Row="1"
+              Grid.Column="1" Grid.Row="1"
               Clicked="ButtonLoginClick"
            />
 
       <Button Text="Cancel"
            HorizontalOptions="Center"
-              Grid.Column="1" Grid.Row="1"
+              Grid.Column="0" Grid.Row="1"
               Clicked="ButtonCancelClick"
            />
 

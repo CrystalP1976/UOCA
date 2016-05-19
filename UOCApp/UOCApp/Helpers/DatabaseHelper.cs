@@ -141,15 +141,17 @@ namespace UOCApp.Helpers
             return results;
         }
 
-        /*
-        public List<Result> GetPrivateResults()
-        {
-            //throw new NotImplementedException();
-            //var query = db.Table<Result>();
-            return new List<Result>(db.Table<Result>());
-        }
-        */
 
+        public int DeleteResult(int result_id) //delete result from local db
+        {
+            var rowcount = 0;
+            if (result_id > 0)
+            {
+                rowcount = db.Delete<Result>(result_id); // result_id is the primary key
+            }
+            return rowcount;
+
+        }
 
         public int InsertResult(Result result, ObstacleList obstacleList)
         {

@@ -11,18 +11,65 @@
 
     <Image Source="htitle.png"  />
   
-    <Button Text="Contact" Clicked="ButtonContactClick"/>
+    <Button Text="Contact Administrator" Clicked="ButtonContactClick"/>
   
     
   
   <ScrollView Padding="10">
     
     <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Spacing="15">      
-      <Label Text="A MESSAGE FROM TARA (TODO)" VerticalOptions="Center" HorizontalOptions="Center" LineBreakMode="WordWrap"/>
-    
-      <Label Text="The Ultimate Obstacle Course app was created by student from the British Columbia Institute of Technology." VerticalOptions="Center" HorizontalOptions="Center" LineBreakMode="WordWrap"/>
+      
+      <Label VerticalOptions="Center" HorizontalOptions="Center" LineBreakMode="WordWrap">
+        <Label.Text>
+The "Admin" page on this APP, is for logging race times that are officially timed by a Teacher, Supervisor or Administrator.
 
-      <Label Text="THIRD PARTY TECHNOLOGY CREDITS" VerticalOptions="Center" HorizontalOptions="Center" LineBreakMode="WordWrap"/>   
+If you are a Teacher, Supervisor or Administrator from a school or another facility, and you'd like the password information, so you can log official race times (example: a gym teacher, or if you're hosting a special event), please email theathcote@gmail.com.
+
+The yellow star shown on the Leaderboard, beside a racers name, indicates that it's an "official" race time (timed by a Teacher, Supervisor or Administrator).
+
+Racers, if you're logging your own race times, please log accurate times!
+
+If you have any comments, questions or concerns with this APP, please email theathcote@gmail.com.
+        </Label.Text>
+      </Label>
+
+      <Label VerticalOptions="Center" HorizontalOptions="Center" LineBreakMode="WordWrap">
+        <Label.Text>
+The Ultimate Obstacle Course app was created by students from the Computer Information Technology program at the British Columbia Institute of Technology.
+
+Copyright (c) 2016 Richard Gosse, Liz Kundilivskaya, Joti Lalli, Chris Leclair
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+___________
+
+Using JSON.NET
+
+Copyright (c) 2007 James Newton-King
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+___________
+
+Using SQLite.NET
+
+Copyright (c) 2009-2012 Krueger Systems, Inc.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+        </Label.Text>
+      </Label>   
     </StackLayout>
 
     
