@@ -25,11 +25,11 @@ namespace UOCApp
         List<AdminResult> baseResults = new List<AdminResult>();
         ObservableCollection<AdminResult> results = new ObservableCollection<AdminResult>();
 
+        private bool firstAppeared = true;
+
         public AdminPage ()
 		{
 			InitializeComponent ();
-
-            MessagingCenter.Subscribe<LoginPage, Boolean>(this, "LoginComplete", (sender, arg) => OnLoginComplete(arg));
 
             client = new HttpClient();
             client.MaxResponseContentBufferSize = 256000;
@@ -41,34 +41,6 @@ namespace UOCApp
             //results.Add(new AdminResult {result_id = 5, student_name = "John Doe", date = "April 28 2016", time="11:11.111"});
 
             ListViewAdmin.ItemsSource = results;
-        }
-
-        private void OnLoginComplete(bool arg)
-        {
-            //unsubscribe
-            MessagingCenter.Unsubscribe<LoginPage, Boolean>(this, "LoginComplete");
-
-            //on return from login page do something
-            //Console.WriteLine(arg);
-
-            //if it returned true, the login was successful and we can do nothing
-
-            //if it returned false, the login was unsuccessful and we need to leave immediately
-            if(!arg && Navigation.NavigationStack.Count > 0) //for safety
-            {
-                Navigation.PopAsync();
-            }
-
-            if(arg)
-            {
-                //show the page if we're logged in
-                //AdminLayout.IsVisible = true;
-                //IsVisible is broken, use Opacity instead
-                AdminLayout.Opacity = 1.0;
-
-                //load result list
-                GetResults();
-            }
         }
 
         protected override async void OnAppearing() //is this safe?
@@ -87,8 +59,17 @@ namespace UOCApp
             //TODO: check if we're actually logged in
             if (!loggedIn)
             {
-                //try to login
-                await Navigation.PushModalAsync(new LoginPage());
+                if(firstAppeared)
+                {
+                    //try to login if it's the first timme
+                    firstAppeared = false;
+                    await Navigation.PushModalAsync(new LoginPage());
+                }
+                else
+                {
+                    await Navigation.PopAsync();
+                }
+                
             }
             else
             {

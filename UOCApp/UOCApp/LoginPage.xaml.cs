@@ -41,7 +41,6 @@ namespace UOCApp
             await Application.Current.SavePropertiesAsync();            
 
             await Navigation.PopModalAsync();
-            MessagingCenter.Send<LoginPage, Boolean>(this, "LoginComplete", true);
         }
 
         private async void ButtonCancelClick(object sender, EventArgs args)
@@ -50,7 +49,6 @@ namespace UOCApp
             
 
             await Navigation.PopModalAsync();
-            MessagingCenter.Send<LoginPage, Boolean>(this, "LoginComplete", false);
         }
 	}
 }
