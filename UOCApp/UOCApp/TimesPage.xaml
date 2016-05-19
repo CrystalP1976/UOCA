@@ -53,20 +53,22 @@
             <Grid>
               <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
+
               </Grid.RowDefinitions>
               <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
                 <!-- <ColumnDefinition Width="Auto" /> -->
               </Grid.ColumnDefinitions>
 
-              <Label Text="{Binding student_name}" Grid.Column="0" Grid.Row="0" />
-              <Label Text="{Binding date}" Grid.Column="1" Grid.Row="0"/>
-              <Label Text="{Binding time}" Grid.Column="2" Grid.Row="0"/>
-              <Button Text="?" IsEnabled="{Binding missedObstacle}" Clicked="ButtonQueryClick"  CommandParameter="{Binding result_id}" Grid.Column="3" Grid.Row="0" />
-              <Button Text="X" Clicked="ButtonDeleteClick" Grid.Column="4" Grid.Row="0" CommandParameter="{Binding result_id}" />
+              <Label Text="{Binding student_name}"  FontSize="15" Grid.Column="0" Grid.Row="0" />
+              <Label Text="{Binding date}"  FontSize="15" Grid.Column="1" Grid.Row="0"/>
+              <Label Text="{Binding time}" FontSize="15" Grid.Column="2" Grid.Row="0"/>
+              <Button Text="!" TextColor="Red"  FontSize="30" IsEnabled="{Binding missedObstacle}" Clicked="ButtonQueryClick"  CommandParameter="{Binding result_id}" Grid.Column="3" Grid.Row="0" />
+              <Button Text="X"  TextColor="Red" Clicked="ButtonDeleteClick" Grid.Column="4" Grid.Row="0" CommandParameter="{Binding result_id}" />
               <!-- <Button Text="S" Clicked="ButtonShareClick"  CommandParameter="{Binding result_id}" Grid.Column="4" Grid.Row="0" /> -->
             </Grid>
           </StackLayout>
