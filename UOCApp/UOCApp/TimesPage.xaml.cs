@@ -98,7 +98,7 @@ namespace UOCApp
             //TODO
             int result_id = (int)((Button)sender).CommandParameter;
 
-            Console.WriteLine("Clicked id: " + result_id);
+            //Console.WriteLine("Clicked id: " + result_id);
             //this checks baseResults for a matching result_id, gets the first match, gets the missedObstacles list
             List<string> obstacles = baseResults.Where(v => v.result_id == result_id).First().missedObstacles;
 
