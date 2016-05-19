@@ -10,14 +10,14 @@ using Xamarin.Forms;
 
 namespace UOCApp
 {
-	public partial class TimesPage : ContentPage
-	{
+    public partial class TimesPage : ContentPage
+    {
         List<PrivateResult> baseResults;
         ObservableCollection<PrivateResult> results; 
 
         public TimesPage ()
-		{
-			InitializeComponent ();
+        {
+            InitializeComponent ();
 
             baseResults = new List<PrivateResult>();
             results = new ObservableCollection<PrivateResult>();

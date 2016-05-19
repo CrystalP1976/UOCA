@@ -77,6 +77,7 @@ namespace UOCApp
             //TODO on click
             Console.WriteLine("Clicked save button");
             //TODO use PushModal and await
+
             Navigation.PushAsync(new EntryPage(displayTime)); //should this be modal?
         }
 

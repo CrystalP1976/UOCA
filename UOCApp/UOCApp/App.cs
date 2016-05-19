@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -19,7 +19,7 @@ namespace UOCApp
         public static DatabaseHelper databaseHelper;
 
         //TODO refactor App.x stuff into separate Singleton
-        //for now try (Application)(App.Current).databaseHelper
+        //for now try (Application)(App.Current).databaseHelper.db
 
 		public App ()
 		{
