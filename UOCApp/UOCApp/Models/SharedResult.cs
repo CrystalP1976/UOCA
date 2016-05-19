@@ -97,7 +97,7 @@ namespace UOCApp
                 }
                 if (Official && loggedIn)
                 {
-                    values.Add("password", "12345"); //make better
+                    values.Add("password", App.password); 
                 }
 
                 var content = new FormUrlEncodedContent(values);

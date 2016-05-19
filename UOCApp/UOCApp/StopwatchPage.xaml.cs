@@ -25,6 +25,8 @@ namespace UOCApp
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            startTime = 0;
+            result = 0;
 
             WatchText.Text = "00:00.000";
         }
