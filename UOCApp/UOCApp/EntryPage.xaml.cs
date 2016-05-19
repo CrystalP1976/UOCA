@@ -203,6 +203,7 @@ namespace UOCApp
 
 		static decimal ConvertTime(string time)
 		{
+            try {
 			decimal result;
 
             if (String.IsNullOrEmpty(time))
@@ -229,6 +230,13 @@ namespace UOCApp
 			}
 
 			return Decimal.Round(result, 3);
+            }
+        
+        catch (FormatException e)
+        {
+                throw new ArgumentException("Invalid Time\n Please enter as Minutes:Seconds");
+
+        }
 		}
 
 
