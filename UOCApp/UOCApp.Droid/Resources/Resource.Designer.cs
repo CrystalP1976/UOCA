@@ -2230,20 +2230,23 @@ namespace UOCApp.Droid
 			// aapt resource value: 0x7f0200a8
 			public const int mr_ic_play_light = 2130837672;
 			
-			// aapt resource value: 0x7f0200ad
-			public const int notification_template_icon_bg = 2130837677;
+			// aapt resource value: 0x7f0200ae
+			public const int notification_template_icon_bg = 2130837678;
 			
 			// aapt resource value: 0x7f0200a9
-			public const int splashbg = 2130837673;
+			public const int obst = 2130837673;
 			
 			// aapt resource value: 0x7f0200aa
-			public const int splashbg2 = 2130837674;
+			public const int splashbg = 2130837674;
 			
 			// aapt resource value: 0x7f0200ab
-			public const int SplashImage = 2130837675;
+			public const int splashbg2 = 2130837675;
 			
 			// aapt resource value: 0x7f0200ac
-			public const int star = 2130837676;
+			public const int SplashImage = 2130837676;
+			
+			// aapt resource value: 0x7f0200ad
+			public const int star = 2130837677;
 			
 			static Drawable()
 			{
