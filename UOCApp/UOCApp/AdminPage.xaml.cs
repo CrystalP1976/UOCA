@@ -89,6 +89,8 @@ namespace UOCApp
             string selectedGrade = !(PickerGrade == null) ? PickerGrade.Items[PickerGrade.SelectedIndex] : "Grade 4";
             string selectedGender = !(PickerGender == null) ? PickerGender.Items[PickerGender.SelectedIndex] : "Male";
             string selectedSchool = !(EntrySchool == null) ? EntrySchool.Text : null;
+            string selectedItem = !(PickerSort == null) ? PickerSort.Items[PickerSort.SelectedIndex] : "Time";
+
             string query = resultsHelper.CreateQueryString(selectedGrade, selectedGender, selectedSchool);
 
             try
@@ -97,10 +99,13 @@ namespace UOCApp
 
                 List<RawResult> rawresults = await resultsHelper.GetRawResults(query);
 
-                this.baseResults = GetResultsHelper.ConvertAdminResults(rawresults);
+                baseResults = GetResultsHelper.ConvertAdminResults(rawresults);
 
-                    //copy results
-                    CopyResults();
+                //sort results
+                GetResultsHelper.SortResults(baseResults, selectedItem);
+
+                //copy results
+                CopyResults();
 
 
             }
@@ -148,7 +153,7 @@ namespace UOCApp
         {
             int result_id = (int)((Button)sender).CommandParameter;
 
-            var sure = await DisplayAlert("Confirm", "Delete this record permanently", "Yes", "No");
+            var sure = await DisplayAlert("Confirm", "Delete this record permanently?", "Yes", "No");
             if(!(bool)sure)
             {
                 return;
@@ -191,6 +196,7 @@ namespace UOCApp
                 return;
 
             GetResults();
+
         }
 
         //Fired when the sort is changed, resorts the list
@@ -200,9 +206,7 @@ namespace UOCApp
             if (PickerSort == null)
                 return;
 
-            string selectedItem = PickerSort.Items[PickerSort.SelectedIndex];
-
-            ResortResults(selectedItem);
+            GetResults();
         }
 
         private void NavHome(object sender, EventArgs args)
