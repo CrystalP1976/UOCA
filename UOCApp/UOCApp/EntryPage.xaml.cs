@@ -99,12 +99,20 @@ namespace UOCApp
                     var LocalID = App.databaseHelper.InsertResult(result, obstaclesPage.obstacleList);
                  
 
-                    if (LocalID >= 1)
-					{ // true to fake success of adding to local database
-						if (switch_Public.IsToggled)
+                    if (LocalID >= 1) // verify local insertion success by primary key
+					{ 
+
+                        if (switch_Public.IsToggled) 
 						{ // did the user specify that they wish to post to the leaderboard?
-							if (await sharedResult.share((bool)switch_Official.IsToggled))
-							{ // post to server and return true if successful
+
+                            if (!obstaclesPage.obstacleList.allComplete())//added dilibrate check to obstacle list due to known android bug
+                            {
+                                await DisplayAlert("Thank you!", "Your result has been saved", "OK");
+                                Navigation.PopToRootAsync(); // return to home once save complete
+                            }
+
+                            if (await sharedResult.share((bool)switch_Official.IsToggled)) // post to server and return true if successful
+							{ 
 								await DisplayAlert("Thank you!", "Your result has been saved and shared with the leaderboard", "OK");
 								Navigation.PopToRootAsync(); // return to home once save complete
 
