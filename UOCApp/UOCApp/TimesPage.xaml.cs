@@ -115,7 +115,7 @@ namespace UOCApp
         private async void ButtonDeleteClick(object sender, EventArgs args)
         {
 
-            if (await DisplayAlert("Are you sure?", "", "Ok", "Cancel"))
+            if (await DisplayAlert("Delete", "Are you sure?", "Ok", "Cancel"))
             {
                 int rowcount = 0;
                 int result_id = (int)((Button)sender).CommandParameter;
