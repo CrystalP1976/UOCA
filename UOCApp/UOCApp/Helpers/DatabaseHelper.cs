@@ -54,12 +54,12 @@ namespace UOCApp.Helpers
             
             if(File.Exists(filePath))
             {
-                Console.WriteLine("DB already there!");
+                //Console.WriteLine("DB already there!");
                 //File.Delete(filePath); //for debugging only
                 return;
             }            
 
-            Console.WriteLine("Copying database to folder");
+            //Console.WriteLine("Copying database to folder");
 
             var assembly = typeof(App).GetTypeInfo().Assembly;
             Stream stream = assembly.GetManifestResourceStream(resourcePrefix + "db.sqlite");
@@ -80,35 +80,6 @@ namespace UOCApp.Helpers
             db = new SQLiteConnection(filePath);
         }
 
-        private void tryDatabase()
-        {
-            var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            var filePath = Path.Combine(documentsPath, "db.sqlite");
-            var db = new SQLiteConnection(filePath);
-            this.db = db;
-
-            foreach(var line in db.GetTableInfo("result"))
-            {
-                Console.WriteLine(line.ToString());
-            }
-
-            int pk = db.Insert(new Result { date = "2016-12-12", shared = 1, time = 240.123m, student_gender = "F", student_name = "Jamie Tang", student_grade = 4 });
-
-            Console.WriteLine("Inserted row with PK of " + pk);
-
-            var query = db.Table<Result>();
-
-            Console.WriteLine(query);
-            Console.WriteLine(query.Count());
-
-            foreach(var result in query)
-            {
-                Console.WriteLine(result.ToString());
-            }
-
-            //Console.WriteLine(db.GetTableInfo("result").ToString());
-            //db.Insert(new Result {date="2016-12-12",ranked=1,time=240.123m, student_gender="M",student_name="Jamie Tang",student_grade=4 });
-        }
 
         //convert db results to private results
         public List<PrivateResult> GetPrivateResults()
@@ -158,7 +129,7 @@ namespace UOCApp.Helpers
             int pk = 0;
             db.Insert(result);
             pk = (int)result.result_id;
-            Console.WriteLine("Inserted row with PK of " + pk);
+            //Console.WriteLine("Inserted row with PK of " + pk);
             ResultObstacle obstacle = new ResultObstacle();
             obstacle.result_id = pk;
      

@@ -96,19 +96,16 @@ namespace UOCApp
 
         private void NavHome(object sender, EventArgs args)
         {
-            Console.WriteLine("Clicked Nav Home");
             Navigation.PopToRootAsync();
         }
 
         private void NavLeaderboard(object sender, EventArgs args)
         {
-            Console.WriteLine("Clicked Nav Leaderboard");
             Navigation.PushAsync(new LeaderboardPage());
         }
 
         private void NavAdmin(object sender, EventArgs args)
         {
-            Console.WriteLine("Clicked Nav Admin");
             Navigation.PushAsync(new AdminPage());
         }
 

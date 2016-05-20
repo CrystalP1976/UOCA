@@ -24,7 +24,6 @@ namespace UOCApp
 
         public EntryPage(string displayTime)
         {
-            //Console.WriteLine("Display Time:" + displayTime);
 
             obstaclesPage = new ObstaclesPage();
             InitializeComponent();
