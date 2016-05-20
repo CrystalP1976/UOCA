@@ -68,6 +68,7 @@ namespace UOCApp
 
         private void ButtonSaveClick(object sender, EventArgs args)
         {
+
             Navigation.PushAsync(new EntryPage(displayTime)); //should this be modal?
         }
 

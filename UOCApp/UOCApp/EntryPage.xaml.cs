@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -239,7 +239,7 @@ namespace UOCApp
         
         catch (FormatException e)
         {
-                throw new ArgumentException("Invalid Time\n Please enter as Minutes:Seconds");
+                throw new ArgumentException("Invalid Time\n Minimum 30 seconds\n Please enter as Minutes:Seconds");
 
         }
 		}
@@ -304,5 +304,3 @@ namespace UOCApp
 
 	}
 }
-    
-

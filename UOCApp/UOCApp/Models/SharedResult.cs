@@ -45,7 +45,7 @@ namespace UOCApp
             {
 				if (time < 30)// minimum acceptable time in seconds
 				{ 
-						throw new ArgumentException("Invalid Time");
+                    throw new ArgumentException("Invalid Time\n Minimum 30 seconds\n Please enter as Minutes:Seconds\"");
 				}
 
                 if (App.swearHelper.IsSwear(student_name))

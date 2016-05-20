@@ -31,9 +31,9 @@
         <x:String>Grade 5</x:String>
         <x:String>Grade 6</x:String>
         <x:String>Grade 7</x:String>
-        <x:String>Teenager</x:String>
-        <x:String>Adult Under 35</x:String>
-        <x:String>Adult Over 35</x:String>
+        <x:String>Teenager 14+</x:String>
+        <x:String>Adult 19+</x:String>
+        <x:String>Adult 35+</x:String>
       </Picker.Items>
       <Picker.SelectedIndex>0</Picker.SelectedIndex>
     </Picker>
