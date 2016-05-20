@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"             
+             x:Class="UOCApp.StopwatchPage">
+
+  <ContentPage.ToolbarItems>
+    <ToolbarItem x:Name="Home" Text="Home" Icon="ihome.png"></ToolbarItem>
+    <ToolbarItem x:Name="Leaderboard" Text="Leaderboard" Icon="ileaderboard.png" Clicked="NavLeaderboard"></ToolbarItem>
+    <ToolbarItem x:Name="Times" Text="My Times" Icon="itimes.png" Clicked="NavTimes"></ToolbarItem>
+    <ToolbarItem x:Name="Admin" Text="Admin" Icon="iadmin.png" Clicked="NavAdmin"></ToolbarItem>
+  </ContentPage.ToolbarItems>
+  <StackLayout       VerticalOptions="FillAndExpand"
+                     HorizontalOptions="FillAndExpand"
+                     Orientation="Vertical"
+                     Spacing="15"
+                     Padding="10,0,10,0">
+
+    <Image Source="htitle.png"  />
+
+    <!--
+    
+    <Button Text="Top Run Times"
+        HorizontalOptions="Center"
+        Clicked="ButtonTimesClick" />
+        
+        -->
+
+    <!-- <Label Text="Stop Watch" HorizontalOptions="Center" />  -->
+
+    <Label Text="" HorizontalOptions="Center" FontSize="36" x:Name="WatchText">
+      <Label.FontFamily>
+        <OnPlatform x:TypeArguments="x:String">
+          <OnPlatform.iOS>Courier</OnPlatform.iOS>
+          <OnPlatform.Android>monospace</OnPlatform.Android>
+          <OnPlatform.WinPhone>Consolas</OnPlatform.WinPhone>
+        </OnPlatform>
+      </Label.FontFamily>      
+    </Label>
+    
+
+    <Grid Padding="20,0">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+
+      <Button Text="Start"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="CenterAndExpand"
+            Clicked="ButtonStartClick"
+                Grid.Row="0" Grid.Column="0"/>
+      
+        <Button Text="Pause"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="CenterAndExpand"
+            Clicked="ButtonPauseClick"
+                Grid.Row="0" Grid.Column="1"/>
+
+        <Button Text="Stop"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="CenterAndExpand"
+            Clicked="ButtonStopClick"
+                Grid.Row="0" Grid.Column="2"/>
+
+        <Button Text="Clear"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="CenterAndExpand"
+            Clicked="ButtonClearClick"
+                Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"/>
+
+        <Button Text="Enter Result"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="CenterAndExpand"
+            Clicked="ButtonSaveClick"
+                Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"/>
+      
+    </Grid>
+
+    <Button Text="About This App" 
+            Clicked="ButtonAboutClick" 
+            VerticalOptions="End">
+    </Button>
+
+  </StackLayout>
+
+</ContentPage>

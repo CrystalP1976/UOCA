@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="UOCApp.LoginPage">
+
+  <StackLayout       VerticalOptions="Center"
+                     HorizontalOptions="FillAndExpand"
+                     Orientation="Vertical"
+                     Spacing="15"
+                     Padding="10,0,10,0">
+
+    <Label Text="Admin Login" FontSize="Large" VerticalOptions="Center" HorizontalOptions="Center" />
+
+    <Grid Padding="40,20">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+
+      <Label Text="Password:" Grid.Row="0" Grid.Column="0" FontSize="Large" HorizontalTextAlignment="End"/>
+      <Entry Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" x:Name="TextBoxPassword" IsPassword="true"/>
+
+      <Button Text="Login"
+           HorizontalOptions="Center"
+              Grid.Column="1" Grid.Row="1"
+              Clicked="ButtonLoginClick"
+           />
+
+      <Button Text="Cancel"
+           HorizontalOptions="Center"
+              Grid.Column="0" Grid.Row="1"
+              Clicked="ButtonCancelClick"
+           />
+
+    </Grid>
+
+  </StackLayout>
+	
+</ContentPage>

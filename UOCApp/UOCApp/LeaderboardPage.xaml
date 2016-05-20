@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="UOCApp.LeaderboardPage">
+  <ContentPage.ToolbarItems>
+    <ToolbarItem x:Name="Home" Text="Home" Icon="ihome.png" Clicked="NavHome"></ToolbarItem>
+    <ToolbarItem x:Name="Leaderboard" Text="Leaderboard" Icon="ileaderboard.png"></ToolbarItem>
+    <ToolbarItem x:Name="Times" Text="My Times" Icon="itimes.png" Clicked="NavTimes"></ToolbarItem>
+    <ToolbarItem x:Name="Admin" Text="Admin" Icon="iadmin.png" Clicked="NavAdmin"></ToolbarItem>
+  </ContentPage.ToolbarItems>
+    <StackLayout       VerticalOptions="FillAndExpand"
+                     HorizontalOptions="FillAndExpand"
+                     Orientation="Vertical"
+                     Spacing="10"
+                     Padding="10,10,10,0">
+
+      <Label Text="Leaderboard" FontSize="Large" VerticalOptions="Center" HorizontalOptions="Center" />
+      <Label Text="Open results" FontSize="Small" VerticalOptions="Center" HorizontalOptions="Center" x:Name="LabelDescription"/>
+
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        
+        <Picker Title="Period" HorizontalOptions="FillAndExpand" SelectedIndexChanged="FilterChange" x:Name="PickerPeriod" Grid.Row="0" Grid.Column="0">
+          <Picker.Items>
+            <x:String>Daily</x:String>
+            <x:String>Weekly</x:String>
+            <x:String>Monthly</x:String>
+            <x:String>All Time</x:String>
+          </Picker.Items>
+          <Picker.SelectedIndex>0</Picker.SelectedIndex>
+        </Picker>
+        
+        <Button Text="Show Official" Clicked="ButtonOfficialClick" x:Name="ButtonOfficial" Grid.Row="0" Grid.Column="1"/>
+        
+        <Picker Title="Grade" HorizontalOptions="FillAndExpand" SelectedIndexChanged="FilterChange" x:Name="PickerGrade" Grid.Row="1" Grid.Column="0">
+          <Picker.Items>
+            <x:String>Grade 4</x:String>
+            <x:String>Grade 5</x:String>
+            <x:String>Grade 6</x:String>
+            <x:String>Grade 7</x:String>
+            <x:String>Teenager 14+</x:String>
+            <x:String>Adult 19+</x:String>
+            <x:String>Adult 35+</x:String>
+          </Picker.Items>
+          <Picker.SelectedIndex>0</Picker.SelectedIndex>
+        </Picker>
+        <Picker Title="Gender" HorizontalOptions="FillAndExpand" SelectedIndexChanged="FilterChange" x:Name="PickerGender" Grid.Row="1" Grid.Column="1">
+          <Picker.Items>
+            <x:String>Male</x:String>
+            <x:String>Female</x:String>
+          </Picker.Items>
+          <Picker.SelectedIndex>0</Picker.SelectedIndex>
+        </Picker>
+
+      </Grid>
+        
+    <Entry Placeholder="School" HorizontalOptions="FillAndExpand" Completed="FilterChange" x:Name="EntrySchool"/>
+
+
+   <ListView RowHeight="-1" HasUnevenRows="True" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" x:Name="ListViewLeaderboard">
+     <ListView.ItemTemplate>
+      <DataTemplate>
+        <ViewCell>
+          <StackLayout BackgroundColor="#eee"
+                Orientation="Vertical">
+            <Grid>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+              </Grid.RowDefinitions>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+              </Grid.ColumnDefinitions>
+              <Image Source="star.png" IsVisible="{Binding ranked}" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"/>
+              <Label Text="{Binding student_name}" FontSize="Medium" Grid.Column="1" Grid.Row="0" />
+              <Label Text="{Binding time}" FontSize="Medium" Grid.Column="2" Grid.Row="0"/>
+              <Label Text="{Binding school_name}" FontSize="Micro" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2"/>
+            </Grid>
+          </StackLayout>
+        </ViewCell>
+      </DataTemplate>
+    </ListView.ItemTemplate>
+  </ListView>
+   
+  <Label Text="{Binding MainText}" VerticalOptions="Center" HorizontalOptions="Center" />
+
+</StackLayout>
+</ContentPage>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+  <style name="Theme.AppTheme" parent="android:Theme.DeviceDefault.Light">
+    <item name="android:windowBackground">@color/uoca_silver</item>
+    <item name="android:actionBarStyle">@style/ActionBarStyle</item>
+    <!--<item name="android:alertDialogStyle">@style/AlertDialogStyle</item>-->
+  </style>
+
+  <style name="AlertDialogStyle" parent="android:style/Theme.DeviceDefault.Light.Dialog.Alert">
+  </style>
+  
+  <style name="ActionBarStyle" parent="android:style/Widget.DeviceDefault.Light.ActionBar">
+    <item name="android:colorBackground">@color/uoca_gray</item>
+    <item name="android:background">@color/uoca_gray</item>
+  </style>
+  
+    <style name="Theme.Splash" parent="android:Theme">
+        <item name="android:windowBackground">@drawable/SplashImage</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+</resources>

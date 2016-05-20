@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="UOCApp.AdminPage">
+  <ContentPage.ToolbarItems>
+    <ToolbarItem x:Name="Home" Text="Home" Icon="ihome.png" Clicked="NavHome"></ToolbarItem>
+    <ToolbarItem x:Name="Leaderboard" Text="Leaderboard" Icon="ileaderboard.png" Clicked="NavLeaderboard"></ToolbarItem>
+    <ToolbarItem x:Name="Times" Text="My Times" Icon="itimes.png" Clicked="NavTimes"></ToolbarItem>
+    <ToolbarItem x:Name="Admin" Text="Admin" Icon="iadmin.png"></ToolbarItem>
+  </ContentPage.ToolbarItems>
+  <StackLayout       VerticalOptions="FillAndExpand"
+                     HorizontalOptions="FillAndExpand"
+                     Orientation="Vertical"
+                     Spacing="10"
+                     Padding="10,10,10,0"
+                     
+                     Opacity="0"
+                     x:Name="AdminLayout">
+    <Label Text="Administration" FontSize="Large" VerticalOptions="Center" HorizontalOptions="Center" />
+
+    <StackLayout Orientation="Horizontal">
+      <Button Text="Logout" HorizontalOptions="CenterAndExpand" Clicked="ButtonLogoutClick"/>
+      <Button Text="Refresh" HorizontalOptions="CenterAndExpand" Clicked="ButtonRefreshClick"/>
+    </StackLayout>
+    
+    
+
+    <Picker Title="Grade" HorizontalOptions="FillAndExpand" SelectedIndexChanged="FilterChange" x:Name="PickerGrade">
+      <Picker.Items>
+        <x:String>Grade 4</x:String>
+        <x:String>Grade 5</x:String>
+        <x:String>Grade 6</x:String>
+        <x:String>Grade 7</x:String>
+        <x:String>Teenager 14+</x:String>
+        <x:String>Adult 19+</x:String>
+        <x:String>Adult 35+</x:String>
+      </Picker.Items>
+      <Picker.SelectedIndex>0</Picker.SelectedIndex>
+    </Picker>
+    <Picker Title="Gender" HorizontalOptions="FillAndExpand" SelectedIndexChanged="FilterChange" x:Name="PickerGender">
+      <Picker.Items>
+        <x:String>Male</x:String>
+        <x:String>Female</x:String>
+      </Picker.Items>
+      <Picker.SelectedIndex>0</Picker.SelectedIndex>
+    </Picker>
+    <Entry Placeholder="School" HorizontalOptions="FillAndExpand" Completed="FilterChange" x:Name="EntrySchool"/>
+    <Picker Title="Sort By" HorizontalOptions="FillAndExpand" SelectedIndexChanged="SortChange" x:Name="PickerSort">
+      <Picker.Items>        
+        <x:String>Name</x:String>
+        <x:String>Date</x:String>
+        <x:String>Time</x:String>
+      </Picker.Items>
+      <Picker.SelectedIndex>2</Picker.SelectedIndex>
+    </Picker>
+
+    <ListView RowHeight="-1" HasUnevenRows="True" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" x:Name="ListViewAdmin">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <StackLayout BackgroundColor="#eee"
+              Orientation="Vertical">
+                <Grid>
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                  </Grid.RowDefinitions>
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                  </Grid.ColumnDefinitions>
+              
+                    <Label Text="{Binding student_name}" Grid.Column="0" Grid.Row="0" />
+                    <Label Text="{Binding date}" Grid.Column="1" Grid.Row="0"/>
+                    <Label Text="{Binding time}" Grid.Column="2" Grid.Row="0"/>                
+                    <Button Text="X" Clicked="ButtonDeleteClick"  CommandParameter="{Binding result_id}" Grid.Column="3" Grid.Row="0" Grid.RowSpan="2" />
+                    <Label Text="{Binding school_name}" FontSize="Micro" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2"/>
+                  </Grid>
+            </StackLayout>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+
+    </ListView>
+
+  </StackLayout>
+	
+</ContentPage>
